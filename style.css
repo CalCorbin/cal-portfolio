@@ -6,29 +6,32 @@ body {
   font-size: 5vmin;
   line-height: 1;
 }
-
 * {
   margin: 0;
   padding: 0;
 }
-
 .intro {
   top: 0;
   background: #d2e0e0;
   min-height: 55vh;
   padding-top: 45vh;
+  color: #3e3e3e;
 }
-
 .intro h1 {
   font-size: 9vh;
-  color: #3e3e3e;
 }
-
 .intro p {
   margin-top: 2%;
-  color: #3e3e3e;
   font-size: 3vh;
 }
-
-#welcome-section {
+.project-description {
+  font-size: 6vh;
+  padding-top: 3vh;
+  padding-bottom: 1vh;
+  background: #383838;
+  color: #ffffff;
+}
+.project-description p {
+  margin-top: 2%;
+  font-size: 2vh;
 }
