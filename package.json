@@ -1,0 +1,28 @@
+{
+  "name": "cal-portfolio",
+  "version": "1.0.0",
+  "description": "Cal Corbin's portfolio website",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalCorbin/cal-portfolio.git"
+  },
+  "author": "Cal Corbin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CalCorbin/cal-portfolio/issues"
+  },
+  "homepage": "https://github.com/CalCorbin/cal-portfolio#readme",
+  "devDependencies": {
+    "chromedriver": "^2.45.0",
+    "cucumber": "^5.1.0",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  },
+  "dependencies": {}
+}
