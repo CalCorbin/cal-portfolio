@@ -1,29 +1,47 @@
 {
   "name": "cal-portfolio",
-  "version": "1.0.0",
-  "description": "Cal Corbin's portfolio website",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "firebase": "^7.15.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-test-renderer": "^16.13.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint 'src'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CalCorbin/cal-portfolio.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "author": "Cal Corbin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CalCorbin/cal-portfolio/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/CalCorbin/cal-portfolio#readme",
   "devDependencies": {
-    "chromedriver": "^2.45.0",
-    "cucumber": "^5.1.0",
-    "eslint": "^5.12.0",
-    "selenium-webdriver": "^4.0.0-alpha.1"
-  },
-  "dependencies": {}
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "recompose": "^0.30.0"
+  }
 }
