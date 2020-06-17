@@ -4,9 +4,14 @@
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
+
+# firebase
+.firebase/
 
 # testing
 /coverage
+/seleniumLogs
 
 # production
 /build
@@ -21,3 +26,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.idea
+.env

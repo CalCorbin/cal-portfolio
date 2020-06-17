@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "production": "cal-portfolio-c40aa",
+    "dev": "cal-portfolio-dev"
+  }
+}

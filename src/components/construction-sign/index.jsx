@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles.css';
 
-function App() {
+export default function ConstructionSign(props) {
   return (
-    <div className="App">
-      <header className="construction-font">
+    <div>
+      <div
+        data-testid="construction-sign"
+        className="__construction-sign"
+      >
         <p>
           Currently under construction.
         </p>
         <a
-          className="App-link"
+          className="link"
           href="https://www.linkedin.com/in/calcorbin/"
           target="_blank"
           rel="noopener noreferrer"
         >
           Reach me here for now.
         </a>
-      </header>
+      </div>
     </div>
   );
 }
-
-export default App;
