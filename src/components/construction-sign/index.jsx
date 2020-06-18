@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-export default function ConstructionSign(props) {
+export default function ConstructionSign() {
   return (
     <div>
       <div
@@ -9,7 +9,7 @@ export default function ConstructionSign(props) {
         className="__construction-sign"
       >
         <p>
-          Currently under construction.
+          Currently under construction
         </p>
         <a
           className="link"
@@ -17,7 +17,7 @@ export default function ConstructionSign(props) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Reach me here for now.
+          Reach me here for now
         </a>
       </div>
     </div>

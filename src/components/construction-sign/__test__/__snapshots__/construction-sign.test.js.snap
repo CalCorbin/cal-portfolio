@@ -7,7 +7,7 @@ exports[`should match the construction sign snapshot 1`] = `
     data-testid="construction-sign"
   >
     <p>
-      Currently under construction.
+      Currently under construction
     </p>
     <a
       className="link"
@@ -15,7 +15,7 @@ exports[`should match the construction sign snapshot 1`] = `
       rel="noopener noreferrer"
       target="_blank"
     >
-      Reach me here for now.
+      Reach me here for now
     </a>
   </div>
 </div>
