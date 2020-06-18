@@ -9,7 +9,7 @@ export default function ConstructionSign() {
         className="__construction-sign"
       >
         <p>
-          Currently under construction.
+          Currently under construction
         </p>
         <a
           className="link"
@@ -17,7 +17,7 @@ export default function ConstructionSign() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Reach me here for now.
+          Reach me here for now
         </a>
       </div>
     </div>
