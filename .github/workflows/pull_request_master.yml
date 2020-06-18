@@ -24,5 +24,6 @@ jobs:
           npm i
           npm run lint
           npm test
+          TESTENV=cal-portfolio-dev.web.app npm run test:e2e
         env:
           CI: true
