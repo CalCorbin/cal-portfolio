@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-export default function ConstructionSign(props) {
+export default function ConstructionSign() {
   return (
     <div>
       <div
