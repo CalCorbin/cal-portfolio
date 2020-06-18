@@ -6,19 +6,23 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "chromedriver": "^83.0.0",
     "firebase": "^7.15.1",
+    "mocha": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^16.13.1",
+    "selenium-webdriver": "^4.0.0-alpha.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:e2e": "mocha test/e2e/*.test.js",
     "eject": "react-scripts eject",
-    "lint": "eslint 'src'"
+    "lint": "eslint 'src' && eslint 'test'"
   },
   "eslintConfig": {
     "extends": "react-app"
