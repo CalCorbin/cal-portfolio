@@ -23,7 +23,7 @@ jobs:
           npm i
           npm run build
           npm install -g firebase-tools
-          firebase deploy -P default --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase deploy -P production --token ${{ secrets.FIREBASE_TOKEN }}
         env:
           CI: true
           REACT_APP_NODE_ENV: "production"
