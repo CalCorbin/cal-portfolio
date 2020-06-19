@@ -1,4 +1,4 @@
-name: Dev Environment Deploy Workflow for Kanbook CI
+name: Dev Environment Deploy Workflow for cal-portfolio
 
 on:
   push:
