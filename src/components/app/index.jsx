@@ -3,7 +3,7 @@ import NavigationRoutes from '../navigation';
 
 export default function App() {
   return (
-    <div>
+    <div data-testid="app-container">
       <NavigationRoutes />
     </div>
   );

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the nav-button snapshot 1`] = `
+<div>
+  <div
+    className="__button-container"
+    data-testid="nav-button"
+  >
+    <p />
+  </div>
+</div>
+`;

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match navigation routing snapshot 1`] = `
+<div
+  data-testid="landing-route"
+>
+  <div
+    className="__landing-container"
+    data-testid="landing-container"
+  >
+    <div
+      data-testid="landing-image-header"
+    >
+      <div
+        alt="hongkong"
+        className="__landing-header-image"
+        data-testid="header-image"
+      />
+      <div
+        className="__landing-header-text"
+        data-testid="landing-header-text"
+      >
+        cal corbin
+        <br />
+        <br />
+        coder | creator
+      </div>
+    </div>
+    <div
+      data-testid="landing-navigation"
+    >
+      <div>
+        <div
+          className="__button-container"
+          data-testid="nav-button"
+        >
+          <p>
+            About
+          </p>
+        </div>
+      </div>
+      <div>
+        <div
+          className="__button-container"
+          data-testid="nav-button"
+        >
+          <p>
+            Work
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
