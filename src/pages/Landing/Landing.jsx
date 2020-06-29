@@ -1,5 +1,4 @@
 import React from 'react';
-import ConstructionSign from '../../components/construction-sign';
 import NavButton from '../../components/nav-button';
 import './styles.css';
 
