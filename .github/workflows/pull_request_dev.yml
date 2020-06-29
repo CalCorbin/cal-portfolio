@@ -1,4 +1,4 @@
-name: Pull Request Workflow for Kanbook CI
+name: Pull Request Workflow for cal-portfolio
 
 on:
   pull_request:

@@ -7,6 +7,13 @@ const constructionSignPageLocators = {
   },
 };
 
+const landingPageLocators = {
+  landingNavigationMenu: {
+    locator: 'div[data-testid="landing-navigation"]',
+  },
+};
+
 module.exports = {
   constructionSignPageLocators,
+  landingPageLocators,
 };

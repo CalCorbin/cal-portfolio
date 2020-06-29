@@ -1,17 +1,17 @@
 const chromeDriver = require('../util/chrome.js');
 const { recordTestFailure } = require('../util/errorHandler.js');
-const ConstructionSignPage = require('../pages/ConstructionSign.js');
+const LandingPage = require('../pages/Landing.js');
 const testUrl = require('../util/testingUrls.js');
 const DEFAULTS = require('../constants/defaults.js');
 
 let driver;
-let constructionSignPage;
+let landingPage;
 
-describe('Cals Portfolio construction page test', function () {
+describe('Cals Portfolio landing page test', function () {
   this.timeout(DEFAULTS.TEST_TIMEOUT);
   beforeEach(async () => {
     driver = await chromeDriver.createDriver();
-    constructionSignPage = await ConstructionSignPage.create({ driver });
+    landingPage = await LandingPage.create({ driver });
     await driver.get(testUrl.host);
     await driver
       .manage()
@@ -28,7 +28,7 @@ describe('Cals Portfolio construction page test', function () {
     }
     await driver.quit();
   });
-  it.skip('Should load construction sign page', async () => {
-    await constructionSignPage.loadPage();
+  it('Should load landing page', async () => {
+    await landingPage.loadPage();
   });
 });
