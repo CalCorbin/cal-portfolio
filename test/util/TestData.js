@@ -1,15 +1,13 @@
 function create() {
-  const that = { uniqueInputData };
+  const that = { uniqueInputData }
 
   async function uniqueInputData() {
-    const randomString = Math.random()
-      .toString(36)
-      .substr(2, 5);
+    const randomString = Math.random().toString(36).substr(2, 5)
 
-    return randomString;
+    return randomString
   }
 
-  return that;
+  return that
 }
 
-module.exports = { create };
+module.exports = { create }
