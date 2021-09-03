@@ -28,11 +28,9 @@ const devConfig = {
 const ENV = process.env.REACT_APP_NODE_ENV
 const config = ENV === 'production' ? prodConfig : devConfig
 
-const app = initializeApp(config)
-
 class Firebase {
     constructor() {
-        app.initializeApp(config)
+        initializeApp(config)
     }
 }
 
