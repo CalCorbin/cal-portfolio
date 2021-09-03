@@ -1,31 +1,33 @@
-const WebElement = require('../util/Element.js');
-const { withErrorHandling } = require('../util/errorHandler.js');
-const { constructionSignPageLocators } = require('../selectors/locators.js');
+const WebElement = require('../util/Element')
+const { withErrorHandling } = require('../util/errorHandler')
+const { constructionSignPageLocators } = require('../selectors/locators')
 
 function create({ driver }) {
-  const my = {
-    webElement: null,
-  };
+    const my = {
+        webElement: null,
+    }
 
-  const that = {
-    loadPage,
-  };
+    const that = {
+        loadPage,
+    }
 
-  async function loadPage() {
-    return withErrorHandling(async () => {
-      await driver.sleep(1000); // Avoids weird timing issues
-      await my.webElement.loadEntireElement(constructionSignPageLocators.greetingParagraph);
-    }, loadPage);
-  }
+    async function loadPage() {
+        return withErrorHandling(async () => {
+            await driver.sleep(1000) // Avoids weird timing issues
+            await my.webElement.loadEntireElement(
+                constructionSignPageLocators.greetingParagraph
+            )
+        }, loadPage)
+    }
 
-  function _init() {
-    my.driver = driver;
-    my.webElement = WebElement.create({ driver: my.driver });
-  }
+    function _init() {
+        my.driver = driver
+        my.webElement = WebElement.create({ driver: my.driver })
+    }
 
-  _init();
+    _init()
 
-  return that;
+    return that
 }
 
-module.exports = { create };
+module.exports = { create }
