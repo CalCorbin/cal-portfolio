@@ -19,6 +19,13 @@ Do the following before creating a pull request.
 3. Run `npm run test` and fix any errors
 4. Run `npm run test:e2e` and fix any errors
 
+## Updating Firebase CI
+1. In your terminal login to Firebase
+   1. Enter `firebase login`
+2. After logging in, create a ci token
+   1. `firebase login:ci`
+3. A browser will open, prompting you to login.
+4. After logging in, go back to the terminal and copy the FIREBASE_TOKEN listed.
+
 General rules for PRs
 4. If you're going to make a change, write at least one test.
- 
