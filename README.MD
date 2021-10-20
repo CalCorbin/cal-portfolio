@@ -1,7 +1,9 @@
 
-# My Portfolio Website
+# Cal Corbin's Developer Website
 
-This repo hosts the code for my portfolio site. This is always a constant work in progress.
+This repo hosts the code for my personal developer site. This is always a constant work in progress.
+
+## Table of Contents
 
 ## Install locally
 
@@ -18,6 +20,11 @@ Do the following before creating a pull request.
 2. Run `npm run lint` and fix any errors
 3. Run `npm run test` and fix any errors
 4. Run `npm run test:e2e` and fix any errors
+
+## Testing
+
+1. To run all the tests for react components, run `npm run test`
+2. To run tests on a specific component, run `npm run test componentName`
 
 ## Updating Firebase CI
 1. In your terminal login to Firebase

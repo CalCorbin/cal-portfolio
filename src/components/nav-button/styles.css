@@ -1,11 +1,4 @@
-.__button-container {
-  background-color: #02c39a;
-  display: inline-block;
-  width: 100%;
-  height: 75px;
-  padding-top: 20px;
-  border-top: 3px solid white;
-}
+
 
 .__button-container p {
   color: #fff;
