@@ -12,9 +12,6 @@ export default function NavigationBar() {
       <button type="button" className="__button" data-testid="resume-button">
         RESUME
       </button>
-      <button type="button" className="__button" data-testid="about-button">
-        ABOUT
-      </button>
     </div>
   );
 }
