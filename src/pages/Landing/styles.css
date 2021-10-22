@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-end;
   background-color: #fff;
+  font-family: sans-serif;
 }
 
 .section-header-text {
@@ -10,7 +11,6 @@
   display: block;
   padding-top: 10px;
   font-size: 1.8em;
-  font-family: monospace;
   letter-spacing: 10px;
 }
 
@@ -19,7 +19,6 @@
   display: block;
   padding-top: 10px;
   font-size: 1.2em;
-  font-family: monospace;
   letter-spacing: 6px;
   width: 90%;
   margin-left: auto;
