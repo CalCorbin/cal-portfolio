@@ -4,6 +4,10 @@
 This repo hosts the code for my personal developer site. This is always a constant work in progress.
 
 ## Table of Contents
+- [Install locally](#install-locally)
+- [Pull Request](#pull-requests)
+- [Testing](#testing)
+- [Updating Firebase CI](#updating-firebase-ci)
 
 ## Install locally
 
@@ -33,6 +37,3 @@ Do the following before creating a pull request.
    1. `firebase login:ci`
 3. A browser will open, prompting you to login.
 4. After logging in, go back to the terminal and copy the FIREBASE_TOKEN listed.
-
-General rules for PRs
-4. If you're going to make a change, write at least one test.
