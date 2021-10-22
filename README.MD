@@ -1,21 +1,20 @@
-
 # Cal Corbin's Developer Website
 
 This repo hosts the code for my personal developer site. This is always a constant work in progress.
 
 ## Table of Contents
-- [Install locally](#install-locally)
+- [Install locally](#setting-up-local-environment)
 - [Pull Request](#pull-requests)
 - [Testing](#testing)
 - [Updating Firebase CI](#updating-firebase-ci)
 
-## Install locally
+## Setting up local environment
 
 1. Clone repo.
-2. Setup firebase tools by running in terminal `npm install -g firebase-tools`
-3. Set up chromedriver globally `npm install -g chromedriver`
+2. Install firebase tools `npm install -g firebase-tools`
+3. Install chromedriver `npm install -g chromedriver`
 4. Run `npm install` in root project directory.
-5. Run `npm start`, if all goes well, the browser will open to `http://localhost:3000`
+5. Run `npm start`, if all goes well the browser will open to `http://localhost:3000`
 
 ## Pull Requests
 
@@ -31,6 +30,7 @@ Do the following before creating a pull request.
 2. To run tests on a specific component, run `npm run test componentName`
 
 ## Updating Firebase CI
+
 1. In your terminal login to Firebase
    1. Enter `firebase login`
 2. After logging in, create a ci token
