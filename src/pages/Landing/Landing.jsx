@@ -5,9 +5,9 @@ function LandingPage() {
   return (
     <div data-testid="landing-container" className="landing">
       <div data-testid="landing-header-text" className="paragraph-text">
-        <p data-testid="page-header" className="section-header-text">
+        <div data-testid="page-header" className="section-header-text">
           cal corbin - software engineer
-        </p>
+        </div>
         <hr />
         <p>
           Passionate and skilled software engineer. Experienced in modern
@@ -17,7 +17,7 @@ function LandingPage() {
           clients by listening to them and creating solutions that meet their
           needs.
         </p>
-        <p className="section-header-text">contact</p>
+        <div className="section-header-text">contact</div>
         <hr />
         <div className="job-section">
           <ul>
@@ -55,7 +55,7 @@ function LandingPage() {
           Git, HTML, CSS, Laravel, Jenkins, Postman, Jira, Linux, Kanban,
           DevOps, Behavior Driven Development, Continuous Delivery
         </p>
-        <p className="section-header-text">experience</p>
+        <div className="section-header-text">experience</div>
         <hr />
         <div className="job-section">
           <p className="job-title">iUNU | software engineer</p>
@@ -145,7 +145,7 @@ function LandingPage() {
             </li>
           </ul>
         </div>
-        <p className="section-header-text">education</p>
+        <div className="section-header-text">education</div>
         <hr />
         <div className="job-section">
           <p className="job-title">University of Oklahoma | Bachelor of Arts</p>

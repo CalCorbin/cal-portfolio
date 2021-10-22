@@ -2,6 +2,12 @@
 
 This repo hosts the code for my personal developer site. This is always a constant work in progress.
 
+## Table of Contents
+- [Install locally](#setting-up-local-environment)
+- [Pull Request](#pull-requests)
+- [Testing](#testing)
+- [Updating Firebase CI](#updating-firebase-ci)
+
 ## Setting up local environment
 
 1. Clone repo.
