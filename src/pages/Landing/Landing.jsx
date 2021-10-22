@@ -5,7 +5,9 @@ function LandingPage() {
   return (
     <div data-testid="landing-container" className="landing">
       <div data-testid="landing-header-text" className="paragraph-text">
-        <p className="section-header-text">cal corbin - software engineer</p>
+        <p data-testid="page-header" className="section-header-text">
+          cal corbin - software engineer
+        </p>
         <hr />
         <p>
           Passionate and skilled software engineer. Experienced in modern
@@ -112,7 +114,7 @@ function LandingPage() {
             <li>
               Responsible for testing new development and bug fixes; Work with
               developers and product managers to come up with a solid
-              specification of what's needed; Reporting bugs or issues through
+              specification of what is needed; Reporting bugs or issues through
               help desk tickets; Researching help desk issues to help create
               development solutions; Assisting other departments through product
               knowledge; Testing monthly and weekly releases; Help train new

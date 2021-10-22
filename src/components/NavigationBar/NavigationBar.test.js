@@ -10,17 +10,6 @@ it('should render the navigation bar', () => {
   expect(getByTestId('navigation-bar')).toHaveClass('__navigation-bar');
 });
 
-it('should render the about button', () => {
-  render(<NavigationBar />);
-
-  const aboutButton = screen.getByTestId('about-button');
-
-  fireEvent.click(aboutButton);
-
-  expect(aboutButton).toHaveTextContent('ABOUT');
-  expect(aboutButton).toBeEnabled();
-});
-
 it('should render the resume button', () => {
   render(<NavigationBar />);
 

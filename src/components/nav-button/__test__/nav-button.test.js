@@ -1,17 +1,11 @@
-import React from 'react'
-import { cleanup, render } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import renderer from 'react-test-renderer'
-import NavButton from '../index'
+import React from 'react';
+import { cleanup, render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import NavButton from '../index';
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 it('should render the nav-button correctly', () => {
-  const { getByTestId } = render(<NavButton />)
-  expect(getByTestId('nav-button')).toHaveClass('__button-container')
-})
-
-it('should match the nav-button snapshot', () => {
-  const tree = renderer.create(<NavButton />).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  const { getByTestId } = render(<NavButton buttonText="testme" />);
+  expect(getByTestId('nav-button')).toHaveClass('__button-container');
+});
