@@ -1,0 +1,43 @@
+.__navigation-bar {
+  background-color: white;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.__button {
+  background-color: #8c36ff;
+  display: inline-block;
+  width: 10em;
+  height: 60px;
+  border: none;
+  color: #fff;
+  margin-top: 25px;
+  margin-left: 20px;
+  margin-right: 10px;
+  text-align: center;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-family: monospace;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+
+}
+
+.__hamburger {
+  margin-top: 35px;
+  margin-left: 10px;
+  margin-right: 30px;
+}
+
+.__menu-dash {
+  width: 35px;
+  height: 5px;
+  background-color: #000;
+  margin: 6px 0;
+}
