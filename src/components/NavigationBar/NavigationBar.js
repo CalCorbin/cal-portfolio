@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-export default function NavigationBar() {
+function NavigationBar() {
   return (
     <div className="__navigation-bar" data-testid="navigation-bar">
       <div className="__hamburger">
@@ -15,3 +15,5 @@ export default function NavigationBar() {
     </div>
   );
 }
+
+export default NavigationBar;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { cleanup, render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import NavigationBar from './index';
+import NavigationBar from './NavigationBar';
 
 afterEach(cleanup);
 
-it('should render the navigation bar', () => {
+it('should render the Navigation bar', () => {
   const { getByTestId } = render(<NavigationBar />);
-  expect(getByTestId('navigation-bar')).toHaveClass('__navigation-bar');
+  expect(getByTestId('Navigation-bar')).toHaveClass('__navigation-bar');
 });
 
 it('should render the resume button', () => {

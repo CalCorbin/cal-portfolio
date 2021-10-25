@@ -1,3 +1,3 @@
-const LANDING_ROUTE = '/'
+const LANDING_ROUTE = '/';
 
-export default LANDING_ROUTE
+export default LANDING_ROUTE;
