@@ -1,57 +1,35 @@
 .landing {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  background-color: #fff;
   font-family: sans-serif;
-}
-
-.section-header-text {
-  color: #000;
-  display: block;
-  padding-top: 10px;
   font-size: 1.8em;
   letter-spacing: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
-.paragraph-text {
-  color: #000;
-  display: block;
-  padding-top: 10px;
-  font-size: 1.2em;
-  letter-spacing: 6px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+.landing h1 {
+  margin-bottom: -20px;
 }
 
-.job-section {
-  margin-bottom: 30px;
+.landing h2 {
+  margin-bottom: -50px;
 }
 
-.job-title {
-  font-weight:bold;
-}
-
-.job-date {
-  font-style: italic;
-  text-decoration: underline;
-}
-
-hr {
-  border: none;
-  height: 2px;
-  background-color: #000;
-}
-
-.__landing-header-image {
-  background: url('../../assets/jr-korpa.jpg');
+.resume-button {
+  background: url('../../assets/sean-foley-3-unsplash.jpg');
   background-size: cover;
-  height: 50vh;
-  display: block;
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 80%;
+  opacity: 0.7;
+  margin: 10%;
+  height: 40vh;
+  font-size: 3em;
+  letter-spacing: 10px;
+  /*text-decoration: underline;*/
+  /*text-decoration-color: white;*/
 }
 
-
+.resume-button div {
+  color: white;
+}
