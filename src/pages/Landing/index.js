@@ -12,10 +12,13 @@ function LandingPage() {
 
   return (
     <div data-testid="landing-page" className="landing">
-      <h1 data-testid="header-title">cal corbin</h1>
-      <h2>software engineer</h2>
+      <div data-testid="header-title">
+        <h1>cal corbin</h1>
+        <h2>software engineer</h2>
+      </div>
       <div className="social">
         <a
+          data-testid="cal-github"
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/CalCorbin"
@@ -23,6 +26,7 @@ function LandingPage() {
           <FontAwesomeIcon size="2x" icon={faGithub} className="social-icon" />
         </a>
         <a
+          data-testid="cal-linkedin"
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.linkedin.com/in/calcorbin/"

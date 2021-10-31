@@ -10,3 +10,21 @@ it('should render', () => {
 
   expect(screen.getByTestId('landing-page')).toBeInTheDocument();
 });
+
+it('should render header', () => {
+  render(<Landing />);
+
+  expect(screen.getByTestId('header-title')).toBeInTheDocument();
+});
+
+it('should render github link', () => {
+  render(<Landing />);
+
+  expect(screen.getByTestId('cal-github')).toBeInTheDocument();
+});
+
+it('should render linkedin link', () => {
+  render(<Landing />);
+
+  expect(screen.getByTestId('cal-linkedin')).toBeInTheDocument();
+});
