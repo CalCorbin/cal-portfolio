@@ -1,3 +1,6 @@
-const LANDING_ROUTE = '/';
+const ROUTES = {
+  LANDING: '/',
+  RESUME: '/resume',
+};
 
-export default LANDING_ROUTE;
+export default ROUTES;

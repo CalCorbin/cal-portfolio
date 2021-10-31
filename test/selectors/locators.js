@@ -9,7 +9,7 @@ const constructionSignPageLocators = {
 
 const landingPageLocators = {
   landingNavigationMenu: {
-    locator: 'div[data-testid="landing-container"]',
+    locator: 'div[data-testid="landing-page"]',
   },
 };
 
