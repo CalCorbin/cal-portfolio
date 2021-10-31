@@ -13,13 +13,14 @@ function LandingPage() {
       <h1 data-testid="header-title">cal corbin</h1>
       <h2>software engineer</h2>
       <button
-        type="button"
         className="resume-button"
+        type="button"
+        aria-label="resume button"
         data-testid="resume-button"
+        alt="view my resume/cv"
         onClick={() => routeChange(ROUTES.RESUME)}
       >
-        <img alt="resume" className="resume-image" />
-        <div className="resume-text">resume</div>
+        resumé
       </button>
     </div>
   );
