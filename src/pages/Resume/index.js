@@ -1,12 +1,12 @@
 import React from 'react';
-import './styles.css';
+import './Resume.css';
 
 function Index() {
   return (
-    <div data-testid="landing-container" className="landing">
-      <div data-testid="landing-header-text" className="paragraph-text">
+    <div data-testid="resume-page" className="resume-page">
+      <div>
         <div data-testid="about-section">
-          <div className="section-header-text">about</div>
+          <div className="section-header">about</div>
           <hr />
           <p>
             Passionate and skilled software engineer. Experienced in modern
@@ -19,7 +19,7 @@ function Index() {
         </div>
 
         <div data-testid="technologies-section">
-          <div className="section-header-text">technologies</div>
+          <div className="section-header">technologies</div>
           <hr />
           <p>
             NodeJs, TypeScript, React, React Native, Ruby on Rails, Mongo,
@@ -30,7 +30,7 @@ function Index() {
         </div>
 
         <div data-testid="experience-section">
-          <div className="section-header-text">experience</div>
+          <div className="section-header">experience</div>
           <hr />
           <div className="job-section">
             <p className="job-title">iUNU | software engineer</p>
@@ -125,7 +125,7 @@ function Index() {
         </div>
 
         <div data-testid="education-section">
-          <div className="section-header-text">education</div>
+          <div className="section-header">education</div>
           <hr />
           <div className="job-section">
             <p className="job-title">

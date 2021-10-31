@@ -1,0 +1,37 @@
+.resume-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: #fff;
+  font-family: sans-serif;
+  font-size: 1.2em;
+  letter-spacing: 5px;
+  width: 90%;
+  margin-left: 3%;
+}
+
+.section-header {
+  padding-top: 10px;
+  font-size: 1.8em;
+  letter-spacing: 10px;
+}
+
+.job-section {
+  margin-bottom: 30px;
+}
+
+.job-title {
+  font-weight:bold;
+}
+
+.job-date {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: #000;
+}
+
