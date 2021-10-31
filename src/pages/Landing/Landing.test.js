@@ -1,14 +1,12 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Landing from './Landing';
+import Landing from './index';
 
 afterEach(cleanup);
 
-it('should render ', () => {
+it('should render', () => {
   render(<Landing />);
 
-  expect(screen.getByTestId('page-header')).toHaveTextContent(
-    'cal corbin - software engineer'
-  );
+  expect(screen.getByTestId('landing-page')).toBeInTheDocument();
 });

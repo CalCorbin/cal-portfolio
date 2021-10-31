@@ -1,32 +1,31 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Landing from './index';
-import
+import Resume from './index';
 
 afterEach(cleanup);
 
 it('should render resume page', () => {
-  render(<Landing />);
-  expect(screen.getByTestId('landing-container')).toBeInTheDocument();
+  render(<Resume />);
+  expect(screen.getByTestId('resume-page')).toBeInTheDocument();
 });
 
 it('should render about section', () => {
-  render(<Landing />);
+  render(<Resume />);
   expect(screen.getByTestId('about-section')).toBeInTheDocument();
 });
 
 it('should render technologies section', () => {
-  render(<Landing />);
+  render(<Resume />);
   expect(screen.getByTestId('technologies-section')).toBeInTheDocument();
 });
 
 it('should render experience section', () => {
-  render(<Landing />);
+  render(<Resume />);
   expect(screen.getByTestId('experience-section')).toBeInTheDocument();
 });
 
 it('should render education section', () => {
-  render(<Landing />);
+  render(<Resume />);
   expect(screen.getByTestId('education-section')).toBeInTheDocument();
 });
