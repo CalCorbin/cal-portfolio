@@ -20,7 +20,7 @@
 }
 
 .resume-button {
-  background: url('../../assets/nong-vang-1-unsplash.jpg');
+  background: url('../../assets/jr-korpa.jpg');
   background-size: cover;
   color: white;
   border-right: solid black 10px;
@@ -31,7 +31,7 @@
   padding: 0;
   height: 275px;
   font-size: 3em;
-  letter-spacing: 30px;
+  letter-spacing: 10px;
 }
 
 @media screen and (max-width: 992px) {
