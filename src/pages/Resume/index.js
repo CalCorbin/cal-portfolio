@@ -141,7 +141,7 @@ function Index() {
           </div>
           <div className="job-section">
             <p className="job-title">
-              Oklahoma City Community College | ssociates of Arts
+              Oklahoma City Community College | Associates of Arts
             </p>
             <p className="job-date">March 2013 - March 2016</p>
             <ul>

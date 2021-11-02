@@ -43,7 +43,7 @@ function LandingPage() {
         className="resume-button"
         aria-label="resume button"
         data-testid="resume-button"
-        alt="view my resume/cv"
+        alt="https://unsplash.com/@jrkorpa"
         onClick={() => routeChange(ROUTES.RESUME)}
       >
         resumé
