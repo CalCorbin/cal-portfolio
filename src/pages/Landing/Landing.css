@@ -58,3 +58,26 @@ hr {
   height: 2px;
   background-color: #000;
 }
+
+.section-header {
+  padding-top: 10px;
+  font-size: 1.8em;
+  letter-spacing: 10px;
+}
+
+.projects-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  border-right: solid black 10px;
+  border-bottom: solid black 10px;
+  border-top: solid black 3px;
+  border-left: solid black 3px;
+  margin: 10px;
+  padding: 10px;
+  width: 30%;
+}
