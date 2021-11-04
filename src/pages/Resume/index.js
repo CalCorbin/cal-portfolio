@@ -131,7 +131,7 @@ function Index() {
             <p className="job-title">
               University of Oklahoma | Bachelor of Arts
             </p>
-            <p className="job-date">March 2013 - March 2016</p>
+            <p className="job-date">August 2010 - December 2012</p>
             <ul>
               <li>
                 Interdisciplinary Perspectives on the Environment (Focus on
@@ -143,7 +143,7 @@ function Index() {
             <p className="job-title">
               Oklahoma City Community College | Associates of Arts
             </p>
-            <p className="job-date">March 2013 - March 2016</p>
+            <p className="job-date">August 2007 - May 2010</p>
             <ul>
               <li>Journalism</li>
             </ul>
