@@ -48,13 +48,24 @@
 }
 
 .social-icon {
-  margin: 10px;
-  margin-bottom: 20px;
+  margin: .5rem;
+  margin-bottom: 2rem;
   color: black;
 }
 
-hr {
+.landing hr {
   border: none;
-  height: 2px;
+  height: .1rem;
   background-color: #000;
+  width: 20rem;
+}
+
+.section-header {
+  margin-top: 2rem;
+}
+
+.projects-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }

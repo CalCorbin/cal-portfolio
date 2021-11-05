@@ -2,7 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import Card from '../Card';
 import ROUTES from '../../constants/routes';
+import PROJECTS from '../../constants/projects';
 import './Landing.css';
 
 function LandingPage() {
@@ -15,6 +17,7 @@ function LandingPage() {
       <div data-testid="header-title">
         <h1>cal corbin</h1>
         <h2>software engineer</h2>
+        <hr />
       </div>
       <div className="social">
         <a
@@ -48,6 +51,15 @@ function LandingPage() {
       >
         resumé
       </button>
+      <div data-testid="projects-section">
+        <div className="section-header">projects</div>
+        <hr />
+        <div className="projects-container">
+          {PROJECTS.map((project) => (
+            <Card key={project.id} data={project} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
