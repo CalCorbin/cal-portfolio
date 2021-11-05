@@ -1,0 +1,22 @@
+.simple-card {
+  display: flex;
+  flex-direction: column;
+  border-right: solid black .8rem;
+  border-bottom: solid black .8rem;
+  border-top: solid black .2rem;
+  border-left: solid black .2rem;
+  margin: 2rem;
+  padding: .5rem;
+  width: 20rem;
+}
+
+.simple-card img {
+  height: 15rem;
+  width: 15rem;
+  object-fit: cover;
+}
+
+.simple-card a {
+  text-decoration: none;
+  color: black;
+}
