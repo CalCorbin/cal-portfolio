@@ -51,8 +51,7 @@ function LandingPage() {
       >
         resumé
       </button>
-      <div data-testid="projects-section" className="projects-section" />
-      <div style={{ marginTop: '10px' }}>
+      <div data-testid="projects-section">
         <div className="section-header">projects</div>
         <hr />
         <div className="projects-container">
