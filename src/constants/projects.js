@@ -9,7 +9,7 @@ const PROJECTS = [
     id: 2,
     title: 'Cacti Corral',
     link: 'https://github.com/CalCorbin/cacti-corral',
-    img: '/cal-portfolio/src/assets/runze-shi.jpg',
+    img: 'https://images.unsplash.com/photo-1528475478853-5b89bed65c4c',
   },
 ];
 

@@ -53,10 +53,11 @@
   color: black;
 }
 
-hr {
+.landing hr {
   border: none;
   height: 2px;
   background-color: #000;
+  width: 15em;
 }
 
 .section-header {
@@ -68,6 +69,7 @@ hr {
 .projects-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
 .project-card {
