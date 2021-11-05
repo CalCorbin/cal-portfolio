@@ -1,0 +1,12 @@
+.job-section {
+  margin-bottom: 3rem;
+}
+
+.job-title {
+  font-weight: bold;
+}
+
+.job-date {
+  font-style: italic;
+  text-decoration: underline;
+}

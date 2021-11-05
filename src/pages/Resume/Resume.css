@@ -14,16 +14,3 @@
   font-size: 1.8em;
   letter-spacing: 10px;
 }
-
-.job-section {
-  margin-bottom: 30px;
-}
-
-.job-title {
-  font-weight: bold;
-}
-
-.job-date {
-  font-style: italic;
-  text-decoration: underline;
-}
