@@ -35,4 +35,5 @@ Card.propTypes = {
     link: PropTypes.string,
   }),
 };
+
 export default Card;

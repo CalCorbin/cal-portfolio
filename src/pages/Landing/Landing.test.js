@@ -28,3 +28,9 @@ it('should render linkedin link', () => {
 
   expect(screen.getByTestId('cal-linkedin')).toBeInTheDocument();
 });
+
+it('should render a card', () => {
+  render(<Landing />);
+
+  expect(screen.getByTestId('card-link-1')).toBeInTheDocument();
+});
