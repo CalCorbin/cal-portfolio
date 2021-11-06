@@ -5,7 +5,7 @@ const JOBS = [
     org: 'iUNU',
     dates: 'July 2021 - Present',
     highlights: [
-      'Designed, built, and released customer facing features for desktop and mobile using React, React Native, PostGresQL and Ruby on Rails',
+      'Designed, built, and released customer facing features for desktop and mobile using React, React Native, GraphQL, PostGresQL, and Ruby on Rails',
       'Refactored legacy frontend reporting tools and added new features, resulting in delighted customers',
       'Created integration tests that mimicked user interaction, which reduced regressions significantly',
     ],

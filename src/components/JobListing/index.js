@@ -10,8 +10,8 @@ function JobListing({ job }) {
       </p>
       <p className="job-date">{job.dates}</p>
       <ul>
-        {job.highlights.map((point) => (
-          <li>{point}</li>
+        {job.highlights.map((element) => (
+          <li key={element}>{element}</li>
         ))}
       </ul>
     </div>
