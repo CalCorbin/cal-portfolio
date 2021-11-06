@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import Card from '../Card';
+import Card from '../../components/Card';
 import ROUTES from '../../constants/routes';
 import PROJECTS from '../../constants/projects';
 import './Landing.css';
