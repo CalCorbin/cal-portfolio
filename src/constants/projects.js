@@ -1,3 +1,5 @@
+import ROUTES from './routes';
+
 const PROJECTS = [
   {
     id: 1,
@@ -10,6 +12,12 @@ const PROJECTS = [
     title: 'Cacti Corral',
     link: 'https://github.com/CalCorbin/cacti-corral',
     img: 'https://images.unsplash.com/photo-1528475478853-5b89bed65c4c',
+  },
+  {
+    id: 3,
+    title: 'SpaceX Spaceships with GraphQL',
+    link: ROUTES.SPACEX,
+    img: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441',
   },
 ];
 

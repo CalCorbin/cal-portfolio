@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ROUTES from './constants/routes';
 import LandingPage from './pages/Landing';
-import Index from './pages/Resume';
+import Resume from './pages/Resume';
+import SpaceX from './pages/SpaceX';
 
 function App() {
   return (
@@ -10,7 +11,10 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path={ROUTES.RESUME}>
-            <Index />
+            <Resume />
+          </Route>
+          <Route path={ROUTES.SPACEX}>
+            <SpaceX />
           </Route>
           <Route path={ROUTES.LANDING}>
             <LandingPage />
