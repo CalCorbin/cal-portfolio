@@ -1,5 +1,26 @@
-.section-header {
-  padding-top: 10px;
-  font-size: 1.8em;
-  letter-spacing: 10px;
+.spacex-page {
+  padding: 1rem;
+}
+
+.ship-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.ship-card {
+  display: flex;
+  flex-direction: column;
+  border-right: solid black .8rem;
+  border-bottom: solid black .8rem;
+  border-top: solid black .2rem;
+  border-left: solid black .2rem;
+  margin: 2rem;
+  padding: .5rem;
+  width: 20rem;
+}
+
+.ship-card img {
+  height: 20rem;
+  width: 20rem;
+  object-fit: cover;
 }
