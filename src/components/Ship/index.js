@@ -29,7 +29,8 @@ function Ship({ ship }) {
           <strong>Home Port:</strong> {ship.home_port}
         </div>
         <div>
-          <strong>Weight:</strong> {ship.weight_lbs} lbs
+          <strong>Weight:</strong>{' '}
+          {ship.weight_lbs ? `${ship.weight_lbs} lbs` : 'Unknown'}
         </div>
         <div>
           <strong>URL:</strong>{' '}
@@ -43,36 +44,42 @@ function Ship({ ship }) {
               Marine Traffic Data
             </a>
           ) : (
-            <div data-testid={`no-url-${ship.id}`}>
-              Marine Traffic Data Unavaiable
-            </div>
+            <span data-testid={`no-url-${ship.id}`}>Data Unavaiable</span>
           )}
         </div>
-        <button type="button" onClick={handleMissionOpening}>
-          Missions
-        </button>
-        {isOpen ? (
-          <div className="modal">
-            <div className="modal-content">
-              <button type="button" onClick={handleMissionOpening}>
-                x
-              </button>
-              <h2>{ship.name} Missions</h2>
-              {ship.missions.map((mission) => (
-                <div key={`flight-${mission.flight}`}>
-                  <div>
-                    <strong>Mission Name:</strong> {mission.name}
-                  </div>
-                  <div>
-                    <strong>Flight Number:</strong> {mission.flight}
-                  </div>
-                  <hr />
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : null}
       </div>
+      <button
+        type="button"
+        onClick={handleMissionOpening}
+        data-testid={`missions-button-${ship.id}`}
+      >
+        Missions
+      </button>
+      {isOpen ? (
+        <div className="modal" data-testid={`missions-modal-${ship.id}`}>
+          <div className="modal-content">
+            <button
+              type="button"
+              onClick={handleMissionOpening}
+              data-testid={`close-button-${ship.id}`}
+            >
+              x
+            </button>
+            <h2>{ship.name} Missions</h2>
+            {ship.missions.map((mission) => (
+              <div key={`flight-${mission.flight}`}>
+                <div>
+                  <strong>Mission Name:</strong> {mission.name}
+                </div>
+                <div>
+                  <strong>Flight Number:</strong> {mission.flight}
+                </div>
+                <hr />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

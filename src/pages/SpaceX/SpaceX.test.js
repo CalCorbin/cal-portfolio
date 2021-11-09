@@ -1,5 +1,11 @@
 import React from 'react';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MockedProvider } from '@apollo/client/testing';
 import SpaceX, { GET_SHIPS } from './index';
@@ -71,7 +77,7 @@ afterEach(cleanup);
 
 it('should render spacex page', () => {
   expect(screen.getByTestId('spacex-page')).toBeInTheDocument();
-  expect(screen.getByText(/SpaceX Ships/)).toBeInTheDocument();
+  expect(screen.getByText(/SpaceX Marine Transport Ships/)).toBeInTheDocument();
 });
 
 it('should render three ships', () => {
@@ -118,6 +124,21 @@ it('should render ship weight', () => {
   expect(screen.getByText(/356738 lbs/)).toBeInTheDocument();
 });
 
-xit('should render ship missions', () => {
-  expect(screen.getByText(/Name: GO Mssfdasd Tree/)).toBeInTheDocument();
+it('should render ship missions modal', async () => {
+  await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
+
+  await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
+  expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
+  expect(screen.getByText(/58/)).toBeInTheDocument();
+});
+
+it('should close ship missions modal', async () => {
+  await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
+
+  await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
+  expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
+
+  const closeButton = screen.getByTestId('close-button-GOMSTREE');
+  await fireEvent.click(closeButton);
+  expect(closeButton).not.toBeInTheDocument();
 });

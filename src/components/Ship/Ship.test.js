@@ -1,32 +1,34 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Card from './index';
+import Ship from './index';
+
+const ship = {
+  home_port: 'Port Canaveral',
+  id: 'GOMSTREE',
+  image: 'https://i.imgur.com/MtEgYbY.jpg',
+  url: 'https://www.marinetraffic.com/en/ais/details/ships/shipid:3439091/vessel:MR%20STEVEN',
+  name: 'GO Ms Tree',
+  missions: [
+    {
+      flight: '50',
+      name: 'KoreaSat 5A',
+    },
+    {
+      flight: '58',
+      name: 'Iridium NEXT Mission 5',
+    },
+  ],
+  weight_lbs: 992000,
+  active: true,
+};
 
 beforeEach(() => {
-  render(<Card data={mockCard} />);
+  render(<Ship ship={ship} />);
 });
 afterEach(cleanup);
 
-const mockCard = {
-  id: 1,
-  title: 'Star Trek Next Generation Elevator Game',
-  link: 'https://github.com/CalCorbin/elevatorGame',
-  img: 'https://images.unsplash.com/photo-1550479023-2a811e19dfd3',
-};
-
 it('should render', () => {
-  expect(screen.getByTestId('card-1')).toBeInTheDocument();
-});
-
-it('should render title', () => {
-  expect(screen.getByText(mockCard.title)).toBeInTheDocument();
-});
-
-it('should render image', () => {
-  expect(screen.getByTestId('card-image-1')).toBeInTheDocument();
-});
-
-it('should render link', async () => {
-  expect(screen.getByRole('link')).toHaveAttribute('href', mockCard.link);
+  // Most of this component is tested in ../pages/SpaceX/SpaceX.test.js
+  expect(screen.getByTestId('ship-GOMSTREE')).toBeInTheDocument();
 });
