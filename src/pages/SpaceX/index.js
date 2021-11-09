@@ -1,9 +1,8 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import './SpaceX.css';
-import PropTypes from 'prop-types';
 
-const GET_SHIPS = gql`
+export const GET_SHIPS = gql`
   query {
     ships {
       id
@@ -14,37 +13,11 @@ const GET_SHIPS = gql`
   }
 `;
 
-function Ship({ ship }) {
-  return (
-    <div className="ship-card">
-      {ship.image ? (
-        <img src={ship.image} alt="spacex ship" />
-      ) : (
-        <div>No Image Available</div>
-      )}
-      <div>Name: {ship.name}</div>
-      <div>Home Port: {ship.home_port}</div>
-    </div>
-  );
-}
-
-Ship.defaultProps = {
-  ship: null,
-};
-
-Ship.propTypes = {
-  ship: PropTypes.shape({
-    image: PropTypes.string,
-    name: PropTypes.string,
-    home_port: PropTypes.string,
-  }),
-};
-
 function SpaceX() {
   const { loading, error, data } = useQuery(GET_SHIPS);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error...</p>;
+  if (loading) return <p data-testid="loading-state">Loading...</p>;
+  if (error) return <p data-testid="error-state">Error...</p>;
 
   return (
     <div data-testid="spacex-page" className="spacex-page">
@@ -52,7 +25,25 @@ function SpaceX() {
       <hr />
       <div className="ship-container">
         {data.ships.map((ship) => (
-          <Ship key={ship.id} ship={ship} />
+          <div
+            className="ship-card"
+            data-testid={`ship-${ship.id}`}
+            key={ship.id}
+          >
+            {ship.image ? (
+              <img
+                src={ship.image}
+                alt="spacex ship"
+                data-testid={`ship-image-${ship.id}`}
+              />
+            ) : (
+              <div data-testid={`ship-no-image-${ship.id}`}>
+                No Image Available
+              </div>
+            )}
+            <div>Name: {ship.name}</div>
+            <div>Home Port: {ship.home_port}</div>
+          </div>
         ))}
       </div>
     </div>
