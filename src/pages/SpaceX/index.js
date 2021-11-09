@@ -45,7 +45,7 @@ function SpaceX() {
       <hr />
       <div className="ship-container">
         {data.ships.map((ship) => (
-          <Ship ship={ship} />
+          <Ship key={ship.id} ship={ship} />
         ))}
       </div>
     </div>

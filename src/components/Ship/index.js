@@ -53,8 +53,23 @@ function Ship({ ship }) {
         </button>
         {isOpen ? (
           <div className="modal">
-            <div>Mission Name: foo</div>
-            <div>Flight Number: bar</div>
+            <div className="modal-content">
+              <button type="button" onClick={handleMissionOpening}>
+                x
+              </button>
+              <h2>{ship.name} Missions</h2>
+              {ship.missions.map((mission) => (
+                <div key={`flight-${mission.flight}`}>
+                  <div>
+                    <strong>Mission Name:</strong> {mission.name}
+                  </div>
+                  <div>
+                    <strong>Flight Number:</strong> {mission.flight}
+                  </div>
+                  <hr />
+                </div>
+              ))}
+            </div>
           </div>
         ) : null}
       </div>
