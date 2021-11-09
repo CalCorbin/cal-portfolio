@@ -16,19 +16,40 @@ const mocks = [
             home_port: 'Port Canaveral',
             id: 'GOMSTREE',
             image: 'https://i.imgur.com/MtEgYbY.jpg',
+            url: 'https://www.marinetraffic.com/en/ais/details/ships/shipid:3439091/vessel:MR%20STEVEN',
             name: 'GO Ms Tree',
+            missions: [
+              {
+                flight: '50',
+                name: 'KoreaSat 5A',
+              },
+              {
+                flight: '58',
+                name: 'Iridium NEXT Mission 5',
+              },
+            ],
+            weight_lbs: 992000,
+            active: true,
           },
           {
             id: 'GOPURSUIT',
             name: 'GO Pursuit',
             home_port: 'Port Canaveral',
             image: 'https://i.imgur.com/5w1ZWre.jpg',
+            url: 'https://www.marinetraffic.com/en/ais/details/ships/shipid:3439091/vessel:MR%20STEVEN',
+            missions: [],
+            weight_lbs: 123125,
+            active: true,
           },
           {
             id: 'AMERICANSPIRIT',
             name: 'American Spirit',
             home_port: 'Port of Los Angeles',
             image: null,
+            url: null,
+            missions: [],
+            weight_lbs: 356738,
+            active: false,
           },
         ],
       },
@@ -70,11 +91,33 @@ it('should render ship with no image', () => {
 });
 
 it('should render ship name', () => {
-  expect(screen.getByText(/Name: GO Ms Tree/)).toBeInTheDocument();
+  expect(screen.getByText(/GO Ms Tree/)).toBeInTheDocument();
 });
 
 it('should render ship home port', () => {
-  expect(
-    screen.getByText(/Home Port: Port of Los Angeles/)
-  ).toBeInTheDocument();
+  expect(screen.getByText(/Port of Los Angeles/)).toBeInTheDocument();
+});
+
+it('should render ship url', () => {
+  expect(screen.getByTestId('ship-url-GOPURSUIT')).toBeInTheDocument();
+});
+
+it('should render empty ship url', () => {
+  expect(screen.getByTestId('no-url-AMERICANSPIRIT')).toBeInTheDocument();
+});
+
+it('should render ship active status', () => {
+  expect(screen.getAllByText(/Active/).length).toBe(2);
+});
+
+it('should render ship inactive status', () => {
+  expect(screen.getByText(/Inactive/)).toBeInTheDocument();
+});
+
+it('should render ship weight', () => {
+  expect(screen.getByText(/356738 lbs/)).toBeInTheDocument();
+});
+
+xit('should render ship missions', () => {
+  expect(screen.getByText(/Name: GO Mssfdasd Tree/)).toBeInTheDocument();
 });
