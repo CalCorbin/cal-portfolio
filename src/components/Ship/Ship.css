@@ -1,0 +1,39 @@
+.ship-card {
+    display: flex;
+    flex-direction: column;
+    border: solid black .2rem;
+    margin: 1rem;
+    padding: .5rem;
+    width: 20rem;
+}
+
+.ship-card img {
+    height: 20rem;
+    width: 20rem;
+    object-fit: cover;
+}
+
+.ship-card-body {
+    margin-top: 1rem;
+}
+
+.ship-card-body button {
+    margin-top: 1rem;
+}
+
+.modal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 5rem;
+    border: solid black .5rem;
+    background-color: white;
+    padding: 1rem;
+    /*z-index: 999999;*/
+}

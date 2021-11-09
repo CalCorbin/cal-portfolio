@@ -14,26 +14,3 @@
   flex-flow: row wrap;
   justify-content: center;
 }
-
-.ship-card {
-  display: flex;
-  flex-direction: column;
-  border: solid black .2rem;
-  margin: 1rem;
-  padding: .5rem;
-  width: 20rem;
-}
-
-.ship-card img {
-  height: 20rem;
-  width: 20rem;
-  object-fit: cover;
-}
-
-.ship-card-body {
-  margin-top: 1rem;
-}
-
-.ship-card-body button {
-  margin-top: 1rem;
-}
