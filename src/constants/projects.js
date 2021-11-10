@@ -15,7 +15,7 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: 'SpaceX Spaceships with GraphQL',
+    title: 'SpaceX GraphQL',
     link: ROUTES.SPACEX,
     img: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441',
   },
