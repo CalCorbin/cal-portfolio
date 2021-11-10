@@ -1,0 +1,16 @@
+.spacex-page {
+  padding: 1rem;
+}
+
+.spacex-page-header {
+  display: flex;
+  flex-direction: row;
+  font-size: 3rem;
+  justify-content: center;
+}
+
+.ship-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
