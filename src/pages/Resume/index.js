@@ -3,7 +3,7 @@ import './Resume.css';
 import JOBS from '../../constants/jobs';
 import JobListing from '../../components/JobListing';
 
-function Index() {
+function Resume() {
   return (
     <div data-testid="resume-page" className="resume-page">
       <div>
@@ -69,4 +69,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Resume;
