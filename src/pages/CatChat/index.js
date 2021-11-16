@@ -10,15 +10,19 @@ function CatChat() {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
+    if (!messagesEndRef.current) return;
+
     messagesEndRef.current.scrollIntoView({
       alignToTop: true,
       behavior: 'smooth',
     });
   };
 
-  useEffect(scrollToBottom, [chat]);
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
 
-  const sendMessage = async (e) => {
+  const sendMessage = (e) => {
     e.preventDefault();
 
     const messageSent = {
@@ -30,18 +34,16 @@ function CatChat() {
     setChat((chatHistory) => [...chatHistory, messageSent]);
     setDraftMessage('');
 
-    setTimeout(
-      () =>
-        setChat((chatHistory) => [
-          ...chatHistory,
-          {
-            author: 'Cat on the Internet',
-            message: CATPHRASES[Math.floor(Math.random() * CATPHRASES.length)],
-            timestamp: new Date().toLocaleTimeString('en-US'),
-          },
-        ]),
-      2000
-    );
+    setTimeout(() => {
+      setChat((chatHistory) => [
+        ...chatHistory,
+        {
+          author: 'Cat',
+          message: CATPHRASES[Math.floor(Math.random() * CATPHRASES.length)],
+          timestamp: new Date().toLocaleTimeString('en-US'),
+        },
+      ]);
+    }, 2000);
   };
 
   return (
@@ -61,12 +63,13 @@ function CatChat() {
       <div className="chat-container">
         <div className="messages">
           {chat.length >= 1 ? (
-            chat.map((chatMessage) => (
+            chat.map((chatMessage, index) => (
               <div
                 key={`${chatMessage.author}_${chatMessage.timestamp}`}
                 className={`message ${
                   chatMessage.author === 'You' ? 'sender' : 'cat'
                 }`}
+                data-testid={`${chatMessage.author}-${index}`}
               >
                 {chatMessage.message}
                 <div>
@@ -87,8 +90,15 @@ function CatChat() {
               value={draftMessage}
               placeholder="Press enter to send..."
               onChange={(e) => setDraftMessage(e.target.value)}
+              data-testid="chat-input"
             />
-            <button type="submit">Send</button>
+            <button
+              type="submit"
+              disabled={draftMessage.length <= 0}
+              data-testid="send-button"
+            >
+              Send
+            </button>
           </div>
         </form>
       </div>
