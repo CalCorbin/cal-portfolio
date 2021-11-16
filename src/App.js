@@ -4,12 +4,16 @@ import ROUTES from './constants/routes';
 import LandingPage from './pages/Landing';
 import Resume from './pages/Resume';
 import SpaceX from './pages/SpaceX';
+import CatChat from './pages/CatChat';
 
 function App() {
   return (
     <div data-testid="app-container">
       <BrowserRouter>
         <Switch>
+          <Route path={ROUTES.CATCHAT}>
+            <CatChat />
+          </Route>
           <Route path={ROUTES.RESUME}>
             <Resume />
           </Route>

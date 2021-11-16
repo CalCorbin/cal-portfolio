@@ -19,6 +19,12 @@ const PROJECTS = [
     link: ROUTES.SPACEX,
     img: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441',
   },
+  {
+    id: 4,
+    title: 'Cat Chat',
+    link: ROUTES.CATCHAT,
+    img: 'https://images.unsplash.com/photo-1549545931-59bf067af9ab',
+  },
 ];
 
 export default PROJECTS;
