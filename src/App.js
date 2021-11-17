@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ROUTES from './constants/routes';
 import LandingPage from './pages/Landing';
+import CatChat from './pages/CatChat';
 import Resume from './pages/Resume';
 import SpaceX from './pages/SpaceX';
 
@@ -15,6 +16,9 @@ function App() {
           </Route>
           <Route path={ROUTES.SPACEX}>
             <SpaceX />
+          </Route>
+          <Route path={ROUTES.CATCHAT}>
+            <CatChat />
           </Route>
           <Route path={ROUTES.LANDING}>
             <LandingPage />
