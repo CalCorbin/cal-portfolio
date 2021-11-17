@@ -37,7 +37,7 @@ function SpaceX() {
           data-testid="cal-github"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX"
+          href="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX/index.js"
         >
           <FontAwesomeIcon size="sm" icon={faGithub} className="social-icon" />
         </a>
