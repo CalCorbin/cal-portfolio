@@ -21,9 +21,9 @@ function HexClock() {
       if (seconds <= 9) seconds = `0${seconds}`;
 
       setTime(`${hours}:${minutes}:${seconds}`);
-      setHex(`#${hours}${minutes}${seconds}`);
+      setHex(`${hours}${minutes}${seconds}`);
 
-      document.body.style.background = hex;
+      document.body.style.background = `#${hex}`;
     };
 
     timer = () => {
@@ -57,7 +57,12 @@ function HexClock() {
           rel="noopener noreferrer"
           href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/HexClock/index.js"
         >
-          <FontAwesomeIcon size="sm" icon={faGithub} className="social-icon" />
+          <FontAwesomeIcon
+            size="sm"
+            style={{ color: 'white' }}
+            icon={faGithub}
+            className="social-icon"
+          />
         </a>
       </div>
       <div className="hex-content">
@@ -70,7 +75,7 @@ function HexClock() {
           time it is.
         </p>
         <p>
-          Currently the time is {time} which correlates to the hex value {hex}.
+          Currently the time is {time} which correlates to the hex value #{hex}.
         </p>
       </div>
     </div>
