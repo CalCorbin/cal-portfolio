@@ -13,6 +13,6 @@ it('should render HexClock page', () => {
   expect(screen.getByTestId('hexclock-page')).toBeInTheDocument();
 });
 
-it('should render time display ', () => {
+it('should render time display', () => {
   expect(screen.getByTestId('time-display')).toBeInTheDocument();
 });
