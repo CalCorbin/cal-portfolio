@@ -34,7 +34,7 @@ function HexClock() {
   return (
     <div data-testid="hexclock-page" id="hex" className="hexclock-page">
       <div className="hexclock-header">
-        <div>HexClock </div>
+        <div>HexClock</div>
         <a
           data-testid="cal-github"
           target="_blank"
@@ -45,7 +45,9 @@ function HexClock() {
         </a>
       </div>
       <div className="hex-content">
-        <div className="time-text">{time}</div>
+        <div className="time-text" data-testid="time-display">
+          {time}
+        </div>
         <h3>Welcome to the HexClock</h3>
         <p>
           This clock actively updates the page background color based on what
