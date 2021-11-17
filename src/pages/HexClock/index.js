@@ -31,7 +31,7 @@ function HexClock() {
     };
 
     const fetchColorName = async () => {
-      const response = await fetch(`http://www.thecolorapi.com/id?hex=${hex}`);
+      const response = await fetch(`https://www.thecolorapi.com/id?hex=${hex}`);
       return response.json();
     };
 
