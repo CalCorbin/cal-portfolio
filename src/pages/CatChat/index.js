@@ -13,14 +13,11 @@ function CatChat() {
     if (!messagesEndRef.current) return;
 
     messagesEndRef.current.scrollIntoView({
-      alignToTop: true,
       behavior: 'smooth',
     });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, []);
+  useEffect(scrollToBottom, [chat]);
 
   const sendMessage = (e) => {
     e.preventDefault();
