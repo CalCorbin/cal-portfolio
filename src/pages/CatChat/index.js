@@ -4,8 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import CATPHRASES from '../../constants/catPhrases';
 
+function randomInt(value) {
+  return Math.floor(Math.random() * value);
+}
+
 function CatChat() {
   const [draftMessage, setDraftMessage] = useState('');
+  const [sending, setSending] = useState(false);
   const [chat, setChat] = useState([]);
   const messagesEndRef = useRef(null);
 
@@ -13,14 +18,31 @@ function CatChat() {
     if (!messagesEndRef.current) return;
 
     messagesEndRef.current.scrollIntoView({
-      alignToTop: true,
       behavior: 'smooth',
     });
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, []);
+    let timer;
+    if (sending) {
+      timer = setTimeout(() => {
+        setChat((chatHistory) => [
+          ...chatHistory,
+          {
+            author: 'Cat',
+            message: CATPHRASES[randomInt(CATPHRASES.length)],
+            timestamp: new Date().toLocaleTimeString('en-US'),
+          },
+        ]);
+      }, 2000);
+      setSending(false);
+    }
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [chat]);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -31,19 +53,9 @@ function CatChat() {
       timestamp: new Date().toLocaleTimeString('en-US'),
     };
 
+    setSending(true);
     setChat((chatHistory) => [...chatHistory, messageSent]);
     setDraftMessage('');
-
-    setTimeout(() => {
-      setChat((chatHistory) => [
-        ...chatHistory,
-        {
-          author: 'Cat',
-          message: CATPHRASES[Math.floor(Math.random() * CATPHRASES.length)],
-          timestamp: new Date().toLocaleTimeString('en-US'),
-        },
-      ]);
-    }, 2000);
   };
 
   return (
@@ -65,7 +77,7 @@ function CatChat() {
           {chat.length >= 1 ? (
             chat.map((chatMessage, index) => (
               <div
-                key={`${chatMessage.author}_${chatMessage.timestamp}`}
+                key={`${chatMessage.author}_${randomInt(9000)}`}
                 className={`message ${
                   chatMessage.author === 'You' ? 'sender' : 'cat'
                 }`}
