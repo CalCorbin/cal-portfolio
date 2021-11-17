@@ -44,7 +44,22 @@ it('should send a chat message', async () => {
 
   await waitFor(() => screen.getByTestId('You-0'));
 
-  expect(screen.getByText(/Sent by You at/)).toBeInTheDocument();
+  expect(screen.getByText(/hello cat/)).toBeInTheDocument();
+});
+
+it('should send two chat messages', async () => {
+  const input = screen.getByTestId('chat-input');
+  const sendButton = screen.getByTestId('send-button');
+
+  fireEvent.change(input, { target: { value: 'hello cat' } });
+  fireEvent.click(sendButton);
+  fireEvent.change(input, { target: { value: 'I am human' } });
+  fireEvent.click(sendButton);
+
+  await waitFor(() => screen.getByTestId('You-1'));
+
+  expect(screen.getByText(/hello cat/)).toBeInTheDocument();
+  expect(screen.getByText(/I am human/)).toBeInTheDocument();
 });
 
 it('should receive a chat message', async () => {
@@ -54,5 +69,28 @@ it('should receive a chat message', async () => {
   fireEvent.change(input, { target: { value: 'hello cat' } });
   fireEvent.click(sendButton);
 
-  await waitFor(() => screen.getByTestId('Cat-1'), { timeout: 3000 });
+  await waitFor(() => screen.getByTestId('Cat-1'), { timeout: 2000 });
+});
+
+it('should render sent by sender text', async () => {
+  const input = screen.getByTestId('chat-input');
+  const sendButton = screen.getByTestId('send-button');
+  fireEvent.change(input, { target: { value: 'hello cat' } });
+  fireEvent.click(sendButton);
+
+  await waitFor(() => screen.getByTestId('You-0'));
+
+  expect(screen.getByText(/Sent by You at/)).toBeInTheDocument();
+});
+
+it('should render sent by cat text', async () => {
+  const input = screen.getByTestId('chat-input');
+  const sendButton = screen.getByTestId('send-button');
+
+  fireEvent.change(input, { target: { value: 'hello cat' } });
+  fireEvent.click(sendButton);
+
+  await waitFor(() => screen.getByTestId('Cat-1'), { timeout: 2000 });
+
+  expect(screen.getByText(/Sent by Cat at/)).toBeInTheDocument();
 });
