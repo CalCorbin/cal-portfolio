@@ -6,6 +6,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 function HexClock() {
   const [time, setTime] = useState();
   const [hex, setHex] = useState();
+  const [colorName, setColorName] = useState();
 
   let timer;
   useEffect(() => {
@@ -29,10 +30,21 @@ function HexClock() {
       setTimeout(setUpTime, 1000);
     };
 
+    const fetchColorName = async () => {
+      const response = await fetch(`http://www.thecolorapi.com/id?hex=${hex}`);
+      return response.json();
+    };
+
+    fetchColorName().then((data) => {
+      if (data.name) setColorName(data.name.value);
+    });
+
     setUpTime();
     timer();
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [time]);
 
   return (
@@ -52,7 +64,7 @@ function HexClock() {
         <div className="time-text" data-testid="time-display">
           {time}
         </div>
-        <h3>Welcome to the HexClock</h3>
+        <h1>Current color: {colorName}</h1>
         <p>
           This clock actively updates the page background color based on what
           time it is.
