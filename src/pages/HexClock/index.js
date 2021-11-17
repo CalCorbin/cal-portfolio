@@ -9,25 +9,29 @@ function HexClock() {
 
   let timer;
   useEffect(() => {
-    timer = () => {
-      setTimeout(() => {
-        const date = new Date();
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let seconds = date.getSeconds();
+    const setUpTime = () => {
+      const date = new Date();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
 
-        if (hours <= 9) hours = `0${hours}`;
-        if (minutes <= 9) minutes = `0${minutes}`;
-        if (seconds <= 9) seconds = `0${seconds}`;
+      if (hours <= 9) hours = `0${hours}`;
+      if (minutes <= 9) minutes = `0${minutes}`;
+      if (seconds <= 9) seconds = `0${seconds}`;
 
-        setTime(`${hours}:${minutes}:${seconds}`);
-        setHex(`#${hours}${minutes}${seconds}`);
+      setTime(`${hours}:${minutes}:${seconds}`);
+      setHex(`#${hours}${minutes}${seconds}`);
 
-        document.body.style.background = hex;
-      }, 1000);
+      document.body.style.background = hex;
     };
 
+    timer = () => {
+      setTimeout(setUpTime, 1000);
+    };
+
+    setUpTime();
     timer();
+
     return () => clearTimeout(timer);
   }, [time]);
 
