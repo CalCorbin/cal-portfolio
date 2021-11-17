@@ -31,6 +31,12 @@ const PROJECTS = [
     link: 'https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/CatChat/CatChat.test.js',
     img: 'https://images.unsplash.com/photo-1546833998-877b37c2e5c6',
   },
+  {
+    id: 6,
+    title: 'HexClock',
+    link: ROUTES.HEXCLOCK,
+    img: 'https://images.unsplash.com/photo-1550534791-2677533605ab',
+  },
 ];
 
 export default PROJECTS;
