@@ -54,7 +54,7 @@ function HexClock() {
           time it is.
         </p>
         <p>
-          Currently the time is {time} with correlates to the hex value {hex}.
+          Currently the time is {time} which correlates to the hex value {hex}.
         </p>
       </div>
     </div>
