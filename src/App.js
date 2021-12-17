@@ -23,21 +23,11 @@ const App = function () {
         <div data-testid="app-container">
           <BrowserRouter>
             <Routes>
-              <Route path={ROUTES.RESUME}>
-                <Resume />
-              </Route>
-              <Route path={ROUTES.SPACEX}>
-                <SpaceX />
-              </Route>
-              <Route path={ROUTES.CATCHAT}>
-                <CatChat />
-              </Route>
-              <Route path={ROUTES.HEXCLOCK}>
-                <HexClock />
-              </Route>
-              <Route path={ROUTES.LANDING}>
-                <LandingPage />
-              </Route>
+              <Route path={ROUTES.RESUME} element={<Resume />} />
+              <Route path={ROUTES.SPACEX} element={<SpaceX />} />
+              <Route path={ROUTES.CATCHAT} element={<CatChat />} />
+              <Route path={ROUTES.HEXCLOCK} element={<HexClock />} />
+              <Route path={ROUTES.LANDING} element={<LandingPage />} />
             </Routes>
           </BrowserRouter>
         </div>
