@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Ship.css';
 
-function Ship({ ship }) {
+const Ship = function ({ ship }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMissionOpening = () => {
@@ -82,7 +82,7 @@ function Ship({ ship }) {
       ) : null}
     </div>
   );
-}
+};
 
 Ship.defaultProps = {
   ship: null,

@@ -3,7 +3,7 @@ import './Resume.css';
 import JOBS from '../../constants/jobs';
 import JobListing from '../../components/JobListing';
 
-function Resume() {
+const Resume = function () {
   return (
     <div data-testid="resume-page" className="resume-page">
       <div>
@@ -67,6 +67,6 @@ function Resume() {
       </div>
     </div>
   );
-}
+};
 
 export default Resume;

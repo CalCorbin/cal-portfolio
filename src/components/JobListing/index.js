@@ -2,7 +2,7 @@ import React from 'react';
 import './JobListing.css';
 import PropTypes from 'prop-types';
 
-function JobListing({ job }) {
+const JobListing = function ({ job }) {
   return (
     <div className="job-section" data-testid={`job-listing-${job.id}`}>
       <p className="job-title">
@@ -16,7 +16,7 @@ function JobListing({ job }) {
       </ul>
     </div>
   );
-}
+};
 
 JobListing.defaultProps = {
   job: null,
