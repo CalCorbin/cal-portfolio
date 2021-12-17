@@ -7,8 +7,7 @@ import ROUTES from '../../constants/routes';
 import PROJECTS from '../../constants/projects';
 import './Landing.css';
 
-const LandingPage = function () {
-  // const routeChange = (route) => history.push(route);
+const Landing = function () {
   const navigate = useNavigate();
 
   return (
@@ -63,4 +62,4 @@ const LandingPage = function () {
   );
 };
 
-export default LandingPage;
+export default Landing;

@@ -1,10 +1,18 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Landing from './index';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ROUTES from '../../constants/routes';
+import LandingPage from './index';
 
 beforeEach(() => {
-  render(<Landing />);
+  render(
+    <BrowserRouter>
+      <Routes>
+        <Route path={ROUTES.LANDING} element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 });
 
 afterEach(cleanup);
