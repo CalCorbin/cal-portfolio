@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import Card from '../../components/Card';
@@ -8,9 +8,8 @@ import PROJECTS from '../../constants/projects';
 import './Landing.css';
 
 const LandingPage = function () {
-  const history = useHistory();
-
-  const routeChange = (route) => history.push(route);
+  // const routeChange = (route) => history.push(route);
+  const navigate = useNavigate();
 
   return (
     <div data-testid="landing-page" className="landing">
@@ -47,7 +46,7 @@ const LandingPage = function () {
         aria-label="resume button"
         data-testid="resume-button"
         alt="https://unsplash.com/@jrkorpa"
-        onClick={() => routeChange(ROUTES.RESUME)}
+        onClick={() => navigate(ROUTES.RESUME)}
       >
         resumé
       </button>
