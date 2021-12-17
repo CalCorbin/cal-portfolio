@@ -7,7 +7,7 @@ import Resume from './pages/Resume';
 import SpaceX from './pages/SpaceX';
 import HexClock from './pages/HexClock';
 
-function App() {
+const App = function () {
   return (
     <div data-testid="app-container">
       <BrowserRouter>
@@ -31,6 +31,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

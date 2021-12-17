@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Firebase, { FirebaseContext } from './components/Firebase';
@@ -10,8 +10,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const fireBase = useMemo(() => new Firebase(), []);
+
 ReactDOM.render(
-  <FirebaseContext.Provider value={new Firebase()}>
+  <FirebaseContext.Provider value={fireBase}>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>

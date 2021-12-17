@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-function Card({ data }) {
+const Card = function ({ data }) {
   return (
     <div className="simple-card" data-testid={`card-${data.id}`}>
       <a
@@ -21,7 +21,7 @@ function Card({ data }) {
       </a>
     </div>
   );
-}
+};
 
 Card.defaultProps = {
   data: null,
