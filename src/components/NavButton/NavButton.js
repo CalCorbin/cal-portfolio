@@ -1,13 +1,9 @@
-import React from 'react'
-import './styles.css'
-import PropTypes from 'prop-types'
+import React from 'react';
+import './styles.css';
+import PropTypes from 'prop-types';
 
-NavButton.propTypes = {
-  buttonText: PropTypes.string.isRequired,
-}
-
-export default function NavButton(props) {
-  const { buttonText } = props
+const NavButton = function (props) {
+  const { buttonText } = props;
 
   return (
     <div>
@@ -15,5 +11,11 @@ export default function NavButton(props) {
         <p>{buttonText}</p>
       </div>
     </div>
-  )
-}
+  );
+};
+
+NavButton.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+};
+
+export default NavButton;
