@@ -5,11 +5,7 @@ on:
     branches:
       - master
 
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
-  deployments: write
+permissions: write-all
 
 jobs:
   build:
