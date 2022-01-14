@@ -1,9 +1,19 @@
 const JOBS = [
   {
+    id: 7,
+    title: 'Software Engineer',
+    org: "O'Reilly Media",
+    dates: 'November 2021 - Present',
+    highlights: [
+      'Build and maintain features on the learning platform using the service repo model',
+      'Main technologies used are React and Python within the Django framework',
+    ],
+  },
+  {
     id: 6,
     title: 'Software Engineer',
     org: 'iUNU',
-    dates: 'July 2021 - Present',
+    dates: 'July 2021 - November 2021',
     highlights: [
       'Designed, built, and released customer facing features for desktop and mobile using React, React Native, GraphQL, PostGresQL, and Ruby on Rails',
       'Refactored legacy frontend reporting tools and added new features, resulting in delighted customers',

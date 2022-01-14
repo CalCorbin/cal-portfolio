@@ -24,10 +24,10 @@ const Resume = function () {
           <div className="section-header">technologies</div>
           <hr />
           <p>
-            NodeJs, TypeScript, React, React Native, Ruby on Rails, Mongo,
-            GraphQL, PostgreSQL, MySQL, Docker, AWS, Angular, Selenium, Python,
-            Git, HTML, CSS, Laravel, Jenkins, Postman, Jira, Linux, Kanban,
-            DevOps, Behavior Driven Development, Continuous Delivery
+            React, Python, Django, NodeJs, TypeScript, React Native, Ruby on
+            Rails, Mongo, GraphQL, PostgreSQL, MySQL, Docker, AWS, Angular,
+            Selenium, Git, HTML, CSS, Laravel, Jenkins, Postman, Jira, Linux,
+            Kanban, DevOps, Behavior Driven Development, Continuous Delivery
           </p>
         </div>
 
