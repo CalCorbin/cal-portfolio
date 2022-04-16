@@ -97,7 +97,12 @@ Ship.propTypes = {
     image: PropTypes.string,
     url: PropTypes.string,
     weight_lbs: PropTypes.number,
-    missions: PropTypes.arrayOf(PropTypes.object),
+    missions: PropTypes.arrayOf(
+      PropTypes.shape({
+        flight: PropTypes.string,
+        name: PropTypes.string,
+      })
+    ),
   }),
 };
 
