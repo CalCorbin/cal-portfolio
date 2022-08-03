@@ -11,7 +11,6 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.1",
-    "chromedriver": "^104.0.0",
     "eslint-config-import": "^0.13.0",
     "firebase": "^9.9.1",
     "graphql": "^16.5.0",
@@ -21,16 +20,15 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
-    "react-test-renderer": "^18.2.0",
-    "selenium-webdriver": "^4.3.1"
+    "react-test-renderer": "^18.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
-    "test:e2e": "mocha test/e2e/*.test.js",
     "eject": "react-scripts eject",
-    "lint": "node_modules/.bin/eslint src/ test/ --ext js,jsx",
+    "lint": "node_modules/.bin/eslint src/ --ext js,jsx",
+    "test:ci": "npm run lint && npm run test",
     "bump:everything": "npx npm-check-updates -u && npm install"
   },
   "eslintConfig": {

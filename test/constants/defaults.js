@@ -1,7 +1,0 @@
-const DEFAULTS = {
-  TEST_TIMEOUT: 60000,
-  BROWSER_HEIGHT: 869,
-  BROWSER_WIDTH: 411,
-}
-
-module.exports = DEFAULTS
