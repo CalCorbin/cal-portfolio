@@ -24,7 +24,6 @@ jobs:
           npm run build
           npm install -g firebase-tools
           firebase deploy -P dev --token ${{ secrets.FIREBASE_TOKEN }}
-          TESTENV=cal-portfolio-dev.web.app npm run test:e2e
         env:
           CI: true
           REACT_APP_NODE_ENV: "dev"

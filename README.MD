@@ -22,7 +22,7 @@ Do the following before creating a pull request.
 1. If you're going to make a change, write at least one test for your change.
 2. Run `npm run lint` and fix any errors
 3. Run `npm run test` and fix any errors
-4. Run `npm run test:e2e` and fix any errors
+4. Run `npm run test:ci` and fix any errors
 
 ## Testing
 

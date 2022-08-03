@@ -90,7 +90,7 @@ it('should render sent by cat text', async () => {
   fireEvent.change(input, { target: { value: 'hello cat' } });
   fireEvent.click(sendButton);
 
-  await waitFor(() => screen.getByTestId('Cat-1'), { timeout: 2000 });
+  await waitFor(() => screen.getByTestId('Cat-1'), { timeout: 3000 });
 
   expect(screen.getByText(/Sent by Cat at/)).toBeInTheDocument();
 });
