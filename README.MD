@@ -12,9 +12,8 @@ This repo hosts the code for my personal developer site. This is always a consta
 
 1. Clone repo.
 2. Install firebase tools `npm install -g firebase-tools`
-3. Install chromedriver `npm install -g chromedriver`
-4. Run `npm install` in root project directory.
-5. Run `npm start`, if all goes well the browser will open to `http://localhost:3000`
+3. Run `npm install` in root project directory.
+4. Run `npm start`, if all goes well the browser will open to `http://localhost:3000`
 
 ## Pull Requests
 
