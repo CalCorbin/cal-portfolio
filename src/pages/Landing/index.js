@@ -7,7 +7,7 @@ import ROUTES from '../../constants/routes';
 import PROJECTS from '../../constants/projects';
 import './Landing.css';
 
-const Landing = function () {
+const Landing = () => {
   const navigate = useNavigate();
 
   return (
@@ -44,7 +44,7 @@ const Landing = function () {
         className="resume-button"
         aria-label="resume button"
         data-testid="resume-button"
-        alt="https://unsplash.com/@jrkorpa"
+        title="https://unsplash.com/@jrkorpa"
         onClick={() => navigate(ROUTES.RESUME)}
       >
         resumé
