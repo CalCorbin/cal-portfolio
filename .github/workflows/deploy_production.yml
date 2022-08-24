@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -20,7 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Build, test, and deploy
         run: |
-          npm i
+          npm i --legacy-peer-deps
           npm run build
           npm install -g firebase-tools
           firebase deploy -P production --token ${{ secrets.FIREBASE_TOKEN }}
