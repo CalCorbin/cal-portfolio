@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Ship.css';
 
-const Ship = function ({ ship }) {
+const Ship = ({ ship }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMissionOpening = () => {

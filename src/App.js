@@ -8,8 +8,9 @@ import CatChat from './pages/CatChat';
 import Resume from './pages/Resume';
 import SpaceX from './pages/SpaceX';
 import HexClock from './pages/HexClock';
+import NumberDraw from './pages/NumberDraw/index.tsx';
 
-const App = function () {
+const App = () => {
   const client = new ApolloClient({
     uri: 'https://api.spacex.land/graphql/',
     cache: new InMemoryCache(),
@@ -28,6 +29,7 @@ const App = function () {
               <Route path={ROUTES.CATCHAT} element={<CatChat />} />
               <Route path={ROUTES.HEXCLOCK} element={<HexClock />} />
               <Route path={ROUTES.LANDING} element={<Landing />} />
+              <Route path={ROUTES.NUMBERDRAW} element={<NumberDraw />} />
             </Routes>
           </BrowserRouter>
         </div>

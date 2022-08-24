@@ -8,7 +8,7 @@ function randomInt(value) {
   return Math.floor(Math.random() * value);
 }
 
-const CatChat = function () {
+const CatChat = () => {
   const [draftMessage, setDraftMessage] = useState('');
   const [sending, setSending] = useState(false);
   const [chat, setChat] = useState([]);
