@@ -2,26 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-const Card = function ({ data }) {
-  return (
-    <div className="simple-card" data-testid={`card-${data.id}`}>
-      <a
-        href={data.link}
-        target="_blank"
-        rel="noreferrer"
-        data-testid={`card-link-${data.id}`}
-      >
-        <img
-          style={{ width: '90%', margin: '10px' }}
-          alt={data.title}
-          src={data.img}
-          data-testid={`card-image-${data.id}`}
-        />
-        <div>{data.title}</div>
-      </a>
-    </div>
-  );
-};
+const Card = ({ data }) => (
+  <div className="simple-card" data-testid={`card-${data.id}`}>
+    <a
+      href={data.link}
+      target="_blank"
+      rel="noreferrer"
+      data-testid={`card-link-${data.id}`}
+    >
+      <img
+        style={{ width: '90%', margin: '10px' }}
+        alt={data.title}
+        src={data.img}
+        data-testid={`card-image-${data.id}`}
+      />
+      <div>{data.title}</div>
+    </a>
+  </div>
+);
 
 Card.defaultProps = {
   data: null,

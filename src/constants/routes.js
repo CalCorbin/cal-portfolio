@@ -4,6 +4,7 @@ const ROUTES = {
   SPACEX: '/spacexql',
   CATCHAT: '/catchat',
   HEXCLOCK: '/hexclock',
+  NUMBERDRAW: '/numberdraw',
 };
 
 export default ROUTES;

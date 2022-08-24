@@ -23,7 +23,7 @@ export const GET_SHIPS = gql`
   }
 `;
 
-const SpaceX = function () {
+const SpaceX = () => {
   const { loading, error, data } = useQuery(GET_SHIPS);
 
   if (loading) return <p data-testid="loading-state">Loading...</p>;

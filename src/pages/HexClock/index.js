@@ -3,7 +3,7 @@ import './HexClock.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-const HexClock = function () {
+const HexClock = () => {
   const [time, setTime] = useState();
   const [hex, setHex] = useState();
   const [colorName, setColorName] = useState();
