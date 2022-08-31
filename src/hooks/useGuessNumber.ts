@@ -7,7 +7,7 @@ const guessNumber = async (imageFile: File | null) => {
   formData.append('imageFile', imageFile);
 
   const response = await fetch(
-    'http://127.0.0.1:8000/api/machine_learning_projects/predict-digit/',
+    'https://calcorbin-ml-projects.fly.dev/api/machine_learning_projects/predict-digit/',
     {
       method: 'POST',
       body: formData,
