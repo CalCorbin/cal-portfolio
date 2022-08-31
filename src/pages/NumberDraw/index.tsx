@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useGuessNumber from '../../hooks/useGuessNumber';
 import './NumberDraw.css';
 
 const NumberDraw = () => {
@@ -7,6 +8,10 @@ const NumberDraw = () => {
   const canvas = canvasRef.current;
   const ctx = canvas?.getContext('2d');
   const [loadCanvas, setLoadCanvas] = useState(false);
+  const [numberImage, setNumberImage] = useState('');
+
+  const mutation = useGuessNumber(numberImage);
+  const { mutate: guessNumber, isError, isSuccess, data } = mutation;
 
   if (ctx && canvas && loadCanvas) {
     ctx.lineWidth = 5;
@@ -47,11 +52,12 @@ const NumberDraw = () => {
     ctx.stroke();
   };
 
-  const submitImage = () => {
+  const submitImage = async () => {
     if (!canvas) return;
 
     const image = canvas.toDataURL('image/png');
-    window.open(image);
+    await setNumberImage(image);
+    guessNumber();
   };
 
   if (!canvasRef) return null;
@@ -67,6 +73,12 @@ const NumberDraw = () => {
         onMouseUp={stopPaint}
         onMouseMove={paint}
       />
+      <div>Current Guess: {isSuccess ? data.error : 'None'}</div>
+      {isError && (
+        <div className="error-message">
+          There was an error while guessing your submission
+        </div>
+      )}
       <button type="button" id="clear" onClick={clearCanvas}>
         Clear
       </button>
