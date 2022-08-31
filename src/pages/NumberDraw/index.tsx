@@ -47,6 +47,13 @@ const NumberDraw = () => {
     ctx.stroke();
   };
 
+  const submitImage = () => {
+    if (!canvas) return;
+
+    const image = canvas.toDataURL('image/png');
+    window.open(image);
+  };
+
   if (!canvasRef) return null;
 
   return (
@@ -62,6 +69,9 @@ const NumberDraw = () => {
       />
       <button type="button" id="clear" onClick={clearCanvas}>
         Clear
+      </button>
+      <button type="button" id="submit" onClick={submitImage}>
+        Submit
       </button>
     </div>
   );
