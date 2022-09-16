@@ -9,7 +9,7 @@ import CatChat from './pages/CatChat';
 import Resume from './pages/Resume';
 import SpaceX from './pages/SpaceX';
 import HexClock from './pages/HexClock';
-import NumberDraw from './pages/NumberDraw/index';
+import NumberDraw from './pages/NumberDraw/NumberDraw';
 
 const App = () => {
   const client = new ApolloClient({
