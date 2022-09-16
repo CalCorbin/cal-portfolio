@@ -94,7 +94,7 @@ const NumberDraw = () => {
       />
       <div>
         Current Guess:
-        {!data?.predicted && !isLoading && <p>None</p>}
+        {!data?.predicted && !isLoading && !isError && <p>None</p>}
         {isLoading && <p>Thinking...</p>}
         {isSuccess && <p>{guess}</p>}
         {isError && (
