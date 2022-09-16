@@ -1,5 +1,9 @@
 import { useMutation } from 'react-query';
 
+/**
+ * POST the image file drawn by the user to the machine learning server
+ * @param imageFile - The image file to be uploaded
+ */
 const guessNumber = async (imageFile: File | null) => {
   if (!imageFile) return {};
 
