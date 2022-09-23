@@ -10,8 +10,13 @@ const guessNumber = async (imageFile: File | null) => {
   const formData = new FormData();
   formData.append('imageFile', imageFile);
 
+  const server =
+    process.env.NODE_ENV === 'develospment'
+      ? 'http://127.0.0.1:8000'
+      : 'http://django-env.eba-hkmtp5gp.us-west-2.elasticbeanstalk.com/';
+
   const response = await fetch(
-    'https://calcorbin-ml-projects.fly.dev/api/machine_learning_projects/predict-digit/',
+    `${server}/api/machine_learning_projects/predict-digit/`,
     {
       method: 'POST',
       body: formData,
