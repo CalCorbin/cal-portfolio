@@ -30,7 +30,7 @@ const MagicNumber = () => {
   }, []);
 
   useEffect(() => {
-    if (data?.predicted[0]) {
+    if (data?.predicted) {
       setGuess(data?.predicted[0]);
     }
   }, [data]);
