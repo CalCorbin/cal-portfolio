@@ -13,7 +13,7 @@ const guessNumber = async (imageFile: File | null) => {
   const server =
     process.env.NODE_ENV === 'development'
       ? 'http://127.0.0.1:8000'
-      : 'http://django-env.eba-hkmtp5gp.us-west-2.elasticbeanstalk.com';
+      : 'https://calcoapi.com';
 
   const response = await fetch(
     `${server}/api/machine_learning_projects/predict-digit/`,
