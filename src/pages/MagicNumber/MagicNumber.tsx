@@ -92,7 +92,7 @@ const MagicNumber = () => {
             data-testid="cal-github"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/NumberDraw/NumberDraw.tsx"
+            href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/MagicNumber/MagicNumber.tsx"
           >
             <FontAwesomeIcon
               size="xl"
