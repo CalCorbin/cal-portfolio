@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useGuessNumber from '../../hooks/useGuessNumber';
-import './NumberDraw.css';
+import './MagicNumber.css';
 
-const NumberDraw = () => {
+const MagicNumber = () => {
   const [isPainting, setIsPainting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvas = canvasRef.current;
@@ -82,32 +84,57 @@ const NumberDraw = () => {
   if (!canvasRef) return null;
 
   return (
-    <div>
-      <h1>Number Draw</h1>
-      <canvas
-        ref={canvasRef}
-        className="drawing-board"
-        id="drawing-board"
-        onMouseDown={() => setIsPainting(true)}
-        onMouseUp={stopPaint}
-        onMouseMove={paint}
-      />
-      <div>
-        Current Guess:
-        {!data?.predicted && !isLoading && !isError && <p>None</p>}
-        {isLoading && <p>Thinking...</p>}
-        {isSuccess && <p>{guess}</p>}
-        {isError && (
-          <p className="error-message">
-            There was an error while guessing your submission
-          </p>
-        )}
+    <div className="mn-page">
+      <div className="mn-container">
+        <div className="mn-header">
+          <h1>Magic Number</h1>
+          <a
+            data-testid="cal-github"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/NumberDraw/NumberDraw.tsx"
+          >
+            <FontAwesomeIcon
+              size="xl"
+              style={{ color: 'white' }}
+              icon={faGithub}
+              className="social-icon"
+            />
+          </a>
+        </div>
+        <div className="mn-info">
+          <strong>Instructions:</strong> In the canvas below, draw a number
+          between 0 and 9. The machine learning model will try to guess what you
+          are drawing.
+        </div>
+        <canvas
+          ref={canvasRef}
+          className="drawing-board"
+          id="drawing-board"
+          onMouseDown={() => setIsPainting(true)}
+          onMouseUp={stopPaint}
+          onMouseMove={paint}
+        />
+        <div className="mn-info">
+          <div>
+            Current Guess:
+            {!data?.predicted && !isLoading && !isError && <p>None</p>}
+            {isLoading && <p>Thinking...</p>}
+            {isSuccess && <p>{guess}</p>}
+            {isError && <p className="mn-error">Server Error</p>}
+          </div>
+          <button
+            className="mn-button"
+            type="button"
+            id="clear"
+            onClick={clearCanvas}
+          >
+            Clear Canvas
+          </button>
+        </div>
       </div>
-      <button type="button" id="clear" onClick={clearCanvas}>
-        Clear
-      </button>
     </div>
   );
 };
 
-export default NumberDraw;
+export default MagicNumber;

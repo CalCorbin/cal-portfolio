@@ -9,7 +9,7 @@ import CatChat from './pages/CatChat';
 import Resume from './pages/Resume';
 import SpaceX from './pages/SpaceX';
 import HexClock from './pages/HexClock';
-import NumberDraw from './pages/NumberDraw/NumberDraw';
+import MagicNumber from './pages/MagicNumber/MagicNumber';
 
 const App = () => {
   const client = new ApolloClient({
@@ -32,7 +32,7 @@ const App = () => {
                 <Route path={ROUTES.CATCHAT} element={<CatChat />} />
                 <Route path={ROUTES.HEXCLOCK} element={<HexClock />} />
                 <Route path={ROUTES.LANDING} element={<Landing />} />
-                <Route path={ROUTES.NUMBERDRAW} element={<NumberDraw />} />
+                <Route path={ROUTES.MAGICNUMBER} element={<MagicNumber />} />
               </Routes>
             </BrowserRouter>
           </div>
