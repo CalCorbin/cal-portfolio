@@ -1,0 +1,72 @@
+.mn-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    background-image: url("https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2534&q=80");
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    color: white;
+}
+
+.mn-container {
+    background: rgba(0, 0, 0, .6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.mn-header {
+    display: flex;
+    flex-direction: row;
+    letter-spacing: 1rem;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+}
+
+.mn-header a {
+    margin-top: 1.5rem;
+}
+
+.drawing-board {
+    border: white 1px solid;
+}
+
+.mn-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 70%;
+    margin: 1rem;
+    text-align: center;
+}
+
+.mn-info button {
+    background: black;
+    border-radius: .5rem;
+    color: white;
+    border: white 2px solid;
+    margin: 1rem;
+    padding: 1rem;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.mn-info p {
+    font-size: 2rem;
+}
+
+.mn-error {
+    color: red;
+}
