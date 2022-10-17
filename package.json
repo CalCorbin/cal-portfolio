@@ -42,7 +42,7 @@
     "eslint-config-import": "0.13.0",
     "firebase": "9.12.1",
     "graphql": "16.6.0",
-    "mocha": "10.0.0",
+    "mocha": "10.1.0",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
