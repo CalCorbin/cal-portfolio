@@ -1,9 +1,8 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useQuery, gql } from '@apollo/client';
 import './SpaceX.css';
 import Ship from '../../components/Ship';
+import Header from '../../components/Header/Header';
 
 export const GET_SHIPS = gql`
   query {
@@ -31,17 +30,10 @@ const SpaceX = () => {
 
   return (
     <div data-testid="spacex-page" className="spacex-page">
-      <div className="spacex-page-header">
-        <div>SpaceX Marine Transport Ships</div>
-        <a
-          data-testid="cal-github"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX/index.js"
-        >
-          <FontAwesomeIcon size="sm" icon={faGithub} className="social-icon" />
-        </a>
-      </div>
+      <Header
+        title="SpaceX Marine Transport Ships"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX/index.js"
+      />
       <hr />
       <div className="ship-container">
         {data.ships.map((ship) => (

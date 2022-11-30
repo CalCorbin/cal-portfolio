@@ -22,7 +22,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm i --legacy-peer-deps
-          npm run test:ci
+          npm run test:ci -- --coverage --collectCoverageFrom="./src/**"
         env:
           CI: true
   dependabot:

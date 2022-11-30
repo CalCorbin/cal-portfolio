@@ -23,12 +23,17 @@ const ship = {
   active: true,
 };
 
-beforeEach(() => {
-  render(<Ship ship={ship} />);
-});
-afterEach(cleanup);
+describe('<Ship />', () => {
+  afterEach(cleanup);
 
-it('should render', () => {
-  // Most of this component is tested in ../pages/SpaceX/SpaceX.test.js
-  expect(screen.getByTestId('ship-GOMSTREE')).toBeInTheDocument();
+  it('should render', () => {
+    render(<Ship ship={ship} />);
+    expect(screen.getByTestId('ship-GOMSTREE')).toBeInTheDocument();
+  });
+
+  it('should render weightless ship', () => {
+    delete ship.weight_lbs;
+    render(<Ship ship={ship} />);
+    expect(screen.getByText(/Unknown/)).toBeInTheDocument();
+  });
 });

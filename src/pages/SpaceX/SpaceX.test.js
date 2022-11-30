@@ -8,7 +8,7 @@ import {
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MockedProvider } from '@apollo/client/testing';
-import SpaceX, { GET_SHIPS } from './index';
+import SpaceX, { GET_SHIPS } from './SpaceX';
 
 const mocks = [
   {
@@ -63,82 +63,112 @@ const mocks = [
   },
 ];
 
-beforeEach(async () => {
-  render(
-    <MockedProvider mocks={mocks}>
-      <SpaceX />
-    </MockedProvider>
-  );
+const errorMock = [
+  {
+    request: {
+      query: GET_SHIPS,
+    },
+    error: new Error('An error occurred'),
+  },
+];
 
-  await waitFor(() => screen.getByTestId('spacex-page'));
+describe('<SpaceX />', () => {
+  beforeEach(async () => {
+    render(
+      <MockedProvider mocks={mocks}>
+        <SpaceX />
+      </MockedProvider>
+    );
+
+    await waitFor(() => screen.getByTestId('spacex-page'));
+  });
+
+  afterEach(cleanup);
+
+  it('should render spacex page', () => {
+    expect(screen.getByTestId('spacex-page')).toBeInTheDocument();
+    expect(
+      screen.getByText(/SpaceX Marine Transport Ships/)
+    ).toBeInTheDocument();
+  });
+
+  it('should render three ships', () => {
+    expect(screen.getByTestId('ship-GOMSTREE')).toBeInTheDocument();
+    expect(screen.getByTestId('ship-GOPURSUIT')).toBeInTheDocument();
+    expect(screen.getByTestId('ship-AMERICANSPIRIT')).toBeInTheDocument();
+  });
+
+  it('should render ship image', () => {
+    expect(screen.getByTestId('ship-image-GOMSTREE')).toBeInTheDocument();
+  });
+
+  it('should render ship with no image', () => {
+    expect(
+      screen.getByTestId('ship-no-image-AMERICANSPIRIT')
+    ).toBeInTheDocument();
+  });
+
+  it('should render ship name', () => {
+    expect(screen.getByText(/GO Ms Tree/)).toBeInTheDocument();
+  });
+
+  it('should render ship home port', () => {
+    expect(screen.getByText(/Port of Los Angeles/)).toBeInTheDocument();
+  });
+
+  it('should render ship url', () => {
+    expect(screen.getByTestId('ship-url-GOPURSUIT')).toBeInTheDocument();
+  });
+
+  it('should render empty ship url', () => {
+    expect(screen.getByTestId('no-url-AMERICANSPIRIT')).toBeInTheDocument();
+  });
+
+  it('should render ship active status', () => {
+    expect(screen.getAllByText(/Active/).length).toBe(2);
+  });
+
+  it('should render ship inactive status', () => {
+    expect(screen.getByText(/Inactive/)).toBeInTheDocument();
+  });
+
+  it('should render ship weight', () => {
+    expect(screen.getByText(/356738 lbs/)).toBeInTheDocument();
+  });
+
+  it('should render ship missions modal', async () => {
+    await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
+
+    await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
+    expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
+    expect(screen.getByText(/58/)).toBeInTheDocument();
+  });
+
+  it('should close ship missions modal', async () => {
+    await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
+
+    await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
+    expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
+
+    const closeButton = screen.getByTestId('close-button-GOMSTREE');
+    await fireEvent.click(closeButton);
+    expect(closeButton).not.toBeInTheDocument();
+  });
 });
 
-afterEach(cleanup);
+describe('<SpaceX /> Error Test', () => {
+  beforeEach(() => {
+    render(
+      <MockedProvider mocks={errorMock}>
+        <SpaceX />
+      </MockedProvider>
+    );
+  });
 
-it('should render spacex page', () => {
-  expect(screen.getByTestId('spacex-page')).toBeInTheDocument();
-  expect(screen.getByText(/SpaceX Marine Transport Ships/)).toBeInTheDocument();
-});
+  afterEach(cleanup);
 
-it('should render three ships', () => {
-  expect(screen.getByTestId('ship-GOMSTREE')).toBeInTheDocument();
-  expect(screen.getByTestId('ship-GOPURSUIT')).toBeInTheDocument();
-  expect(screen.getByTestId('ship-AMERICANSPIRIT')).toBeInTheDocument();
-});
-
-it('should render ship image', () => {
-  expect(screen.getByTestId('ship-image-GOMSTREE')).toBeInTheDocument();
-});
-
-it('should render ship with no image', () => {
-  expect(
-    screen.getByTestId('ship-no-image-AMERICANSPIRIT')
-  ).toBeInTheDocument();
-});
-
-it('should render ship name', () => {
-  expect(screen.getByText(/GO Ms Tree/)).toBeInTheDocument();
-});
-
-it('should render ship home port', () => {
-  expect(screen.getByText(/Port of Los Angeles/)).toBeInTheDocument();
-});
-
-it('should render ship url', () => {
-  expect(screen.getByTestId('ship-url-GOPURSUIT')).toBeInTheDocument();
-});
-
-it('should render empty ship url', () => {
-  expect(screen.getByTestId('no-url-AMERICANSPIRIT')).toBeInTheDocument();
-});
-
-it('should render ship active status', () => {
-  expect(screen.getAllByText(/Active/).length).toBe(2);
-});
-
-it('should render ship inactive status', () => {
-  expect(screen.getByText(/Inactive/)).toBeInTheDocument();
-});
-
-it('should render ship weight', () => {
-  expect(screen.getByText(/356738 lbs/)).toBeInTheDocument();
-});
-
-it('should render ship missions modal', async () => {
-  await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
-
-  await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
-  expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
-  expect(screen.getByText(/58/)).toBeInTheDocument();
-});
-
-it('should close ship missions modal', async () => {
-  await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
-
-  await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
-  expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
-
-  const closeButton = screen.getByTestId('close-button-GOMSTREE');
-  await fireEvent.click(closeButton);
-  expect(closeButton).not.toBeInTheDocument();
+  it('should render error message', async () => {
+    await waitFor(() => screen.getByTestId('error-state'));
+    expect(screen.getByText(/Error/)).toBeInTheDocument();
+  });
 });

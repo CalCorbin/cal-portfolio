@@ -5,10 +5,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Firebase, { FirebaseContext } from './components/Firebase';
 import ROUTES from './constants/routes';
 import Landing from './pages/Landing';
-import CatChat from './pages/CatChat';
+import CatChat from './pages/CatChat/CatChat';
 import Resume from './pages/Resume';
-import SpaceX from './pages/SpaceX';
-import HexClock from './pages/HexClock';
+import SpaceX from './pages/SpaceX/SpaceX';
+import HexClock from './pages/HexClock/HexClock';
 import MagicNumber from './pages/MagicNumber/MagicNumber';
 
 const App = () => {
