@@ -8,7 +8,10 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
-        "prettier"
+        "prettier",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -19,7 +22,8 @@
     },
     "plugins": [
         "react",
-        "import"
+        "import",
+        "@typescript-eslint"
     ],
     "rules": {
         "react/jsx-filename-extension": 0,

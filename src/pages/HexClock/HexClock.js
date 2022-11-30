@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './HexClock.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Header from '../../components/Header/Header';
 
 const HexClock = () => {
   const [time, setTime] = useState();
-  const [hex, setHex] = useState();
-  const [colorName, setColorName] = useState();
+  const [hex, setHex] = useState(null);
+  const [colorName, setColorName] = useState('n/a');
 
   let timer;
   useEffect(() => {
@@ -26,21 +25,15 @@ const HexClock = () => {
       document.body.style.background = `#${hex}`;
     };
 
-    timer = () => {
-      setTimeout(setUpTime, 1000);
-    };
-
     const fetchColorName = async () => {
       const response = await fetch(`https://www.thecolorapi.com/id?hex=${hex}`);
-      return response.json();
+      const data = await response.json();
+      setColorName(data.name.value);
     };
 
-    fetchColorName().then((data) => {
-      if (data.name) setColorName(data.name.value);
-    });
-
     setUpTime();
-    timer();
+    fetchColorName();
+    setTimeout(setUpTime, 1000);
 
     return () => {
       clearTimeout(timer);
@@ -49,22 +42,11 @@ const HexClock = () => {
 
   return (
     <div data-testid="hexclock-page" id="hex" className="hexclock-page">
-      <div className="hexclock-header">
-        <div>HexClock</div>
-        <a
-          data-testid="cal-github"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/HexClock/index.js"
-        >
-          <FontAwesomeIcon
-            size="sm"
-            style={{ color: 'white' }}
-            icon={faGithub}
-            className="social-icon"
-          />
-        </a>
-      </div>
+      <Header
+        title="HexClock"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/HexClock/index.js"
+        useWhiteIcons
+      />
       <div className="hex-content">
         <div className="time-text" data-testid="time-display">
           {time}

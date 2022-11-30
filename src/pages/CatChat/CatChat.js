@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './CatChat.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import CATPHRASES from '../../constants/catPhrases';
+import Header from '../../components/Header/Header';
 
 function randomInt(value) {
   return Math.floor(Math.random() * value);
@@ -15,9 +14,7 @@ const CatChat = () => {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    if (!messagesEndRef.current) return;
-
-    messagesEndRef.current.scrollIntoView({
+    messagesEndRef?.current?.scrollIntoView({
       behavior: 'smooth',
     });
   };
@@ -60,18 +57,10 @@ const CatChat = () => {
 
   return (
     <div data-testid="cat-chat-page" className="cat-chat-page">
-      <div className="cat-chat-header">
-        <div>Cat Chat </div>
-        <a
-          data-testid="cal-github"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/CatChat/index.js"
-        >
-          <FontAwesomeIcon size="sm" icon={faGithub} className="social-icon" />
-        </a>
-      </div>
-
+      <Header
+        title="Cat Chat"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/CatChat/index.js"
+      />
       <div className="chat-container">
         <div className="messages">
           {chat.length >= 1 ? (

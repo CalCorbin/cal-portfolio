@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useGuessNumber from '../../hooks/useGuessNumber';
 import './MagicNumber.css';
 
+/* istanbul ignore next */
 const MagicNumber = () => {
   const [isPainting, setIsPainting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);

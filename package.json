@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\" --coverage",
     "eject": "react-scripts eject",
     "lint": "node_modules/.bin/eslint src/ --ext js,jsx",
     "test:ci": "npm run lint && npm run test",
