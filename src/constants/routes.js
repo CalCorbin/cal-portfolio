@@ -5,6 +5,7 @@ const ROUTES = {
   CATCHAT: '/catchat',
   HEXCLOCK: '/hexclock',
   MAGICNUMBER: '/magicnumber',
+  CHICAGOART: '/chicagoart',
 };
 
 export default ROUTES;

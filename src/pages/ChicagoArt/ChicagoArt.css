@@ -1,0 +1,27 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.search-bar input {
+    margin-left: .5rem;
+}
+
+.art {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.art-listing {
+    display: block;
+    text-align: center;
+    margin: 1rem;
+}
+
+.art-listing img {
+    width:  400px;
+    height: 400px;
+    object-fit: cover;
+}
