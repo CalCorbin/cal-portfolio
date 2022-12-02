@@ -27,12 +27,16 @@ const searchArctic = async (searchTerm: string) => {
   return imageData;
 };
 
+/**
+ * React Query hook to fetch art data from the Art Institute of Chicago API
+ * @param searchTerm {string} - The search term to use
+ * @param enabled {boolean} - Whether or not to fetch data
+ */
 export default function useSearchArtic(searchTerm: string, enabled: boolean) {
   return useQuery(
     ['searchResults', searchTerm],
     () => searchArctic(searchTerm),
     {
-      staleTime: 1000 * 60 * 60 * 24,
       keepPreviousData: true,
       refetchOnWindowFocus: false,
       enabled,
