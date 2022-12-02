@@ -14,10 +14,21 @@ const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { data: art, isLoading } = useSearchArtic(searchTerm, !!searchTerm);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSearchTerm(e.currentTarget.search.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
   };
+
+  const debounce = (func: any, delay: number) => {
+    let timer: any;
+    return (...args: any) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  };
+
+  const debouncedHandleChange = debounce(handleChange, 500);
 
   return (
     <div className="art-page">
@@ -25,14 +36,13 @@ const ChicagoArt = () => {
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
         title="Art Search"
       />
-      <form onSubmit={handleSubmit} className="search-bar">
-        <input
-          type="text"
-          id="search"
-          name="search"
-          placeholder="Search the Art Institute of Chicago Collection"
-        />
-      </form>
+      <input
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Search the Art Institute of Chicago Collection"
+        onChange={debouncedHandleChange}
+      />
       <div>
         {isLoading ? (
           <Loading />

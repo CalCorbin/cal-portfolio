@@ -11,7 +11,17 @@ interface collectionDataResponse {
  */
 const searchArctic = async (searchTerm: string) => {
   const collections = await fetch(
-    `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}?fields=data`
+    `https://api.artic.edu/api/v1/artworks/search`,
+    {
+      method: 'POST',
+      headers: {
+        'access-control-allow-origin': '*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        q: searchTerm,
+      }),
+    }
   );
   const { data: collectionData } = await collections.json();
   const collectionIds = collectionData.map(
@@ -23,16 +33,20 @@ const searchArctic = async (searchTerm: string) => {
     )}&fields=title,image_id,artist_title`
   );
   const { data: imageData } = await imageIds.json();
-
   return imageData;
 };
 
+/**
+ * React Query hook to fetch art data from the Art Institute of Chicago API
+ * @param searchTerm {string} - The search term to use
+ * @param enabled {boolean} - Whether or not to fetch data
+ */
 export default function useSearchArtic(searchTerm: string, enabled: boolean) {
   return useQuery(
     ['searchResults', searchTerm],
     () => searchArctic(searchTerm),
     {
-      staleTime: 1000 * 60 * 60 * 24,
+      staleTime: 1000 * 60,
       keepPreviousData: true,
       refetchOnWindowFocus: false,
       enabled,

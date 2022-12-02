@@ -8,16 +8,7 @@
     border-radius: 5%;
 }
 
-.search-bar {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 1rem;
-    margin: 2rem;
-    font-size: 1.5rem;
-}
-
-.search-bar input {
+input {
     height: 2rem;
     width: 21rem;
     font-size: 1rem;
@@ -34,6 +25,7 @@
     display: block;
     text-align: center;
     margin: 1rem;
+    width:  25rem;
 }
 
 .art-listing img {
