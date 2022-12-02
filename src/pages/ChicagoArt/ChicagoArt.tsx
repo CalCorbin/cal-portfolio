@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useSearchArtic from '../../hooks/useSearchArctic';
 import './ChicagoArt.css';
 import Header from '../../components/Header/Header';
+import Loading from '../../components/Loading';
 
 interface ArtProps {
   title: string;
@@ -19,21 +20,23 @@ const ChicagoArt = () => {
   };
 
   return (
-    <div>
+    <div className="art-page">
       <Header
-        repoLink="blingblong"
-        title="Search the Art Institute of Chicago API"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
+        title="Chicago Art Search"
+        useWhiteIcons
       />
       <form onSubmit={handleSubmit} className="search-bar">
-        <label htmlFor="search">
-          Search
-          <input type="text" id="search" name="search" />
-        </label>
-        <input type="submit" value="Search" />
+        <input
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Type a search term and press enter"
+        />
       </form>
       <div>
         {isLoading ? (
-          <div>Loading...</div>
+          <Loading />
         ) : (
           <div className="art">
             {art?.map((item: ArtProps) => (
@@ -42,8 +45,14 @@ const ChicagoArt = () => {
                   src={`https://www.artic.edu/iiif/2/${item.image_id}/full/400,/0/default.jpg`}
                   alt={item.title}
                 />
-                <div>{item.title}</div>
-                <div>By {item.artist_title}</div>
+                <div className="search-result">
+                  <div>{item.title}</div>
+                  <div>
+                    {item.artist_title
+                      ? `By ${item.artist_title}`
+                      : 'Artist Unknown'}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
