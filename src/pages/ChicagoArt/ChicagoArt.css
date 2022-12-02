@@ -1,11 +1,27 @@
+.art-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 5%;
+}
+
 .search-bar {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1rem;
     margin: 2rem;
+    font-size: 1.5rem;
 }
 
 .search-bar input {
-    margin-left: .5rem;
+    height: 2rem;
+    width: 21rem;
+    font-size: 1rem;
+    padding: .5rem;
 }
 
 .art {
@@ -21,7 +37,14 @@
 }
 
 .art-listing img {
-    width:  400px;
-    height: 400px;
+    width:  25rem;
+    height: 25rem;
     object-fit: cover;
+    border: 1px solid white;
+}
+
+.search-result {
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: .5rem;
 }
