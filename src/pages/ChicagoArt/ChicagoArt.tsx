@@ -10,6 +10,10 @@ interface ArtProps {
   artist_title: string;
 }
 
+interface HandleChange {
+  (e: React.ChangeEvent<HTMLInputElement>): void;
+}
+
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { data: art, isLoading } = useSearchArtic(searchTerm, !!searchTerm);
@@ -18,9 +22,9 @@ const ChicagoArt = () => {
     setSearchTerm(e.target.value);
   };
 
-  const debounce = (func: any, delay: number) => {
-    let timer: any;
-    return (...args: any) => {
+  const debounce = (func: HandleChange, delay: number) => {
+    let timer: NodeJS.Timeout;
+    return (...args: [React.ChangeEvent<HTMLInputElement>]) => {
       clearTimeout(timer);
       timer = setTimeout(() => {
         func(...args);
