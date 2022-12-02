@@ -23,15 +23,14 @@ const ChicagoArt = () => {
     <div className="art-page">
       <Header
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
-        title="Chicago Art Search"
-        useWhiteIcons
+        title="Art Search"
       />
       <form onSubmit={handleSubmit} className="search-bar">
         <input
           type="text"
           id="search"
           name="search"
-          placeholder="Type a search term and press enter"
+          placeholder="Search the Art Institute of Chicago Collection"
         />
       </form>
       <div>

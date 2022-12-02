@@ -1,12 +1,12 @@
 import ROUTES from './routes';
 
 const PROJECTS = [
-  // {
-  //   id: 8,
-  //   title: 'Magic Number',
-  //   link: ROUTES.MAGICNUMBER,
-  //   img: 'https://images.unsplash.com/photo-1508970057347-0524a45ebdff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-  // },
+  {
+    id: 8,
+    title: 'Chicago Art Institute Search',
+    link: ROUTES.CHICAGOART,
+    img: 'https://images.unsplash.com/flagged/photo-1572392640988-ba48d1a74457?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+  },
   {
     id: 7,
     title: 'Fanwave',
