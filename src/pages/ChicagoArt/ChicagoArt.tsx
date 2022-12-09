@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useSearchArtic from '../../hooks/useSearchArctic';
+import useSearchArtic from '../../hooks/useSearchArtic';
 import './ChicagoArt.css';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading';
@@ -35,13 +35,14 @@ const ChicagoArt = () => {
   const debouncedHandleChange = debounce(handleChange, 500);
 
   return (
-    <div className="art-page">
+    <div className="art-page" data-testid="chicago-art">
       <Header
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
         title="Art Search"
       />
       <input
         type="text"
+        data-testid="search-input"
         id="search"
         name="search"
         placeholder="Search the Art Institute of Chicago Collection"
@@ -53,7 +54,11 @@ const ChicagoArt = () => {
         ) : (
           <div className="art">
             {art?.map((item: ArtProps) => (
-              <div key={item.image_id} className="art-listing">
+              <div
+                key={item.image_id}
+                className="art-listing"
+                data-testid={`art-listing-${item.image_id}`}
+              >
                 <img
                   src={`https://www.artic.edu/iiif/2/${item.image_id}/full/400,/0/default.jpg`}
                   alt={item.title}
