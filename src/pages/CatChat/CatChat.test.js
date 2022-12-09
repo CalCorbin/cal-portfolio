@@ -69,7 +69,9 @@ it('should receive a chat message', async () => {
   fireEvent.change(input, { target: { value: 'hello cat' } });
   fireEvent.click(sendButton);
 
-  await waitFor(() => screen.getByTestId('Cat-1'), { timeout: 5000 });
+  await waitFor(() => expect(screen.getByTestId('Cat-1')).toBeInTheDocument(), {
+    timeout: 5000,
+  });
 });
 
 it('should render sent by sender text', async () => {
@@ -90,7 +92,9 @@ it('should render sent by cat text', async () => {
   fireEvent.change(input, { target: { value: 'hello cat' } });
   fireEvent.click(sendButton);
 
-  await waitFor(() => screen.getByTestId('Cat-1'), { timeout: 5000 });
+  await waitFor(() => expect(screen.getByTestId('Cat-1')).toBeInTheDocument(), {
+    timeout: 5000,
+  });
 
   expect(screen.getByText(/Sent by Cat at/)).toBeInTheDocument();
 });
