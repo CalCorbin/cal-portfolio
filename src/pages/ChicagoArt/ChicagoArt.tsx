@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import useSearchArtic from '../../hooks/useSearchArtic';
-import './ChicagoArt.css';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading';
+import './ChicagoArt.css';
 
 interface ArtProps {
   title: string;
@@ -10,46 +10,54 @@ interface ArtProps {
   artist_title: string;
 }
 
-interface HandleChange {
-  (e: React.ChangeEvent<HTMLInputElement>): void;
-}
-
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { data: art, isLoading } = useSearchArtic(searchTerm, !!searchTerm);
+  const [enableSearch, setEnableSearch] = useState(false);
+  const {
+    data: art,
+    isLoading,
+    isFetching,
+  } = useSearchArtic(searchTerm, enableSearch);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (enableSearch) setEnableSearch(false);
     setSearchTerm(e.target.value);
   };
 
-  const debounce = (func: HandleChange, delay: number) => {
-    let timer: NodeJS.Timeout;
-    return (...args: [React.ChangeEvent<HTMLInputElement>]) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func(...args);
-      }, delay);
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setEnableSearch(true);
   };
-
-  const debouncedHandleChange = debounce(handleChange, 500);
 
   return (
     <div className="art-page" data-testid="chicago-art">
-      <Header
-        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
-        title="Art Search"
-      />
-      <input
-        type="text"
-        data-testid="search-input"
-        id="search"
-        name="search"
-        placeholder="Search the Art Institute of Chicago Collection"
-        onChange={debouncedHandleChange}
-      />
+      <div className="search-container">
+        <Header
+          repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
+          title="Art Search"
+        />
+        <form onSubmit={handleSubmit} className="search-form">
+          <input
+            type="text"
+            data-testid="search-input"
+            id="search"
+            name="search"
+            placeholder="Enter a search term"
+            aria-label="Enter a search term"
+            onChange={handleChange}
+          />
+          <button
+            type="submit"
+            id="search-button"
+            aria-label="Submit search term"
+            data-testid="search-button"
+          >
+            Search
+          </button>
+        </form>
+      </div>
       <div>
-        {isLoading ? (
+        {isLoading || isFetching ? (
           <Loading />
         ) : (
           <div className="art">
