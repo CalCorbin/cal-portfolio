@@ -8,13 +8,6 @@
     border-radius: 5%;
 }
 
-input {
-    height: 2rem;
-    width: 21rem;
-    font-size: 1rem;
-    padding: .5rem;
-}
-
 .art {
     display: flex;
     flex-wrap: wrap;
@@ -38,5 +31,30 @@ input {
 .search-result {
     display: grid;
     grid-template-rows: 1fr;
+    padding: .5rem;
+}
+
+.search-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    margin: 1rem;
+    background-color: gray;
+    border-radius: .25rem;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
+}
+
+.search-form input {
+    border-radius: .25rem;
+    padding: .5rem;
+}
+
+.search-form button {
+    border-radius: .25rem;
     padding: .5rem;
 }
