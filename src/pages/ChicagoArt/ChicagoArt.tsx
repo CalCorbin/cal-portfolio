@@ -16,7 +16,11 @@ interface HandleChange {
 
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { data: art, isLoading } = useSearchArtic(searchTerm, !!searchTerm);
+  const {
+    data: art,
+    isLoading,
+    isFetching,
+  } = useSearchArtic(searchTerm, !!searchTerm);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -49,7 +53,7 @@ const ChicagoArt = () => {
         onChange={debouncedHandleChange}
       />
       <div>
-        {isLoading ? (
+        {isLoading || isFetching ? (
           <Loading />
         ) : (
           <div className="art">
