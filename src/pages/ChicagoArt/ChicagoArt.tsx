@@ -10,10 +10,6 @@ interface ArtProps {
   artist_title: string;
 }
 
-interface Error {
-  message: string;
-}
-
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [enableSearch, setEnableSearch] = useState(false);
