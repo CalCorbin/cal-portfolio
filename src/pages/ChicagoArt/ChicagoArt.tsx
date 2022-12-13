@@ -42,6 +42,7 @@ const ChicagoArt = () => {
         <Header
           repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
           title="Art Search"
+          useDarkMode
         />
         <form onSubmit={handleSubmit} className="search-form">
           <input
