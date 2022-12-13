@@ -10,6 +10,10 @@ interface ArtProps {
   artist_title: string;
 }
 
+interface Error {
+  message: string;
+}
+
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [enableSearch, setEnableSearch] = useState(false);
@@ -17,6 +21,7 @@ const ChicagoArt = () => {
     data: art,
     isLoading,
     isFetching,
+    isError,
   } = useSearchArtic(searchTerm, enableSearch);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +33,8 @@ const ChicagoArt = () => {
     e.preventDefault();
     setEnableSearch(true);
   };
+
+  if (isError) return <div>Something went wrong</div>;
 
   return (
     <div className="art-page" data-testid="chicago-art">
