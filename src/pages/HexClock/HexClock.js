@@ -45,7 +45,7 @@ const HexClock = () => {
       <Header
         title="HexClock"
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/HexClock/index.js"
-        useWhiteIcons
+        useDarkMode
       />
       <div className="hex-content">
         <div className="time-text" data-testid="time-display">

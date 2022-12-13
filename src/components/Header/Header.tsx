@@ -1,34 +1,33 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
+import './Header.css';
 
 interface HeaderProps {
   title: string;
   repoLink: string;
-  useWhiteIcons?: boolean;
+  useDarkMode?: boolean;
 }
 
-const Header = ({ title, repoLink, useWhiteIcons }: HeaderProps) => (
-  <div className="spacex-page-header">
-    <div>{title}</div>
-    <a
-      data-testid="project-header"
-      target="_blank"
-      rel="noopener noreferrer"
-      href={repoLink}
-    >
-      <FontAwesomeIcon
-        size="sm"
-        icon={faGithub}
-        className="social-icon"
-        style={{ color: useWhiteIcons ? 'white' : 'black' }}
-      />
-    </a>
-  </div>
-);
+const Header = ({ title, repoLink, useDarkMode }: HeaderProps) => {
+  const color = useDarkMode ? 'white' : 'black';
+  return (
+    <div className="header-row">
+      <div style={{ color }}>{title}</div>
+      <a
+        data-testid="project-header"
+        target="_blank"
+        rel="noopener noreferrer"
+        href={repoLink}
+      >
+        <FontAwesomeIcon size="sm" icon={faGithub} style={{ color }} />
+      </a>
+    </div>
+  );
+};
 
 Header.defaultProps = {
-  useWhiteIcons: false,
+  useDarkMode: false,
 };
 
 export default Header;
