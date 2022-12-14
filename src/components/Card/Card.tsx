@@ -2,7 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-const Card = ({ data }) => (
+interface CardProps {
+  data: {
+    id: number;
+    title: string;
+    link: string;
+    img: string;
+  };
+}
+
+const Card = ({ data }: CardProps) => (
   <div className="simple-card" data-testid={`card-${data.id}`}>
     <a
       href={data.link}
