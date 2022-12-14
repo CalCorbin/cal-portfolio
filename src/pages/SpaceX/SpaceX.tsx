@@ -4,6 +4,7 @@ import './SpaceX.css';
 import Ship from '../../components/Ship/Ship';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading';
+import { IShip } from '../../components/Ship/ShipInterface';
 
 export const GET_SHIPS = gql`
   query {
@@ -37,7 +38,7 @@ const SpaceX = () => {
       />
       <hr />
       <div className="ship-container">
-        {data.ships.map((ship) => (
+        {data.ships.map((ship: IShip['ship']) => (
           <Ship key={ship.id} ship={ship} />
         ))}
       </div>

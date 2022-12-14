@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import Firebase, { FirebaseContext } from './components/Firebase';
 import ROUTES from './constants/routes';
 import Landing from './pages/Landing/Landing';
 import CatChat from './pages/CatChat/CatChat';
@@ -10,6 +9,10 @@ import SpaceX from './pages/SpaceX/SpaceX';
 import HexClock from './pages/HexClock/HexClock';
 import MagicNumber from './pages/MagicNumber/MagicNumber';
 import ChicagoArt from './pages/ChicagoArt/ChicagoArt';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import Firebase, { FirebaseContext } from './components/Firebase';
 
 const App = () => {
   const client = new ApolloClient({

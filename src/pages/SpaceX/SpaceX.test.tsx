@@ -137,7 +137,7 @@ describe('<SpaceX />', () => {
   });
 
   it('should render ship missions modal', async () => {
-    await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
+    fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
 
     await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
     expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
@@ -145,13 +145,13 @@ describe('<SpaceX />', () => {
   });
 
   it('should close ship missions modal', async () => {
-    await fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
+    fireEvent.click(screen.getByTestId('missions-button-GOMSTREE'));
 
     await waitFor(() => screen.getByTestId('missions-modal-GOMSTREE'));
     expect(screen.getByText(/Iridium NEXT Mission 5/)).toBeInTheDocument();
 
     const closeButton = screen.getByTestId('close-button-GOMSTREE');
-    await fireEvent.click(closeButton);
+    fireEvent.click(closeButton);
     expect(closeButton).not.toBeInTheDocument();
   });
 });
