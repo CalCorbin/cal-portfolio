@@ -2,7 +2,25 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Ship.css';
 
-const Ship = ({ ship }) => {
+interface Ship {
+  ship: {
+    name: string;
+    image: string;
+    id: number;
+    active: boolean;
+    home_port: string;
+    weight_lbs: number;
+    url: string;
+    missions: Array<Mission>;
+  };
+}
+
+interface Mission {
+  name: string;
+  flight: number;
+}
+
+const Ship = ({ ship }: Ship) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMissionOpening = () => {
@@ -66,7 +84,7 @@ const Ship = ({ ship }) => {
               x
             </button>
             <h2>{ship.name} Missions</h2>
-            {ship.missions.map((mission) => (
+            {ship?.missions?.map((mission: Mission) => (
               <div key={`flight-${mission.flight}`}>
                 <div>
                   <strong>Mission Name:</strong> {mission.name}

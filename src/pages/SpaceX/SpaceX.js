@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import './SpaceX.css';
-import Ship from '../../components/Ship';
+import Ship from '../../components/Ship/Ship';
 import Header from '../../components/Header/Header';
 
 export const GET_SHIPS = gql`
