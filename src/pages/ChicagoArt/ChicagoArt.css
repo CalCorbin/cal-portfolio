@@ -1,0 +1,60 @@
+.art-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 5%;
+}
+
+.art {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.art-listing {
+    display: block;
+    text-align: center;
+    margin: 1rem;
+    width:  25rem;
+}
+
+.art-listing img {
+    width:  25rem;
+    height: 25rem;
+    object-fit: cover;
+    border: 1px solid white;
+}
+
+.search-result {
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: .5rem;
+}
+
+.search-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    margin: 1rem;
+    background-color: gray;
+    border-radius: .25rem;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
+}
+
+.search-form input {
+    border-radius: .25rem;
+    padding: .5rem;
+}
+
+.search-form button {
+    border-radius: .25rem;
+    padding: .5rem;
+}

@@ -1,4 +1,14 @@
-const JOBS = [
+/* istanbul ignore file */
+
+interface Job {
+  id: number;
+  title: string;
+  org: string;
+  dates: string;
+  highlights: string[];
+}
+
+const JOBS: Array<Job> = [
   {
     id: 7,
     title: 'Software Engineer',

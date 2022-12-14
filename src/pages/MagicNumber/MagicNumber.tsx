@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useGuessNumber from '../../hooks/useGuessNumber';
 import './MagicNumber.css';
 
+/* istanbul ignore next */
 const MagicNumber = () => {
   const [isPainting, setIsPainting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,7 +31,7 @@ const MagicNumber = () => {
   }, []);
 
   useEffect(() => {
-    if (data?.predicted[0]) {
+    if (data?.predicted) {
       setGuess(data?.predicted[0]);
     }
   }, [data]);
@@ -92,7 +93,7 @@ const MagicNumber = () => {
             data-testid="cal-github"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/NumberDraw/NumberDraw.tsx"
+            href="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/MagicNumber/MagicNumber.tsx"
           >
             <FontAwesomeIcon
               size="xl"

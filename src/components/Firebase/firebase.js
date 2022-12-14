@@ -25,6 +25,7 @@ const devConfig = {
 };
 
 const ENV = process.env.REACT_APP_NODE_ENV;
+/* istanbul ignore next */
 const config = ENV === 'production' ? prodConfig : devConfig;
 
 class Firebase {
