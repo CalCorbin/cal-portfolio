@@ -3,15 +3,21 @@ import './CatChat.css';
 import CATPHRASES from '../../constants/catPhrases';
 import Header from '../../components/Header/Header';
 
-function randomInt(value) {
+interface ChatMessage {
+  author: string;
+  message: string;
+  timestamp: string;
+}
+
+function randomInt(value: number) {
   return Math.floor(Math.random() * value);
 }
 
 const CatChat = () => {
   const [draftMessage, setDraftMessage] = useState('');
   const [sending, setSending] = useState(false);
-  const [chat, setChat] = useState([]);
-  const messagesEndRef = useRef(null);
+  const [chat, setChat] = useState<ChatMessage[]>([]);
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef?.current?.scrollIntoView({
@@ -21,7 +27,7 @@ const CatChat = () => {
 
   useEffect(() => {
     scrollToBottom();
-    let timer;
+    let timer: NodeJS.Timeout;
     if (sending) {
       timer = setTimeout(() => {
         setChat((chatHistory) => [
@@ -41,7 +47,7 @@ const CatChat = () => {
     };
   }, [chat]);
 
-  const sendMessage = (e) => {
+  const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const messageSent = {
