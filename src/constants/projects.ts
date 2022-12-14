@@ -40,7 +40,7 @@ const PROJECTS: Array<Project> = [
   },
   {
     id: 1,
-    title: 'Star Trek Next Generation Elevator Game',
+    title: 'Star Trek Elevator Game',
     link: 'https://github.com/CalCorbin/elevatorGame',
     img: 'https://images.unsplash.com/photo-1550479023-2a811e19dfd3',
   },
@@ -53,7 +53,7 @@ const PROJECTS: Array<Project> = [
   {
     id: 5,
     title: 'Test Driven Development',
-    link: 'https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/CatChat/CatChat.test.js',
+    link: 'https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/CatChat/CatChat.test.tsx',
     img: 'https://images.unsplash.com/photo-1546833998-877b37c2e5c6',
   },
 ];
