@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { IShip, Mission } from './ShipInterface';
 import './Ship.css';
 
-const Ship = ({ ship }) => {
+const Ship = ({ ship }: IShip) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMissionOpening = () => {
@@ -66,7 +67,7 @@ const Ship = ({ ship }) => {
               x
             </button>
             <h2>{ship.name} Missions</h2>
-            {ship.missions.map((mission) => (
+            {ship?.missions?.map((mission: Mission) => (
               <div key={`flight-${mission.flight}`}>
                 <div>
                   <strong>Mission Name:</strong> {mission.name}
