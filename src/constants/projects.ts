@@ -1,6 +1,13 @@
 import ROUTES from './routes';
 
-const PROJECTS = [
+interface Project {
+  id: number;
+  title: string;
+  img: string;
+  link: string;
+}
+
+const PROJECTS: Array<Project> = [
   {
     id: 8,
     title: 'Art Institute of Chicago Search',
