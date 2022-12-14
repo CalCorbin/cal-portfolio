@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import API_URLS from '../constants/apiUrls';
 
 interface collectionDataResponse {
   id: number;
@@ -9,9 +10,10 @@ interface collectionDataResponse {
  * API docs: https://api.artic.edu/docs/
  * @param searchTerm {string} - The search term to use
  */
-const searchArctic = async (searchTerm: string) => {
+const searchArtic = async (searchTerm: string) => {
+  const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
   const collections = await fetch(
-    `https://api.artic.edu/api/v1/artworks/search`,
+    `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`,
     {
       method: 'POST',
       headers: {
@@ -20,6 +22,7 @@ const searchArctic = async (searchTerm: string) => {
       },
       body: JSON.stringify({
         q: searchTerm,
+        fields: 'id',
       }),
     }
   );
@@ -28,7 +31,7 @@ const searchArctic = async (searchTerm: string) => {
     (collection: collectionDataResponse) => collection.id
   );
   const imageIds = await fetch(
-    `https://api.artic.edu/api/v1/artworks?ids=${collectionIds.join(
+    `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=${collectionIds.join(
       ','
     )}&fields=title,image_id,artist_title`
   );
@@ -44,7 +47,7 @@ const searchArctic = async (searchTerm: string) => {
 export default function useSearchArtic(searchTerm: string, enabled: boolean) {
   return useQuery(
     ['searchResults', searchTerm],
-    () => searchArctic(searchTerm),
+    () => searchArtic(searchTerm),
     {
       staleTime: 1000 * 60,
       keepPreviousData: true,
