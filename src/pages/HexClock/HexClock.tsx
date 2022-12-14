@@ -3,17 +3,17 @@ import './HexClock.css';
 import Header from '../../components/Header/Header';
 
 const HexClock = () => {
-  const [time, setTime] = useState();
-  const [hex, setHex] = useState(null);
+  const [time, setTime] = useState<string>();
+  const [hex, setHex] = useState<string | null>(null);
   const [colorName, setColorName] = useState('n/a');
 
-  let timer;
+  let timer: NodeJS.Timeout;
   useEffect(() => {
     const setUpTime = () => {
       const date = new Date();
-      let hours = date.getHours();
-      let minutes = date.getMinutes();
-      let seconds = date.getSeconds();
+      let hours: number | string = date.getHours();
+      let minutes: number | string = date.getMinutes();
+      let seconds: number | string = date.getSeconds();
 
       if (hours <= 9) hours = `0${hours}`;
       if (minutes <= 9) minutes = `0${minutes}`;
