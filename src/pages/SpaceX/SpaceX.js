@@ -3,6 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import './SpaceX.css';
 import Ship from '../../components/Ship/Ship';
 import Header from '../../components/Header/Header';
+import Loading from '../../components/Loading';
 
 export const GET_SHIPS = gql`
   query {
@@ -25,7 +26,7 @@ export const GET_SHIPS = gql`
 const SpaceX = () => {
   const { loading, error, data } = useQuery(GET_SHIPS);
 
-  if (loading) return <p data-testid="loading-state">Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p data-testid="error-state">Error...</p>;
 
   return (
