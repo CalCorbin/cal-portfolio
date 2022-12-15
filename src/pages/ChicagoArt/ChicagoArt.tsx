@@ -10,9 +10,47 @@ interface ArtProps {
   artist_title: string;
 }
 
+const Art = ({
+  title,
+  image_id: imageId,
+  artist_title: artistTitle,
+}: ArtProps) => {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(!isHovering);
+  };
+
+  return (
+    <div
+      key={imageId}
+      className="art-listing"
+      data-testid={`art-listing-${imageId}`}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOver}
+      onFocus={handleMouseOver}
+      onBlur={handleMouseOver}
+    >
+      <img
+        src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
+        alt={title}
+      />
+      {isHovering && (
+        <div className="search-result">
+          <div className="art-title">{title}</div>
+          <div className="artist">
+            {artistTitle ? `By ${artistTitle}` : 'Artist Unknown'}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [enableSearch, setEnableSearch] = useState(false);
+
   const {
     data: art,
     isLoading,
@@ -66,24 +104,11 @@ const ChicagoArt = () => {
         ) : (
           <div className="art">
             {art?.map((item: ArtProps) => (
-              <div
-                key={item.image_id}
-                className="art-listing"
-                data-testid={`art-listing-${item.image_id}`}
-              >
-                <img
-                  src={`https://www.artic.edu/iiif/2/${item.image_id}/full/400,/0/default.jpg`}
-                  alt={item.title}
-                />
-                <div className="search-result">
-                  <div>{item.title}</div>
-                  <div>
-                    {item.artist_title
-                      ? `By ${item.artist_title}`
-                      : 'Artist Unknown'}
-                  </div>
-                </div>
-              </div>
+              <Art
+                artist_title={item.artist_title}
+                title={item.title}
+                image_id={item.image_id}
+              />
             ))}
           </div>
         )}

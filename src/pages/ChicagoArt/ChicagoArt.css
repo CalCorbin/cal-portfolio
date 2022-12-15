@@ -19,6 +19,7 @@
     text-align: center;
     margin: 1rem;
     width:  25rem;
+    position: relative;
 }
 
 .art-listing img {
@@ -26,12 +27,34 @@
     height: 25rem;
     object-fit: cover;
     border: 1px solid white;
+    border-radius: 3%;
+}
+
+.art-listing img:hover {
+    border: 1px solid gray;
+    box-shadow: 0 0 10px 1px gray;
 }
 
 .search-result {
     display: grid;
     grid-template-rows: 1fr;
+    color: white;
     padding: .5rem;
+    position: absolute;
+    bottom: .3rem;
+    width: 24rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5%;
+}
+
+.art-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.artist {
+    font-size: 1rem;
+    /*font-weight: bold;*/
 }
 
 .search-container {
