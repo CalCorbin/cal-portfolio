@@ -33,7 +33,7 @@ const searchArtic = async (searchTerm: string) => {
   const imageIds = await fetch(
     `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=${collectionIds.join(
       ','
-    )}&fields=title,image_id,artist_title,thumbnail`
+    )}&fields=title,image_id,artist_title,thumbnail,artist_id`
   );
   const { data: imageData } = await imageIds.json();
   return imageData;
