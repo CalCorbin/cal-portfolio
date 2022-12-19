@@ -7,46 +7,21 @@ import './ChicagoArt.css';
 interface ArtProps {
   title: string;
   image_id: string;
-  artist_title: string;
 }
 
-const Art = ({
-  title,
-  image_id: imageId,
-  artist_title: artistTitle,
-}: ArtProps) => {
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseOver = () => {
-    setIsHovering(!isHovering);
-  };
-
-  return (
-    <div
-      key={imageId}
-      className="art-listing"
-      data-testid={`art-listing-${imageId}`}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOver}
-      onFocus={handleMouseOver}
-      onBlur={handleMouseOver}
-    >
-      <img
-        src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
-        alt={title}
-      />
-      {isHovering && (
-        <div className="search-result">
-          <div className="art-title">{title}</div>
-          <div className="artist">
-            {artistTitle ? `By ${artistTitle}` : 'Artist Unknown'}
-          </div>
-        </div>
-      )}
+const Art = ({ title, image_id: imageId }: ArtProps) => (
+  <div key={imageId} className="art" data-testid={`art-listing-${imageId}`}>
+    <img
+      src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
+      alt={title}
+    />
+    <div className="art-overlay">
+      <p className="art-title" data-testid={`art-listing-title-${imageId}`}>
+        {title}
+      </p>
     </div>
-  );
-};
-
+  </div>
+);
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [enableSearch, setEnableSearch] = useState(false);
@@ -98,21 +73,19 @@ const ChicagoArt = () => {
           </button>
         </form>
       </div>
-      <div>
-        {isLoading || isFetching ? (
-          <Loading />
-        ) : (
-          <div className="art">
-            {art?.map((item: ArtProps) => (
-              <Art
-                artist_title={item.artist_title}
-                title={item.title}
-                image_id={item.image_id}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      {isLoading || isFetching ? (
+        <Loading />
+      ) : (
+        <div className="result-container">
+          {art?.map((item: ArtProps) => (
+            <Art
+              key={item.image_id}
+              title={item.title}
+              image_id={item.image_id}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -62,26 +62,23 @@ describe('<ChicagoArt />', () => {
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
-  it('should render art', () => {
+  it('should render art title on hover', async () => {
     setup({
       data: mockedArt,
       isLoading: false,
       isFetching: false,
       isError: false,
+    });
+
+    fireEvent.mouseOver(
+      screen.getByTestId('art-listing-7f0c1692-cd8a-ca14-e70a-b8252f55c453')
+    );
+    await waitFor(() => {
+      screen.getByTestId(
+        'art-listing-title-7f0c1692-cd8a-ca14-e70a-b8252f55c453'
+      );
     });
     expect(screen.getByText(/Library Ladder/)).toBeInTheDocument();
-    expect(screen.getByText(/By William France/)).toBeInTheDocument();
-  });
-
-  it('should render art without artist name', () => {
-    setup({
-      data: mockedArt,
-      isLoading: false,
-      isFetching: false,
-      isError: false,
-    });
-    expect(screen.getByText(/Brieve, France/)).toBeInTheDocument();
-    expect(screen.getByText(/Artist Unknown/)).toBeInTheDocument();
   });
 
   it('should enter text in the search bar and click search button', async () => {
