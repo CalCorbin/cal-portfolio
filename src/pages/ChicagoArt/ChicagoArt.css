@@ -35,9 +35,9 @@
 
 .result-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: left;
-    gap: 1rem;
+    justify-content: center;
 }
 
 .art {
@@ -67,7 +67,7 @@
     display: block;
     position: absolute;
     width: 100.5%;
-    height: 20%;
+    height: 25%;
     background: linear-gradient(transparent, black);
     bottom: -2px;
     border-radius: 4%;
@@ -77,10 +77,21 @@
     font-size: 1.25rem;
     font-weight: bold;
     text-align: left;
-    margin: 1rem;
     color: white;
+    margin: 1rem 1rem 0 1rem;
 }
 
 .artist {
     font-size: 1rem;
+    color: white;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.artist-unknown {
+    font-size: 1rem;
+    color: white;
+    margin: 1rem;
+    text-decoration: none;
+    cursor: default;
 }
