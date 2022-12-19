@@ -7,12 +7,25 @@ import './ChicagoArt.css';
 interface ArtProps {
   title: string;
   image_id: string;
-  artist_title: string;
 }
 
+const Art = ({ title, image_id: imageId }: ArtProps) => (
+  <div key={imageId} className="art" data-testid={`art-listing-${imageId}`}>
+    <img
+      src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
+      alt={title}
+    />
+    <div className="art-overlay">
+      <p className="art-title" data-testid={`art-listing-title-${imageId}`}>
+        {title}
+      </p>
+    </div>
+  </div>
+);
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [enableSearch, setEnableSearch] = useState(false);
+
   const {
     data: art,
     isLoading,
@@ -60,34 +73,19 @@ const ChicagoArt = () => {
           </button>
         </form>
       </div>
-      <div>
-        {isLoading || isFetching ? (
-          <Loading />
-        ) : (
-          <div className="art">
-            {art?.map((item: ArtProps) => (
-              <div
-                key={item.image_id}
-                className="art-listing"
-                data-testid={`art-listing-${item.image_id}`}
-              >
-                <img
-                  src={`https://www.artic.edu/iiif/2/${item.image_id}/full/400,/0/default.jpg`}
-                  alt={item.title}
-                />
-                <div className="search-result">
-                  <div>{item.title}</div>
-                  <div>
-                    {item.artist_title
-                      ? `By ${item.artist_title}`
-                      : 'Artist Unknown'}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      {isLoading || isFetching ? (
+        <Loading />
+      ) : (
+        <div className="result-container">
+          {art?.map((item: ArtProps) => (
+            <Art
+              key={item.image_id}
+              title={item.title}
+              image_id={item.image_id}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
