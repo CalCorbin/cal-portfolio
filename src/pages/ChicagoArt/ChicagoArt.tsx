@@ -7,13 +7,19 @@ import './ChicagoArt.css';
 interface ArtProps {
   title: string;
   image_id: string;
+  thumbnail: {
+    lqip: string;
+    width: number;
+    height: number;
+    alt_text: string;
+  };
 }
 
-const Art = ({ title, image_id: imageId }: ArtProps) => (
+const Art = ({ title, image_id: imageId, thumbnail }: ArtProps) => (
   <div key={imageId} className="art" data-testid={`art-listing-${imageId}`}>
     <img
       src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
-      alt={title}
+      alt={thumbnail.alt_text || title}
     />
     <div className="art-overlay">
       <p className="art-title" data-testid={`art-listing-title-${imageId}`}>
@@ -82,6 +88,7 @@ const ChicagoArt = () => {
               key={item.image_id}
               title={item.title}
               image_id={item.image_id}
+              thumbnail={item.thumbnail}
             />
           ))}
         </div>

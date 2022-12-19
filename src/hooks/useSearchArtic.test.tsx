@@ -31,11 +31,23 @@ describe('useSearchArtic', () => {
       title: 'The Actor Segawa Kikunojo III as a Woman of a Samurai Family',
       artist_title: 'Katsushika Hokusai',
       image_id: '123123',
+      thumbnail: {
+        lqip: 'blingblong',
+        width: 400,
+        height: 400,
+        alt_text: 'The actor glances over his shoulder at the viewer',
+      },
     },
     {
       title: 'Peace Warrior (Samurai) 7',
       artist_title: 'Carl Chiarenza',
       image_id: '987987',
+      thumbnail: {
+        lqip: 'blingblong',
+        width: 400,
+        height: 400,
+        alt_text: 'The warrior appears to be in a state of meditation',
+      },
     },
   ];
 
@@ -50,7 +62,7 @@ describe('useSearchArtic', () => {
     },
   });
   fetchMock.get(
-    `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=123123,987987&fields=title,image_id,artist_title`,
+    `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=123123,987987&fields=title,image_id,artist_title,thumbnail`,
     { status: 200, body: { data: expectedResponse } }
   );
 
