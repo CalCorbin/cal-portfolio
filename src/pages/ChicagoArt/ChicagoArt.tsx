@@ -72,14 +72,6 @@ const ChicagoArt = () => {
                 aria-label="Enter a search term"
                 onChange={handleChange}
               />
-              {/* <button */}
-              {/*  type="submit" */}
-              {/*  id="search-button" */}
-              {/*  aria-label="Submit search term" */}
-              {/*  data-testid="search-button" */}
-              {/* > */}
-              {/*  Search */}
-              {/* </button> */}
             </form>
           </div>
         </div>
