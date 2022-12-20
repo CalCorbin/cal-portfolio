@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useSearchArtic from '../../hooks/useSearchArtic';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading';
@@ -44,7 +46,7 @@ const ChicagoArt = () => {
       <div className="header-container">
         <img
           src="https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg"
-          alt="foobar"
+          alt="water lily pond"
           className="header-image"
         />
         <div className="header-overlay" />
@@ -54,25 +56,32 @@ const ChicagoArt = () => {
             title="Art Search"
             useDarkMode
           />
-          <form onSubmit={handleSubmit} className="search-form">
-            <input
-              type="text"
-              data-testid="search-input"
-              id="search"
-              name="search"
-              placeholder="Enter a search term"
-              aria-label="Enter a search term"
-              onChange={handleChange}
-            />
-            <button
-              type="submit"
-              id="search-button"
-              aria-label="Submit search term"
-              data-testid="search-button"
-            >
-              Search
-            </button>
-          </form>
+          <p>
+            Enter a search term below and explore thousands of images from the
+            digital collection of the Art Institute of Chicago.
+          </p>
+          <div className="search-bar">
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+            <form onSubmit={handleSubmit} className="search-form">
+              <input
+                id="search"
+                type="text"
+                data-testid="search-input"
+                name="search"
+                placeholder="Search artworks"
+                aria-label="Enter a search term"
+                onChange={handleChange}
+              />
+              {/* <button */}
+              {/*  type="submit" */}
+              {/*  id="search-button" */}
+              {/*  aria-label="Submit search term" */}
+              {/*  data-testid="search-button" */}
+              {/* > */}
+              {/*  Search */}
+              {/* </button> */}
+            </form>
+          </div>
         </div>
       </div>
       {isLoading || isFetching ? (

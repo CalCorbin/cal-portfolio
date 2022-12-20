@@ -1,4 +1,5 @@
 .art-page {
+    font-family: Arial, Helvetica, sans-serif;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -32,32 +33,49 @@
 
 .search-container {
     display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    color: white;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    grid-template-columns: 1fr;
     padding: 2rem;
     margin: 1rem;
-    background-color: gray;
+    background-color: #2C302E;
     border-radius: .25rem;
     z-index: 2;
 }
 
+.search-container p {
+    text-align: center;
+    padding: 1rem;
+}
+
 .search-form {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
     justify-items: center;
 }
 
-.search-form input {
-    border-radius: .25rem;
-    padding: .5rem;
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.search-form button {
+.search-icon {
+    z-index: 2;
+    position: absolute;
+    right: 1rem;
+    margin: auto;
+}
+
+.search-bar input {
     border-radius: .25rem;
     padding: .5rem;
+    width: 20rem;
 }
 
 .result-container {
