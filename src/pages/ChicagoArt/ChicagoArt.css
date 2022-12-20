@@ -77,16 +77,17 @@
 }
 
 .result-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 .art {
     margin: 1rem;
-    width:  25rem;
-    height: 25rem;
+    width:  15rem;
+    height: 15rem;
     position: relative;
     border-radius: 3%;
 }
@@ -112,12 +113,16 @@
     width: 100.5%;
     height: 25%;
     background: linear-gradient(transparent, black);
-    bottom: -2px;
+    bottom: 0;
+    padding-bottom: 1rem;
     border-radius: 4%;
 }
 
 .art-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-weight: bold;
     text-align: left;
     color: white;
@@ -125,7 +130,10 @@
 }
 
 .artist {
-    font-size: 1rem;
+    font-size: .9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: white;
     margin: 1rem;
     cursor: pointer;

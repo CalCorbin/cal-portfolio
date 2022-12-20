@@ -23,6 +23,7 @@ const searchArtic = async (searchTerm: string) => {
       body: JSON.stringify({
         q: searchTerm,
         fields: 'id',
+        limit: 12,
       }),
     }
   );
