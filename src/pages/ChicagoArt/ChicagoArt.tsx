@@ -17,11 +17,21 @@ const ChicagoArt = () => {
     isError,
   } = useSearchArtic(searchTerm, enableSearch);
 
+  /**
+   * @description - This function is used to handle the search input. The search query
+   * hook is disabled until the user clicks the search button.
+   * @param e - React.ChangeEvent<HTMLInputElement>
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (enableSearch) setEnableSearch(false);
     setSearchTerm(e.target.value);
   };
 
+  /**
+   * @description - This function is used to handle the search button click. Clicking
+   * the search button enables the search query hook.
+   * @param e - React.MouseEvent<HTMLButtonElement>
+   */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEnableSearch(true);
