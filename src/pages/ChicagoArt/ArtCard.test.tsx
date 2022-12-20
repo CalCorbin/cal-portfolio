@@ -67,7 +67,7 @@ describe('<ArtCard/>', () => {
   });
 
   it('should fallback to art title for fallback text if alt_text is not available', async () => {
-    delete mockedArt.thumbnail.alt_text;
+    delete mockedArt?.thumbnail?.alt_text;
     setup(mockedArt);
     expect(screen.getByAltText(/Library Ladder/)).toBeInTheDocument();
   });

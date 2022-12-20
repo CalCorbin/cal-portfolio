@@ -3,7 +3,7 @@ export interface ArtProps {
   artist_title?: string;
   artist_id?: number;
   image_id: string;
-  thumbnail: {
+  thumbnail?: {
     lqip?: string;
     width?: number;
     height?: number;
