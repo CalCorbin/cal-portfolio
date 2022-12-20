@@ -41,31 +41,39 @@ const ChicagoArt = () => {
 
   return (
     <div className="art-page" data-testid="chicago-art">
-      <div className="search-container">
-        <Header
-          repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
-          title="Art Search"
-          useDarkMode
+      <div className="header-container">
+        <img
+          src="https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg"
+          alt="foobar"
+          className="header-image"
         />
-        <form onSubmit={handleSubmit} className="search-form">
-          <input
-            type="text"
-            data-testid="search-input"
-            id="search"
-            name="search"
-            placeholder="Enter a search term"
-            aria-label="Enter a search term"
-            onChange={handleChange}
+        <div className="header-overlay" />
+        <div className="search-container">
+          <Header
+            repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
+            title="Art Search"
+            useDarkMode
           />
-          <button
-            type="submit"
-            id="search-button"
-            aria-label="Submit search term"
-            data-testid="search-button"
-          >
-            Search
-          </button>
-        </form>
+          <form onSubmit={handleSubmit} className="search-form">
+            <input
+              type="text"
+              data-testid="search-input"
+              id="search"
+              name="search"
+              placeholder="Enter a search term"
+              aria-label="Enter a search term"
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              id="search-button"
+              aria-label="Submit search term"
+              data-testid="search-button"
+            >
+              Search
+            </button>
+          </form>
+        </div>
       </div>
       {isLoading || isFetching ? (
         <Loading />
