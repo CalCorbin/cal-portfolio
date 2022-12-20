@@ -35,21 +35,20 @@
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
-    color: white;
     position: absolute;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 2rem;
     margin: 1rem;
-    background-color: #2C302E;
+    background-color: #5D576B;
+    color: #fff;
     border-radius: .25rem;
     z-index: 2;
 }
 
 .search-container p {
     text-align: center;
-    padding: 1rem;
 }
 
 .search-bar {
@@ -62,14 +61,18 @@
 .search-bar input {
     border-radius: .25rem;
     padding: .5rem;
-    width: 20rem;
+    height: 2rem;
+    font-size: 1rem;
+    width: 30rem;
+    outline: none;
+    border: none;
 }
 
 .search-icon {
     color: #2C302E;
     z-index: 2;
     position: absolute;
-    right: .5rem;
+    right: 1rem;
     margin: auto;
 }
 
