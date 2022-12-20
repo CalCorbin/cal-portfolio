@@ -11,7 +11,7 @@ const ArtCard = ({
   <div className="art" data-testid={`art-listing-${imageId}`}>
     <img
       src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
-      alt={thumbnail.alt_text || title}
+      alt={thumbnail?.alt_text || title}
     />
     <div className="art-overlay">
       <div className="art-title" data-testid={`art-listing-title-${imageId}`}>

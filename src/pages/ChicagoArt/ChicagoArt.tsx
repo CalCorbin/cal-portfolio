@@ -87,7 +87,7 @@ const ChicagoArt = () => {
               artist_title={item.artist_title}
               artist_id={item.artist_id}
               image_id={item.image_id}
-              thumbnail={item.thumbnail}
+              thumbnail={item?.thumbnail}
             />
           ))}
         </div>
