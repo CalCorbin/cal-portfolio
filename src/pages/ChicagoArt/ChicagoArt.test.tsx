@@ -162,16 +162,15 @@ describe('<ChicagoArt />', () => {
       isError: false,
     });
 
-    // Enter text in search bar
+    // Enter text in search bar and submit
     const searchInput = screen.getByTestId('search-input');
-    const searchButton = screen.getByTestId('search-button');
     fireEvent.change(searchInput, { target: { value: 'monet is an artist' } });
-    fireEvent.click(searchButton);
+    fireEvent.submit(searchInput);
 
-    // Update search term
+    // Update search term and submit
     await waitFor(() => expect(searchInput).toHaveValue('monet is an artist'));
     fireEvent.change(searchInput, { target: { value: 'cal is an artist' } });
-    fireEvent.click(searchButton);
+    fireEvent.submit(searchInput);
   });
 
   it('should render error state', () => {
