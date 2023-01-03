@@ -34,7 +34,7 @@ const SpaceX = () => {
     <div data-testid="spacex-page" className="spacex-page">
       <Header
         title="SpaceX Marine Transport Ships"
-        repoLink="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX/index.js"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX/SpaceX.tsx"
       />
       <hr />
       <div className="ship-container">
