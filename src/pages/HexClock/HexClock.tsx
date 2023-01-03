@@ -44,7 +44,7 @@ const HexClock = () => {
     <div data-testid="hexclock-page" id="hex" className="hexclock-page">
       <Header
         title="HexClock"
-        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/HexClock/index.js"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/HexClock/HexClock.tsx"
         useDarkMode
       />
       <div className="hex-content">
