@@ -317,14 +317,9 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
           </div>
         </div>
         {winner && (
-          <div className="post-game-container">
-            <button className="game-button" onClick={playAgain} type="button">
-              PLAY AGAIN
-            </button>
-            <button className="game-button" type="button">
-              SEE RECORD
-            </button>
-          </div>
+          <button className="game-button" onClick={playAgain} type="button">
+            PLAY AGAIN
+          </button>
         )}
       </div>
     </div>
