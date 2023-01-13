@@ -38,7 +38,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <div className="homescreen tictactoe-background" data-testid="home-screen">
+    <div className="home-screen tictactoe-background" data-testid="home-screen">
       <div className="item">WELCOME</div>
       <div className="item">PICK YOUR PLAYER</div>
       <div className="item player-selection">
