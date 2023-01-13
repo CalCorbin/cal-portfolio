@@ -6,6 +6,7 @@ const ROUTES = {
   HEXCLOCK: '/hexclock',
   MAGICNUMBER: '/magicnumber',
   CHICAGOART: '/chicagoart',
+  TICTACTOE: '/tictactoe',
 };
 
 export default ROUTES;

@@ -1,0 +1,9 @@
+.match-screen {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    height: 70vh;
+}
