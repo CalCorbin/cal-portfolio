@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './HomeScreen.css';
 import MatchScreen from './MatchScreen';
 import TicTacToe, { PlayerOption } from './TicTacToe';
+import Header from '../Header/Header';
 
 const HomeScreen = () => {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerOption>('');
@@ -39,6 +40,10 @@ const HomeScreen = () => {
 
   return (
     <div className="home-screen tictactoe-background" data-testid="home-screen">
+      <Header
+        title="Tic Tac Toe"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
+      />
       <div className="item">WELCOME</div>
       <div className="item">PICK YOUR PLAYER</div>
       <div className="item player-selection">

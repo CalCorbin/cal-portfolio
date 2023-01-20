@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './TicTacToe.css';
 import ToastNotification from './ToastNotification';
+import Header from '../Header/Header';
 
 export type PlayerOption = 'X' | 'O' | '';
 type TicTacToeProps = {
@@ -218,6 +219,10 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   return (
     <div className="tictactoe-background">
       <div className="container">
+        <Header
+          title="Tic Tac Toe"
+          repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
+        />
         <ToastNotification message="NOW IN GAME" deleteTime={2000} />
         <div className="current-turn" data-testid="turn-display">
           {winner ? displayWinner() : displayTurn()}
