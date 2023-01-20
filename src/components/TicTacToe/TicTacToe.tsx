@@ -16,7 +16,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     ['', '', ''],
   ]);
   const [isCpuNext, setIsCpuNext] = useState(false);
-  const [winner, setWinner] = useState('');
+  const [winner, setWinner] = useState<PlayerOption | 'draw'>('');
   const [record, setRecord] = useState<GameRecord>({
     X: 0,
     O: 0,
@@ -156,6 +156,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     if (key && key !== 'Enter') {
       return;
     }
+    if (board[row][index] !== '') return;
     if (isCpuNext) return;
     if (winner) return;
     board[row][index] = players?.HUMAN;
@@ -170,6 +171,9 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   const displayWinner = () => {
     if (winner === 'draw') {
       return "IT'S A DRAW!";
+    }
+    if (record[winner] > 1) {
+      return `${winner} WINS AGAIN!`;
     }
     return `${winner} WINS!`;
   };
