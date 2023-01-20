@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './TicTacToe.css';
 import ToastNotification from './ToastNotification';
+import Header from '../Header/Header';
 
 export type PlayerOption = 'X' | 'O' | '';
 type TicTacToeProps = {
@@ -16,7 +17,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     ['', '', ''],
   ]);
   const [isCpuNext, setIsCpuNext] = useState(false);
-  const [winner, setWinner] = useState('');
+  const [winner, setWinner] = useState<PlayerOption | 'draw'>('');
   const [record, setRecord] = useState<GameRecord>({
     X: 0,
     O: 0,
@@ -156,6 +157,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     if (key && key !== 'Enter') {
       return;
     }
+    if (board[row][index] !== '') return;
     if (isCpuNext) return;
     if (winner) return;
     board[row][index] = players?.HUMAN;
@@ -170,6 +172,9 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   const displayWinner = () => {
     if (winner === 'draw') {
       return "IT'S A DRAW!";
+    }
+    if (record[winner] > 1) {
+      return `${winner} WINS AGAIN!`;
     }
     return `${winner} WINS!`;
   };
@@ -214,6 +219,10 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   return (
     <div className="tictactoe-background">
       <div className="container">
+        <Header
+          title="Tic Tac Toe"
+          repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
+        />
         <ToastNotification message="NOW IN GAME" deleteTime={2000} />
         <div className="current-turn" data-testid="turn-display">
           {winner ? displayWinner() : displayTurn()}
@@ -316,11 +325,15 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
             </span>
           </div>
         </div>
-        {winner && (
-          <button className="game-button" onClick={playAgain} type="button">
-            PLAY AGAIN
-          </button>
-        )}
+        <button
+          className="game-button"
+          // Using visibility here ensures the tictactoe box doesn't shift when the button is hidden.
+          style={{ visibility: winner ? 'visible' : 'hidden' }}
+          onClick={playAgain}
+          type="button"
+        >
+          PLAY AGAIN
+        </button>
       </div>
     </div>
   );
