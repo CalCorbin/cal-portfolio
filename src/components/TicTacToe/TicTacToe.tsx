@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './TicTacToe.css';
 import ToastNotification from './ToastNotification';
 import Header from '../Header/Header';
+import BoardRow from './BoardRow';
 
 export type PlayerOption = 'X' | 'O' | '';
 type TicTacToeProps = {
@@ -229,100 +230,34 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
         </div>
         <div data-testid="tictactoe-screen">
           <div className="board-row" data-testid="row-0">
-            <span
-              onClick={(e) => playRound(e, 0, 0)}
-              onKeyDown={(e) => playRound(e, 0, 0)}
-              className="cell border-bottom border-right"
-              data-testid="cell-0-0"
-              role="button"
-              tabIndex={0}
-            >
-              {board[0][0]}
-            </span>
-            <span
-              onClick={(e) => playRound(e, 0, 1)}
-              onKeyDown={(e) => playRound(e, 0, 1)}
-              className="cell border-bottom border-right"
-              data-testid="cell-0-1"
-              role="button"
-              tabIndex={0}
-            >
-              {board[0][1]}
-            </span>
-            <span
-              onClick={(e) => playRound(e, 0, 2)}
-              onKeyDown={(e) => playRound(e, 0, 2)}
-              className="cell border-bottom"
-              data-testid="cell-0-2"
-              role="button"
-              tabIndex={0}
-            >
-              {board[0][2]}
-            </span>
+            {board[0].map((cell, index) => (
+              <BoardRow
+                row={0}
+                rowIndex={index}
+                onCellClick={playRound}
+                board={board}
+              />
+            ))}
           </div>
           <div className="board-row" data-testid="row-1">
-            <span
-              onClick={(e) => playRound(e, 1, 0)}
-              onKeyDown={(e) => playRound(e, 1, 0)}
-              className="cell border-bottom border-right"
-              data-testid="cell-1-0"
-              role="button"
-              tabIndex={0}
-            >
-              {board[1][0]}
-            </span>
-            <span
-              onClick={(e) => playRound(e, 1, 1)}
-              onKeyDown={(e) => playRound(e, 1, 1)}
-              className="cell border-bottom border-right"
-              data-testid="cell-1-1"
-              role="button"
-              tabIndex={0}
-            >
-              {board[1][1]}
-            </span>
-            <span
-              onClick={(e) => playRound(e, 1, 2)}
-              onKeyDown={(e) => playRound(e, 1, 2)}
-              className="cell border-bottom"
-              data-testid="cell-1-2"
-              role="button"
-              tabIndex={0}
-            >
-              {board[1][2]}
-            </span>
+            {board[1].map((cell, index) => (
+              <BoardRow
+                row={1}
+                rowIndex={index}
+                onCellClick={playRound}
+                board={board}
+              />
+            ))}
           </div>
           <div className="board-row" data-testid="row-2">
-            <span
-              onClick={(e) => playRound(e, 2, 0)}
-              onKeyDown={(e) => playRound(e, 2, 0)}
-              className="cell border-right"
-              data-testid="cell-2-0"
-              role="button"
-              tabIndex={0}
-            >
-              {board[2][0]}
-            </span>
-            <span
-              onClick={(e) => playRound(e, 2, 1)}
-              onKeyDown={(e) => playRound(e, 2, 1)}
-              className="cell border-right"
-              data-testid="cell-2-1"
-              role="button"
-              tabIndex={0}
-            >
-              {board[2][1]}
-            </span>
-            <span
-              onClick={(e) => playRound(e, 2, 2)}
-              onKeyDown={(e) => playRound(e, 2, 2)}
-              className="cell"
-              data-testid="cell-2-2"
-              role="button"
-              tabIndex={0}
-            >
-              {board[2][2]}
-            </span>
+            {board[2].map((cell, index) => (
+              <BoardRow
+                row={2}
+                rowIndex={index}
+                onCellClick={playRound}
+                board={board}
+              />
+            ))}
           </div>
         </div>
         <button
