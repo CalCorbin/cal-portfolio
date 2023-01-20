@@ -316,11 +316,15 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
             </span>
           </div>
         </div>
-        {winner && (
-          <button className="game-button" onClick={playAgain} type="button">
-            PLAY AGAIN
-          </button>
-        )}
+        <button
+          className="game-button"
+          // Using visibility here ensures the tictactoe box doesn't shift when the button is hidden.
+          style={{ visibility: winner ? 'visible' : 'hidden' }}
+          onClick={playAgain}
+          type="button"
+        >
+          PLAY AGAIN
+        </button>
       </div>
     </div>
   );
