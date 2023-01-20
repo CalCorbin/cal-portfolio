@@ -33,6 +33,12 @@ const PROJECTS: Array<Project> = [
     img: 'https://images.unsplash.com/photo-1549545931-59bf067af9ab',
   },
   {
+    id: 9,
+    title: 'Tic Tac Toe',
+    link: ROUTES.TICTACTOE,
+    img: 'https://images.pexels.com/photos/3400795/pexels-photo-3400795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
     id: 3,
     title: 'SpaceX GraphQL',
     link: ROUTES.SPACEX,
