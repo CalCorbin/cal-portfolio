@@ -19,6 +19,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   ]);
   const [isCpuNext, setIsCpuNext] = useState(false);
   const [winner, setWinner] = useState<PlayerOption | 'draw'>('');
+  const [winningCells, setWinningCells] = useState<number[][]>([]);
   const [record, setRecord] = useState<GameRecord>({
     X: 0,
     O: 0,
@@ -59,6 +60,11 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
       const row = board[index];
       if (row.every((cell) => cell === players?.CPU)) {
         setWinner(players?.CPU);
+        setWinningCells([
+          [index, 0],
+          [index, 1],
+          [index, 2],
+        ]);
         setRecord({
           ...record,
           [players?.CPU]: record[players?.CPU] + 1,
@@ -67,6 +73,11 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
       }
       if (row.every((cell) => cell === players?.HUMAN)) {
         setWinner(players?.HUMAN);
+        setWinningCells([
+          [index, 0],
+          [index, 1],
+          [index, 2],
+        ]);
         setRecord({
           ...record,
           [players?.HUMAN]: record[players?.HUMAN] + 1,
@@ -80,6 +91,11 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
       const column = board.map((row) => row[i]);
       if (column.every((cell) => cell === players?.CPU)) {
         setWinner(players?.CPU);
+        setWinningCells([
+          [0, i],
+          [1, i],
+          [2, i],
+        ]);
         setRecord({
           ...record,
           [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
@@ -88,6 +104,11 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
       }
       if (column.every((cell) => cell === players?.HUMAN)) {
         setWinner(players?.HUMAN);
+        setWinningCells([
+          [0, i],
+          [1, i],
+          [2, i],
+        ]);
         setRecord({
           ...record,
           [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
@@ -101,24 +122,44 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     const diagonal2 = [board[0][2], board[1][1], board[2][0]];
     if (diagonal1.every((cell) => cell === players?.CPU)) {
       setWinner(players?.CPU);
+      setWinningCells([
+        [0, 0],
+        [1, 1],
+        [2, 2],
+      ]);
       setRecord({
         ...record,
         [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
       });
     } else if (diagonal1.every((cell) => cell === players?.HUMAN)) {
       setWinner(players?.HUMAN);
+      setWinningCells([
+        [0, 0],
+        [1, 1],
+        [2, 2],
+      ]);
       setRecord({
         ...record,
         [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
       });
     } else if (diagonal2.every((cell) => cell === players?.CPU)) {
       setWinner(players?.CPU);
+      setWinningCells([
+        [0, 2],
+        [1, 1],
+        [2, 0],
+      ]);
       setRecord({
         ...record,
         [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
       });
     } else if (diagonal2.every((cell) => cell === players?.HUMAN)) {
       setWinner(players?.HUMAN);
+      setWinningCells([
+        [0, 2],
+        [1, 1],
+        [2, 0],
+      ]);
       setRecord({
         ...record,
         [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
@@ -199,6 +240,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
       ['', '', ''],
       ['', '', ''],
     ]);
+    setWinningCells([]);
     setWinner('');
     setIsCpuNext(false);
   };
@@ -236,6 +278,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
                 rowIndex={index}
                 onCellClick={playRound}
                 board={board}
+                winningCells={winningCells}
               />
             ))}
           </div>
@@ -246,6 +289,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
                 rowIndex={index}
                 onCellClick={playRound}
                 board={board}
+                winningCells={winningCells}
               />
             ))}
           </div>
@@ -256,6 +300,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
                 rowIndex={index}
                 onCellClick={playRound}
                 board={board}
+                winningCells={winningCells}
               />
             ))}
           </div>

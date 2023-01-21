@@ -55,4 +55,21 @@ describe('BoardRow', () => {
     fireEvent.keyDown(cell, { key: 'Enter', code: 'Enter', charCode: 13 });
     expect(onCellClick).toHaveBeenCalled();
   });
+
+  it('should update the background color if the cell is a winning cell', async () => {
+    render(
+      <BoardRow
+        row={2}
+        rowIndex={0}
+        onCellClick={jest.fn()}
+        board={board}
+        winningCells={[
+          [2, 0],
+          [2, 1],
+          [2, 2],
+        ]}
+      />
+    );
+    expect(screen.getByTestId('cell-2-0')).toHaveClass('winning-cell');
+  });
 });
