@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import HomeScreen from './HomeScreen';
 
@@ -28,6 +28,31 @@ describe('Homescreen', () => {
     expect(playerOUnderline).not.toHaveClass('active');
 
     playerO.click();
+    await waitFor(() => {
+      playerOUnderline = screen.getByTestId('player-o-underline');
+      expect(playerOUnderline).toHaveClass('active');
+    });
+    expect(playerXUnderline).not.toHaveClass('active');
+  });
+
+  it('should update active player when player is selected with enter button', async () => {
+    setup();
+    const playerX = screen.getByText('X');
+    const playerO = screen.getByText('O');
+    let playerXUnderline = screen.getByTestId('player-x-underline');
+    let playerOUnderline = screen.getByTestId('player-o-underline');
+
+    expect(playerXUnderline).not.toHaveClass('active');
+    expect(playerOUnderline).not.toHaveClass('active');
+
+    fireEvent.keyDown(playerX, { key: 'Enter', code: 'Enter', charCode: 13 });
+    await waitFor(() => {
+      playerXUnderline = screen.getByTestId('player-x-underline');
+      expect(playerXUnderline).toHaveClass('active');
+    });
+    expect(playerOUnderline).not.toHaveClass('active');
+
+    fireEvent.keyDown(playerO, { key: 'Enter', code: 'Enter', charCode: 13 });
     await waitFor(() => {
       playerOUnderline = screen.getByTestId('player-o-underline');
       expect(playerOUnderline).toHaveClass('active');

@@ -82,4 +82,10 @@ describe('<ArtCard/>', () => {
     expect(screen.getByText(/Artist Unknown/)).toBeInTheDocument();
     expect(screen.getByTestId('artist-unknown-1234')).toBeInTheDocument();
   });
+
+  it('should not render if no imageId', async () => {
+    delete mockedArt.image_id;
+    setup(mockedArt);
+    expect(screen.queryByTestId('art-listing-1234')).not.toBeInTheDocument();
+  });
 });
