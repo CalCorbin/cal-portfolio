@@ -17,6 +17,7 @@ const HomeScreen = () => {
     e: React.KeyboardEvent<HTMLDivElement>,
     player: PlayerOption
   ) => {
+    /* istanbul ignore else */
     if (e.key === 'Enter') {
       handlePlayerSelect(player);
     }
