@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TicTacToe, { PlayerOption } from './TicTacToe';
+import TicTacToe from './TicTacToe';
+import { PlayerOption } from './types';
 
 describe('TicTacToe', () => {
   it('renders TicTacToe component', () => {

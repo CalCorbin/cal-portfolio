@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './HomeScreen.css';
 import MatchScreen from './MatchScreen';
-import TicTacToe, { PlayerOption } from './TicTacToe';
+import TicTacToe from './TicTacToe';
 import Header from '../Header/Header';
+import { PlayerOption } from './types';
 
 const HomeScreen = () => {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerOption>('');

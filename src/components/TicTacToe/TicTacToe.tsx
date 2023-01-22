@@ -3,13 +3,12 @@ import './TicTacToe.css';
 import ToastNotification from './ToastNotification';
 import Header from '../Header/Header';
 import BoardRow from './BoardRow';
+import checkForWinner from './functions/checkForWinner';
+import { GameRecord, PlayerOption, Players } from './types';
 
-export type PlayerOption = 'X' | 'O' | '';
 type TicTacToeProps = {
   selectedPlayer: PlayerOption;
 };
-type GameRecord = Record<PlayerOption, number>;
-type Players = Record<'CPU' | 'HUMAN', PlayerOption>;
 
 const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   const [board, setBoard] = useState([
@@ -34,6 +33,19 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     }),
     [selectedPlayer, opponent]
   );
+  const checkWinnerCallback = useCallback(
+    () =>
+      checkForWinner({
+        setWinner,
+        setWinningCells,
+        setRecord,
+        board,
+        record,
+        players,
+        winningCells,
+      }),
+    []
+  );
 
   /**
    * This function handles calculating the next move for the CPU.
@@ -54,122 +66,122 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   /**
    * This function handles checking if a player has won the game.
    */
-  const checkForWinner = useCallback(() => {
-    // Check rows for a winning play.
-    for (let index = 0; index < board.length; index += 1) {
-      const row = board[index];
-      if (row.every((cell) => cell === players?.CPU)) {
-        setWinner(players?.CPU);
-        setWinningCells([
-          [index, 0],
-          [index, 1],
-          [index, 2],
-        ]);
-        setRecord({
-          ...record,
-          [players?.CPU]: record[players?.CPU] + 1,
-        });
-        return;
-      }
-      if (row.every((cell) => cell === players?.HUMAN)) {
-        setWinner(players?.HUMAN);
-        setWinningCells([
-          [index, 0],
-          [index, 1],
-          [index, 2],
-        ]);
-        setRecord({
-          ...record,
-          [players?.HUMAN]: record[players?.HUMAN] + 1,
-        });
-        return;
-      }
-    }
-
-    // Check columns for a winning play.
-    for (let i = 0; i < 3; i += 1) {
-      const column = board.map((row) => row[i]);
-      if (column.every((cell) => cell === players?.CPU)) {
-        setWinner(players?.CPU);
-        setWinningCells([
-          [0, i],
-          [1, i],
-          [2, i],
-        ]);
-        setRecord({
-          ...record,
-          [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
-        });
-        return;
-      }
-      if (column.every((cell) => cell === players?.HUMAN)) {
-        setWinner(players?.HUMAN);
-        setWinningCells([
-          [0, i],
-          [1, i],
-          [2, i],
-        ]);
-        setRecord({
-          ...record,
-          [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
-        });
-        return;
-      }
-    }
-
-    // Check diagonally for a winning play.
-    const diagonal1 = [board[0][0], board[1][1], board[2][2]];
-    const diagonal2 = [board[0][2], board[1][1], board[2][0]];
-    if (diagonal1.every((cell) => cell === players?.CPU)) {
-      setWinner(players?.CPU);
-      setWinningCells([
-        [0, 0],
-        [1, 1],
-        [2, 2],
-      ]);
-      setRecord({
-        ...record,
-        [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
-      });
-    } else if (diagonal1.every((cell) => cell === players?.HUMAN)) {
-      setWinner(players?.HUMAN);
-      setWinningCells([
-        [0, 0],
-        [1, 1],
-        [2, 2],
-      ]);
-      setRecord({
-        ...record,
-        [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
-      });
-    } else if (diagonal2.every((cell) => cell === players?.CPU)) {
-      setWinner(players?.CPU);
-      setWinningCells([
-        [0, 2],
-        [1, 1],
-        [2, 0],
-      ]);
-      setRecord({
-        ...record,
-        [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
-      });
-    } else if (diagonal2.every((cell) => cell === players?.HUMAN)) {
-      setWinner(players?.HUMAN);
-      setWinningCells([
-        [0, 2],
-        [1, 1],
-        [2, 0],
-      ]);
-      setRecord({
-        ...record,
-        [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
-      });
-    } else if (board.flat().every((cell) => cell !== '')) {
-      setWinner('draw');
-    } else {
-      setWinner('');
-    }
-  }, [record, board, players]);
+  // const checkForWinner = useCallback(() => {
+  //   // Check rows for a winning play.
+  //   for (let index = 0; index < board.length; index += 1) {
+  //     const row = board[index];
+  //     if (row.every((cell) => cell === players?.CPU)) {
+  //       setWinner(players?.CPU);
+  //       setWinningCells([
+  //         [index, 0],
+  //         [index, 1],
+  //         [index, 2],
+  //       ]);
+  //       setRecord({
+  //         ...record,
+  //         [players?.CPU]: record[players?.CPU] + 1,
+  //       });
+  //       return;
+  //     }
+  //     if (row.every((cell) => cell === players?.HUMAN)) {
+  //       setWinner(players?.HUMAN);
+  //       setWinningCells([
+  //         [index, 0],
+  //         [index, 1],
+  //         [index, 2],
+  //       ]);
+  //       setRecord({
+  //         ...record,
+  //         [players?.HUMAN]: record[players?.HUMAN] + 1,
+  //       });
+  //       return;
+  //     }
+  //   }
+  //
+  //   // Check columns for a winning play.
+  //   for (let i = 0; i < 3; i += 1) {
+  //     const column = board.map((row) => row[i]);
+  //     if (column.every((cell) => cell === players?.CPU)) {
+  //       setWinner(players?.CPU);
+  //       setWinningCells([
+  //         [0, i],
+  //         [1, i],
+  //         [2, i],
+  //       ]);
+  //       setRecord({
+  //         ...record,
+  //         [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
+  //       });
+  //       return;
+  //     }
+  //     if (column.every((cell) => cell === players?.HUMAN)) {
+  //       setWinner(players?.HUMAN);
+  //       setWinningCells([
+  //         [0, i],
+  //         [1, i],
+  //         [2, i],
+  //       ]);
+  //       setRecord({
+  //         ...record,
+  //         [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
+  //       });
+  //       return;
+  //     }
+  //   }
+  //
+  //   // Check diagonally for a winning play.
+  //   const diagonal1 = [board[0][0], board[1][1], board[2][2]];
+  //   const diagonal2 = [board[0][2], board[1][1], board[2][0]];
+  //   if (diagonal1.every((cell) => cell === players?.CPU)) {
+  //     setWinner(players?.CPU);
+  //     setWinningCells([
+  //       [0, 0],
+  //       [1, 1],
+  //       [2, 2],
+  //     ]);
+  //     setRecord({
+  //       ...record,
+  //       [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
+  //     });
+  //   } else if (diagonal1.every((cell) => cell === players?.HUMAN)) {
+  //     setWinner(players?.HUMAN);
+  //     setWinningCells([
+  //       [0, 0],
+  //       [1, 1],
+  //       [2, 2],
+  //     ]);
+  //     setRecord({
+  //       ...record,
+  //       [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
+  //     });
+  //   } else if (diagonal2.every((cell) => cell === players?.CPU)) {
+  //     setWinner(players?.CPU);
+  //     setWinningCells([
+  //       [0, 2],
+  //       [1, 1],
+  //       [2, 0],
+  //     ]);
+  //     setRecord({
+  //       ...record,
+  //       [players?.CPU]: record[players?.CPU === 'X' ? 'X' : 'O'] + 1,
+  //     });
+  //   } else if (diagonal2.every((cell) => cell === players?.HUMAN)) {
+  //     setWinner(players?.HUMAN);
+  //     setWinningCells([
+  //       [0, 2],
+  //       [1, 1],
+  //       [2, 0],
+  //     ]);
+  //     setRecord({
+  //       ...record,
+  //       [players?.HUMAN]: record[players?.HUMAN === 'X' ? 'X' : 'O'] + 1,
+  //     });
+  //   } else if (board.flat().every((cell) => cell !== '')) {
+  //     setWinner('draw');
+  //   } else {
+  //     setWinner('');
+  //   }
+  // }, [record, board, players]);
 
   /**
    * This function is called when it's the CPU's turn.
@@ -180,9 +192,9 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     board[cpuMove.arrayIndex][cpuMove.index] = players?.CPU;
 
     setBoard((prevBoard) => [...prevBoard]);
-    checkForWinner();
+    checkWinnerCallback();
     setIsCpuNext(false);
-  }, [getCpuTurn, checkForWinner, setBoard, board, players]);
+  }, [getCpuTurn, checkWinnerCallback, setBoard, board, players]);
 
   /**
    * This function handles the player's turn.
@@ -204,7 +216,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     if (winner) return;
     board[row][index] = players?.HUMAN;
     setBoard((prevBoard) => [...prevBoard]);
-    checkForWinner();
+    checkWinnerCallback();
     setIsCpuNext(true);
   };
 
