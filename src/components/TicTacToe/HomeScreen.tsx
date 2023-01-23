@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './HomeScreen.css';
 import MatchScreen from './MatchScreen';
-import TicTacToe, { PlayerOption } from './TicTacToe';
+import TicTacToe from './TicTacToe';
 import Header from '../Header/Header';
+import { PlayerOption } from './types';
 
 const HomeScreen = () => {
-  const [selectedPlayer, setSelectedPlayer] = useState<PlayerOption>('');
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerOption | null>(
+    null
+  );
   const [isMatching, setIsMatching] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -35,7 +38,7 @@ const HomeScreen = () => {
     return <MatchScreen />;
   }
 
-  if (gameStarted) {
+  if (gameStarted && selectedPlayer) {
     return <TicTacToe selectedPlayer={selectedPlayer} />;
   }
 
