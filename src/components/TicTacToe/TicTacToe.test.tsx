@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TicTacToe from './TicTacToe';
 import { PlayerOption } from './types';
@@ -18,5 +18,16 @@ describe('TicTacToe', () => {
       expect(cell.textContent).toBe('O');
     });
     expect(cell.textContent).toBe('O');
+  });
+
+  it('should render not update the cell if player presses a key besides enter', async () => {
+    render(<TicTacToe selectedPlayer="O" />);
+
+    const cell = screen.getByTestId('cell-0-0');
+    fireEvent.keyDown(cell, { key: 'A', code: 'KeyA' });
+    await waitFor(() => {
+      expect(cell.textContent).toBe('');
+    });
+    expect(cell.textContent).toBe('');
   });
 });
