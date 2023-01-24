@@ -3,7 +3,7 @@ import './TicTacToe.css';
 import ToastNotification from './ToastNotification';
 import Header from '../Header/Header';
 import BoardRow from './BoardRow';
-import checkForWinner from './functions/checkForWinner';
+import useCheckForWinner from './hooks/useCheckForWinner';
 import { GameRecord, PlayerOption, Players } from './types';
 
 type TicTacToeProps = {
@@ -32,9 +32,9 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     }),
     [selectedPlayer, opponent]
   );
-  const checkWinnerCallback = useCallback(
+  const checkForWinner = useCallback(
     () =>
-      checkForWinner({
+      useCheckForWinner({
         setWinner,
         setWinningCells,
         setRecord,
@@ -71,9 +71,9 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     board[cpuMove.arrayIndex][cpuMove.index] = players?.CPU;
 
     setBoard((prevBoard) => [...prevBoard]);
-    checkWinnerCallback();
+    checkForWinner();
     setIsCpuNext(false);
-  }, [getCpuTurn, checkWinnerCallback, setBoard, board, players]);
+  }, [getCpuTurn, checkForWinner, setBoard, board, players]);
 
   /**
    * This function handles the player's turn.
@@ -95,7 +95,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     if (winner) return;
     board[row][index] = players?.HUMAN;
     setBoard((prevBoard) => [...prevBoard]);
-    checkWinnerCallback();
+    checkForWinner();
     setIsCpuNext(true);
   };
 
@@ -171,6 +171,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
                 onCellClick={playRound}
                 board={board}
                 winningCells={winningCells}
+                key={`row-0-${index * Math.random()}`}
               />
             ))}
           </div>
@@ -182,6 +183,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
                 onCellClick={playRound}
                 board={board}
                 winningCells={winningCells}
+                key={`row-1-${index * Math.random()}`}
               />
             ))}
           </div>
@@ -193,6 +195,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
                 onCellClick={playRound}
                 board={board}
                 winningCells={winningCells}
+                key={`row-2-${index * Math.random()}`}
               />
             ))}
           </div>

@@ -1,4 +1,4 @@
-import checkForWinner from './checkForWinner';
+import useCheckForWinner from './useCheckForWinner';
 import { GameRecord, Players } from '../types';
 
 describe('checkForWinner', () => {
@@ -22,7 +22,7 @@ describe('checkForWinner', () => {
       ['X', 'X', ''],
       ['', '', ''],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         record: { X: 0, O: 0 },
@@ -43,7 +43,7 @@ describe('checkForWinner', () => {
       ['O', 'O', ''],
       ['', '', ''],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -64,7 +64,7 @@ describe('checkForWinner', () => {
       ['O', 'X', ''],
       ['O', '', ''],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -85,7 +85,7 @@ describe('checkForWinner', () => {
       ['X', 'O', ''],
       ['X', '', ''],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -106,7 +106,7 @@ describe('checkForWinner', () => {
       ['X', 'O', ''],
       ['', '', 'O'],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -127,7 +127,7 @@ describe('checkForWinner', () => {
       ['O', 'X', ''],
       ['', '', 'X'],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -148,7 +148,7 @@ describe('checkForWinner', () => {
       ['X', 'O', ''],
       ['O', '', ''],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -169,7 +169,7 @@ describe('checkForWinner', () => {
       ['O', 'X', ''],
       ['X', '', ''],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -190,7 +190,7 @@ describe('checkForWinner', () => {
       ['O', 'X', 'O'],
       ['O', 'X', 'O'],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },
@@ -211,7 +211,7 @@ describe('checkForWinner', () => {
       ['O', 'X', ''],
       ['O', 'X', ''],
     ];
-    const game = checkForWinner(
+    const game = useCheckForWinner(
       gameArgs({
         board,
         players: { HUMAN: 'X', CPU: 'O' },

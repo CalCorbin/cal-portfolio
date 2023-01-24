@@ -1,6 +1,6 @@
-import { CheckForWinnerTypes, PlayerOption, Players } from '../types';
+import { CheckForWinnerTypes, Players } from '../types';
 
-export default function checkForWinner({
+export default function useCheckForWinner({
   setWinner,
   setWinningCells,
   setRecord,
