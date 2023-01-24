@@ -4,6 +4,7 @@ import ToastNotification from './ToastNotification';
 import Header from '../Header/Header';
 import BoardRow from './BoardRow';
 import useCheckForWinner from './hooks/useCheckForWinner';
+import getCpuTurn from './functions/getCpuTurn';
 import { GameRecord, PlayerOption, Players } from './types';
 
 type TicTacToeProps = {
@@ -45,35 +46,20 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
       }),
     []
   );
-
-  /**
-   * This function handles calculating the next move for the CPU.
-   */
-  const getCpuTurn = useCallback(() => {
-    const emptyIndexes: { arrayIndex: number; index: number }[] = [];
-    board.forEach((row: string[], arrayIndex: number) => {
-      row.forEach((cell: string, index: number) => {
-        if (cell === '') {
-          emptyIndexes.push({ arrayIndex, index });
-        }
-      });
-    });
-    const randomIndex = Math.floor(Math.random() * emptyIndexes.length);
-    return emptyIndexes[randomIndex];
-  }, [board]);
+  const getCpuTurnCallback = useCallback(() => getCpuTurn(board), []);
 
   /**
    * This function is called when it's the CPU's turn.
    */
   const playCpuTurn = useCallback(() => {
-    const cpuMove = getCpuTurn();
+    const cpuMove = getCpuTurnCallback();
 
     board[cpuMove.arrayIndex][cpuMove.index] = players?.CPU;
 
     setBoard((prevBoard) => [...prevBoard]);
     checkForWinner();
     setIsCpuNext(false);
-  }, [getCpuTurn, checkForWinner, setBoard, board, players]);
+  }, [getCpuTurnCallback, checkForWinner, setBoard, board, players]);
 
   /**
    * This function handles the player's turn.
