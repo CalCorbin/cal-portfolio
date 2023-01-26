@@ -5,7 +5,8 @@ import Header from '../Header/Header';
 import BoardRow from './BoardRow';
 import useCheckForWinner from './hooks/useCheckForWinner';
 import getCpuTurn from './functions/getCpuTurn';
-import { GameRecord, PlayerOption, Players } from './types';
+import { GameRecord, PlayerOption, Players, Winner } from './types';
+import displayWinner from './functions/displayWinner';
 
 type TicTacToeProps = {
   selectedPlayer: PlayerOption;
@@ -18,7 +19,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     ['', '', ''],
   ]);
   const [isCpuNext, setIsCpuNext] = useState(false);
-  const [winner, setWinner] = useState<PlayerOption | 'draw' | null>(null);
+  const [winner, setWinner] = useState<Winner>(null);
   const [winningCells, setWinningCells] = useState<number[][]>([]);
   const [record, setRecord] = useState<GameRecord>({
     X: 0,
@@ -44,9 +45,18 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
         players,
         winningCells,
       }),
-    []
+    [
+      setWinner,
+      setWinningCells,
+      setRecord,
+      board,
+      record,
+      players,
+      winningCells,
+    ]
   );
-  const getCpuTurnCallback = useCallback(() => getCpuTurn(board), []);
+
+  const getCpuTurnCallback = useCallback(() => getCpuTurn(board), [board]);
 
   /**
    * This function is called when it's the CPU's turn.
@@ -83,20 +93,6 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     setBoard((prevBoard) => [...prevBoard]);
     checkForWinner();
     setIsCpuNext(true);
-  };
-
-  /**
-   * This function handles the display text for the winner.
-   */
-  const displayWinner = () => {
-    if (!winner) return 'no winner';
-    if (winner === 'draw') {
-      return "IT'S A DRAW!";
-    }
-    if (record[winner] > 1) {
-      return `${winner} WINS AGAIN!`;
-    }
-    return `${winner} WINS!`;
   };
 
   /**
@@ -146,7 +142,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
         />
         <ToastNotification message="NOW IN GAME" deleteTime={2000} />
         <div className="current-turn" data-testid="turn-display">
-          {winner ? displayWinner() : displayTurn()}
+          {winner ? displayWinner(winner, record) : displayTurn()}
         </div>
         <div data-testid="tictactoe-screen">
           <div className="board-row" data-testid="row-0">
