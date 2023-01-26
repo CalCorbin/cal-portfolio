@@ -1,4 +1,4 @@
-import { CheckForWinnerTypes, Players } from '../types';
+import { CheckForWinnerTypes } from '../types';
 
 export default function useCheckForWinner({
   setWinner,
@@ -16,7 +16,7 @@ export default function useCheckForWinner({
     for (let i = 0; i < entries.length; i += 1) {
       const [key, value] = entries[i];
       if (row.every((cell) => cell === value)) {
-        setWinner(key as Players[keyof Players]);
+        setWinner(value);
         setWinningCells([
           [index, 0],
           [index, 1],
@@ -37,7 +37,7 @@ export default function useCheckForWinner({
     for (let i = 0; i < entries.length; i += 1) {
       const [key, value] = entries[i];
       if (column.every((cell) => cell === value)) {
-        setWinner(key as Players[keyof Players]);
+        setWinner(value);
         setWinningCells([
           [0, index],
           [1, index],
@@ -58,7 +58,7 @@ export default function useCheckForWinner({
   for (let i = 0; i < entries.length; i += 1) {
     const [key, value] = entries[i];
     if (diagonal.every((cell) => cell === value)) {
-      setWinner(key as Players[keyof Players]);
+      setWinner(value);
       setWinningCells([
         [0, 0],
         [1, 1],
@@ -71,7 +71,7 @@ export default function useCheckForWinner({
       return { winner: key, winType: 'diagonal' };
     }
     if (antiDiagonal.every((cell) => cell === value)) {
-      setWinner(key as Players[keyof Players]);
+      setWinner(value);
       setWinningCells([
         [0, 2],
         [1, 1],
