@@ -1,25 +1,29 @@
-const Cell = ({ x, y, isMine, isRevealed, isFlagged, neighbourCount }) => {
-  const handleClick = () => {
-    if (isFlagged) return;
-  };
+import './Cell.css';
+import { useState } from 'react';
 
-  const handleContextMenu = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-  };
+type CellProps = {
+  x: number;
+  y: number;
+  isMine: boolean;
+  isFlagged: boolean;
+  neighbourCount: number;
+};
 
+const Cell = ({ x, y, isMine, isFlagged, neighbourCount }: CellProps) => {
+  const [isRevealed, setIsRevealed] = useState(false);
   return (
-    <div
+    <button
+      data-testid="board-cell"
+      type="button"
       className={`cell ${isRevealed ? 'revealed' : ''} ${
         isFlagged ? 'flagged' : ''
       }`}
-      onClick={handleClick}
-      onContextMenu={handleContextMenu}
+      onClick={() => setIsRevealed(true)}
     >
+      {isRevealed && isFlagged && '🚩'}
       {isRevealed && isMine && '💣'}
       {isRevealed && !isMine && neighbourCount > 0 && neighbourCount}
-    </div>
+    </button>
   );
 };
 
