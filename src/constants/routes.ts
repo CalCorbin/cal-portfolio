@@ -7,6 +7,7 @@ const ROUTES = {
   MAGICNUMBER: '/magicnumber',
   CHICAGOART: '/chicagoart',
   TICTACTOE: '/tictactoe',
+  MINESWEEPER: '/minesweeper',
 };
 
 export default ROUTES;
