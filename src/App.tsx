@@ -10,6 +10,7 @@ import HexClock from './pages/HexClock/HexClock';
 import MagicNumber from './pages/MagicNumber/MagicNumber';
 import ChicagoArt from './pages/ChicagoArt/ChicagoArt';
 import HomeScreen from './components/TicTacToe/HomeScreen';
+import MineSweeper from './components/MineSweeper/MineSweeper';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -38,6 +39,7 @@ const App = () => {
                 <Route path={ROUTES.MAGICNUMBER} element={<MagicNumber />} />
                 <Route path={ROUTES.CHICAGOART} element={<ChicagoArt />} />
                 <Route path={ROUTES.TICTACTOE} element={<HomeScreen />} />
+                <Route path={ROUTES.MINESWEEPER} element={<MineSweeper />} />
               </Routes>
             </BrowserRouter>
           </div>

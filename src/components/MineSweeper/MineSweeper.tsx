@@ -1,16 +1,10 @@
 import { useState } from 'react';
+import Board from './Board';
 
-const MineSweeper = () => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div data-testid="mine-sweeper-container">
-      <div>Count is {count}</div>
-      <button type="button" onClick={() => setCount(count + 1)}>
-        Increment
-      </button>
-    </div>
-  );
-};
+const MineSweeper = () => (
+  <div data-testid="mine-sweeper-container">
+    <Board height={8} width={8} mines={10} />
+  </div>
+);
 
 export default MineSweeper;
