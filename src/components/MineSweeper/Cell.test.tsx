@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Cell from './Cell';
 
@@ -25,6 +25,16 @@ describe('Cell', () => {
     await waitFor(() => {
       cell.click();
       expect(getByTestId('board-cell')).toHaveTextContent('3');
+    });
+  });
+
+  it('should render a flag', async () => {
+    const { getByTestId } = render(<Cell isMine={false} neighbourCount={0} />);
+    const cell = getByTestId('board-cell');
+
+    await waitFor(() => {
+      fireEvent.contextMenu(cell);
+      expect(getByTestId('board-cell')).toHaveTextContent('🚩');
     });
   });
 });
