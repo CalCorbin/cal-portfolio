@@ -46,13 +46,10 @@ const Board = ({ height, width, mines }: BoardProps) => {
             <div data-testid="board-row" className="mine-row" key={rowId}>
               {[...Array(width)].map((__, j) => {
                 const cellId = `row-${i}-cell-${j}`;
-                const neighborCount = getNeighbourCount(i, j);
-                console.log('-> neighborCount', neighborCount);
                 return (
                   <Cell
                     key={cellId}
                     isMine={checkForMine(i, j)}
-                    isFlagged={false}
                     neighbourCount={getNeighbourCount(i, j)}
                   />
                 );

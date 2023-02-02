@@ -1,20 +1,40 @@
 import './Cell.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type CellProps = {
   isMine: boolean;
-  isFlagged: boolean;
   neighbourCount: number;
 };
 
-const Cell = ({ isMine, isFlagged, neighbourCount }: CellProps) => {
+const Cell = ({ isMine, neighbourCount }: CellProps) => {
   const [isRevealed, setIsRevealed] = useState(false);
+  const [isFlagged, setIsFlagged] = useState(false);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsRevealed(true);
+  };
+
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsFlagged(!isFlagged);
+  };
+
+  useEffect(() => {
+    document.addEventListener('contextmenu', () => handleContextMenu);
+    document.addEventListener('click', () => handleClick);
+    return () => {
+      document.removeEventListener('contextmenu', () => handleContextMenu);
+      document.removeEventListener('click', () => handleClick);
+    };
+  });
+
   return (
     <button
       data-testid="board-cell"
       type="button"
-      className="mine-cell"
-      onClick={() => setIsRevealed(true)}
+      className={`mine-cell ${isRevealed && 'revealed'}`}
+      onClick={(e) => handleClick(e)}
     >
       {isRevealed && isFlagged && '🚩'}
       {isRevealed && isMine && '💣'}

@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-// import { renderHook, waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import fetchMock from 'fetch-mock';
 import useSearchArtic from './useSearchArtic';
