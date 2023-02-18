@@ -2,3 +2,34 @@
     display: flex;
     flex-direction: row;
 }
+
+.mine-sweeper-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+}
+
+.end-game-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.reset-button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}

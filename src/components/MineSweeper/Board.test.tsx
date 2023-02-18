@@ -44,7 +44,7 @@ describe('Board', () => {
     await waitFor(() => {
       if (!mineCell) throw new Error('No mine cell found');
       fireEvent.click(mineCell);
-      const resetButton = getByText('Reset');
+      const resetButton = getByText('Play Again');
       fireEvent.click(resetButton);
       expect(queryByTestId('game-over')).not.toBeInTheDocument();
     });
