@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Cell from './Cell';
 import './Board.css';
 
@@ -10,10 +10,11 @@ type BoardProps = {
 
 const Board = ({ height, width, mines }: BoardProps) => {
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isWinner, setIsWinner] = useState(false);
   const [boardKey, setBoardKey] = useState(0);
   const [minePositions, setMinePositions] = useState<number[][]>([]);
 
-  const placeMines = () => {
+  const placeMines = useCallback(() => {
     const minePlacements: number[][] = [];
     for (let i = 0; i < mines; i += 1) {
       const x = Math.floor(Math.random() * height);
@@ -21,10 +22,26 @@ const Board = ({ height, width, mines }: BoardProps) => {
       minePlacements.push([x, y]);
     }
     return minePlacements;
-  };
+  }, [height, width, mines]);
 
   // Place mines on initial render
   useEffect(() => setMinePositions(placeMines()), []);
+
+  const isWin = useCallback(() => {
+    const totalCells = height * width;
+    const revealedCells = document.querySelectorAll('.revealed').length;
+    return revealedCells === totalCells - mines;
+  }, [height, width, mines]);
+
+  const listener = useCallback(() => {
+    if (isWin()) setIsWinner(true);
+  }, [isWin]);
+
+  useEffect(() => {
+    document.addEventListener('click', listener);
+
+    return () => document.removeEventListener('click', listener);
+  });
 
   const checkForMine = (x: number, y: number) =>
     minePositions.some((el) => el[0] === x && el[1] === y);
@@ -65,6 +82,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
                     isMine={checkForMine(i, j)}
                     neighbourCount={getNeighbourCount(i, j)}
                     setIsGameOver={setIsGameOver}
+                    isGameOver={isGameOver}
                   />
                 );
               })}
@@ -76,6 +94,14 @@ const Board = ({ height, width, mines }: BoardProps) => {
         <div data-testid="game-over">
           <span>Game Over</span>
           <button type="button" onClick={resetGame}>
+            Reset
+          </button>
+        </div>
+      )}
+      {isWinner && (
+        <div data-testid="game-win">
+          <span>You Win!</span>
+          <button type="button" data-testid="reset-button" onClick={resetGame}>
             Reset
           </button>
         </div>
