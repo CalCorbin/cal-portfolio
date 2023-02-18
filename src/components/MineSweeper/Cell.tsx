@@ -40,7 +40,9 @@ const Cell = ({
     <button
       data-testid="board-cell"
       type="button"
-      className={`mine-cell ${(isRevealed || isGameOver) && 'revealed'}`}
+      className={`mine-cell${isRevealed || isGameOver ? ' revealed' : ''}${
+        isMine ? ' is-mine' : ''
+      }`}
       onClick={(e) => handleClick(e)}
       onContextMenu={(e) => handleContextMenu(e)}
     >

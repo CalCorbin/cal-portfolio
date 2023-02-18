@@ -33,15 +33,14 @@ const Board = ({ height, width, mines }: BoardProps) => {
     return revealedCells === totalCells - mines;
   }, [height, width, mines]);
 
-  useEffect(() => {
-    document.addEventListener('click', () => {
-      if (isWin()) setIsWinner(true);
-    });
+  const listener = useCallback(() => {
+    if (isWin()) setIsWinner(true);
+  }, [isWin]);
 
-    return () =>
-      document.removeEventListener('click', () => {
-        if (isWin()) setIsWinner(true);
-      });
+  useEffect(() => {
+    document.addEventListener('click', listener);
+
+    return () => document.removeEventListener('click', listener);
   });
 
   const checkForMine = (x: number, y: number) =>
@@ -102,7 +101,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
       {isWinner && (
         <div data-testid="game-win">
           <span>You Win!</span>
-          <button type="button" onClick={resetGame}>
+          <button type="button" data-testid="reset-button" onClick={resetGame}>
             Reset
           </button>
         </div>
