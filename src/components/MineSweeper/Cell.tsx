@@ -22,7 +22,7 @@ const Cell = ({
    * @param e {React.MouseEvent} - Mouse event
    */
   const handleClick = (e: React.MouseEvent) => {
-    if (isFlagged) setIsFlagged(false);
+    if (isFlagged) return;
     e.preventDefault();
     setIsRevealed(true);
     if (isMine) setIsGameOver(true);

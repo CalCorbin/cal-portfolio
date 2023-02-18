@@ -82,4 +82,40 @@ describe('Cell', () => {
       expect(getByTestId('board-cell')).toHaveTextContent('🚩');
     });
   });
+
+  it('should not let the user click on cell if the cell is flagged', async () => {
+    const { getByTestId } = render(
+      <Cell
+        isMine={false}
+        neighbourCount={0}
+        setIsGameOver={jest.fn()}
+        isGameOver={false}
+      />
+    );
+    const cell = getByTestId('board-cell');
+
+    await waitFor(() => {
+      fireEvent.contextMenu(cell);
+      expect(getByTestId('board-cell')).toHaveTextContent('🚩');
+    });
+
+    await waitFor(() => {
+      fireEvent.click(cell);
+      expect(getByTestId('board-cell')).not.toHaveClass('revealed');
+    });
+  });
+
+  it('should reveal all cells if the game is over', async () => {
+    const { getByTestId } = render(
+      <Cell
+        isMine={false}
+        neighbourCount={0}
+        setIsGameOver={jest.fn()}
+        isGameOver
+      />
+    );
+    const cell = getByTestId('board-cell');
+
+    expect(cell).toHaveClass('revealed');
+  });
 });
