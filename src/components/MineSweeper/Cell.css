@@ -1,10 +1,15 @@
 .mine-cell {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: .2rem;
+    font-size: 2rem;
     border: 1px solid #000;
     cursor: pointer;
     background-color: #ababab;
+}
+
+.mine-cell:disabled {
+    color: black;
 }
 
 .revealed {

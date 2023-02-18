@@ -51,6 +51,7 @@ const Cell = ({
       }`}
       onClick={(e) => handleClick(e)}
       onContextMenu={(e) => handleContextMenu(e)}
+      disabled={isRevealed || isGameOver}
     >
       {isFlagged && '🚩'}
       {isRevealed && isMine && '💣'}

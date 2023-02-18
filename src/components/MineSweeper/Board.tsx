@@ -92,19 +92,23 @@ const Board = ({ height, width, mines }: BoardProps) => {
         <div data-testid="game-info">
           <span>Mines: {mines}</span>
         </div>
-        {(isGameOver || isWinner) && (
-          <div data-testid="game-over" className="end-game-message">
+        <button
+          type="button"
+          data-testid="reset-button"
+          className="reset-button"
+          onClick={resetGame}
+        >
+          Reset Game
+        </button>
+        <div
+          data-testid="game-over"
+          className="end-game-message"
+          style={{ display: !isGameOver && !isWinner ? 'none' : 'block' }}
+        >
+          {(isGameOver || isWinner) && (
             <span>{isGameOver ? 'Game Over' : 'You Win!'}</span>
-            <button
-              type="button"
-              data-testid="reset-button"
-              className="reset-button"
-              onClick={resetGame}
-            >
-              Play Again
-            </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
