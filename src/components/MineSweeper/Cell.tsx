@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 type CellProps = {
   isMine: boolean;
   neighbourCount: number;
+  setIsGameOver: (isGameOver: boolean) => void;
 };
 
-const Cell = ({ isMine, neighbourCount }: CellProps) => {
+const Cell = ({ isMine, neighbourCount, setIsGameOver }: CellProps) => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isFlagged, setIsFlagged] = useState(false);
 
@@ -17,6 +18,7 @@ const Cell = ({ isMine, neighbourCount }: CellProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsRevealed(true);
+    if (isMine) setIsGameOver(true);
   };
 
   /**
@@ -39,6 +41,7 @@ const Cell = ({ isMine, neighbourCount }: CellProps) => {
       {isFlagged && '🚩'}
       {isRevealed && isMine && '💣'}
       {isRevealed && !isMine && neighbourCount > 0 && neighbourCount}
+      {isRevealed && !isMine && neighbourCount === 0 && ' '}
     </button>
   );
 };

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Cell from './Cell';
 import './Board.css';
 
@@ -8,8 +9,12 @@ type BoardProps = {
 };
 
 const Board = ({ height, width, mines }: BoardProps) => {
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [boardKey, setBoardKey] = useState(0);
+  const [minePositions, setMinePositions] = useState<number[][]>([]);
+
   const placeMines = () => {
-    const minePlacements = [];
+    const minePlacements: number[][] = [];
     for (let i = 0; i < mines; i += 1) {
       const x = Math.floor(Math.random() * height);
       const y = Math.floor(Math.random() * width);
@@ -17,7 +22,9 @@ const Board = ({ height, width, mines }: BoardProps) => {
     }
     return minePlacements;
   };
-  const minePositions = placeMines();
+
+  // Place mines on initial render
+  useEffect(() => setMinePositions(placeMines()), []);
 
   const checkForMine = (x: number, y: number) =>
     minePositions.some((el) => el[0] === x && el[1] === y);
@@ -34,12 +41,18 @@ const Board = ({ height, width, mines }: BoardProps) => {
     return count;
   };
 
+  const resetGame = () => {
+    setIsGameOver(false);
+    setBoardKey((prev) => prev + 1);
+    setMinePositions(placeMines());
+  };
+
   return (
     <div data-testid="board-container">
       <div data-testid="game-info">
         <span>Mines: {mines}</span>
       </div>
-      <div data-testid="board-rows">
+      <div data-testid="board-rows" key={boardKey}>
         {[...Array(height)].map((_, i) => {
           const rowId = `row-${i}`;
           return (
@@ -51,6 +64,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
                     key={cellId}
                     isMine={checkForMine(i, j)}
                     neighbourCount={getNeighbourCount(i, j)}
+                    setIsGameOver={setIsGameOver}
                   />
                 );
               })}
@@ -58,6 +72,14 @@ const Board = ({ height, width, mines }: BoardProps) => {
           );
         })}
       </div>
+      {isGameOver && (
+        <div data-testid="game-over">
+          <span>Game Over</span>
+          <button type="button" onClick={resetGame}>
+            Reset
+          </button>
+        </div>
+      )}
     </div>
   );
 };
