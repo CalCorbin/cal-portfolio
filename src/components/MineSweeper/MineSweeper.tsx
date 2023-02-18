@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import './MineSweeper.css';
 
 const MineSweeper = () => (
-  <div className="mine-sweeper">
+  <div className="mine-sweeper" data-testid="mine-sweeper">
     <div className="mine-sweeper-container">
       <Header
         useDarkMode
