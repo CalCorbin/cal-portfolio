@@ -5,14 +5,24 @@ import Cell from './Cell';
 describe('Cell', () => {
   it('should render successfully', () => {
     const { getByTestId } = render(
-      <Cell isMine={false} neighbourCount={0} setIsGameOver={jest.fn()} />
+      <Cell
+        isMine={false}
+        neighbourCount={0}
+        setIsGameOver={jest.fn()}
+        isGameOver={false}
+      />
     );
     expect(getByTestId('board-cell')).toBeInTheDocument();
   });
 
   it('should render a mine', async () => {
     const { getByTestId } = render(
-      <Cell isMine neighbourCount={0} setIsGameOver={jest.fn()} />
+      <Cell
+        isMine
+        neighbourCount={0}
+        setIsGameOver={jest.fn()}
+        isGameOver={false}
+      />
     );
     const cell = getByTestId('board-cell');
 
@@ -24,7 +34,12 @@ describe('Cell', () => {
 
   it('should render neighbour count', async () => {
     const { getByTestId } = render(
-      <Cell isMine={false} neighbourCount={3} setIsGameOver={jest.fn()} />
+      <Cell
+        isMine={false}
+        neighbourCount={3}
+        setIsGameOver={jest.fn()}
+        isGameOver={false}
+      />
     );
     const cell = getByTestId('board-cell');
 
@@ -36,7 +51,12 @@ describe('Cell', () => {
 
   it('should render a flag', async () => {
     const { getByTestId } = render(
-      <Cell isMine={false} neighbourCount={0} setIsGameOver={jest.fn()} />
+      <Cell
+        isMine={false}
+        neighbourCount={0}
+        setIsGameOver={jest.fn()}
+        isGameOver={false}
+      />
     );
     const cell = getByTestId('board-cell');
 

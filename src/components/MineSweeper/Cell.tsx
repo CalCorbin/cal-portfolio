@@ -5,9 +5,15 @@ type CellProps = {
   isMine: boolean;
   neighbourCount: number;
   setIsGameOver: (isGameOver: boolean) => void;
+  isGameOver: boolean;
 };
 
-const Cell = ({ isMine, neighbourCount, setIsGameOver }: CellProps) => {
+const Cell = ({
+  isMine,
+  neighbourCount,
+  setIsGameOver,
+  isGameOver,
+}: CellProps) => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isFlagged, setIsFlagged] = useState(false);
 
@@ -34,7 +40,7 @@ const Cell = ({ isMine, neighbourCount, setIsGameOver }: CellProps) => {
     <button
       data-testid="board-cell"
       type="button"
-      className={`mine-cell ${isRevealed && 'revealed'}`}
+      className={`mine-cell ${(isRevealed || isGameOver) && 'revealed'}`}
       onClick={(e) => handleClick(e)}
       onContextMenu={(e) => handleContextMenu(e)}
     >
