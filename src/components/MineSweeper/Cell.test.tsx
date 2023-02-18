@@ -49,6 +49,23 @@ describe('Cell', () => {
     });
   });
 
+  it('should render a blank cell', async () => {
+    const { getByTestId } = render(
+      <Cell
+        isMine={false}
+        neighbourCount={0}
+        setIsGameOver={jest.fn()}
+        isGameOver={false}
+      />
+    );
+    const cell = getByTestId('board-cell');
+
+    await waitFor(() => {
+      cell.click();
+      expect(getByTestId('board-cell')).toHaveTextContent('');
+    });
+  });
+
   it('should render a flag', async () => {
     const { getByTestId } = render(
       <Cell
