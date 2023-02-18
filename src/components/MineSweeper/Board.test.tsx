@@ -35,18 +35,26 @@ describe('Board', () => {
   });
 
   it('resets the game when reset button is clicked', async () => {
-    const { getAllByTestId, getByText, queryByTestId } = render(
+    const { getAllByTestId, getByText } = render(
       <Board height={10} width={10} mines={10} />
     );
-    const cells = getAllByTestId('board-cell');
-    const mineCell = cells.find((cell) => cell.className.includes('is-mine'));
-
+    const cell = getAllByTestId('board-cell')[0];
+    let revealedCells = getAllByTestId('board-cell').filter((c) =>
+      c.className.includes('revealed')
+    );
+    expect(revealedCells).toHaveLength(0);
     await waitFor(() => {
-      if (!mineCell) throw new Error('No mine cell found');
-      fireEvent.click(mineCell);
-      const resetButton = getByText('Reset');
+      fireEvent.click(cell);
+      revealedCells = getAllByTestId('board-cell').filter((c) =>
+        c.className.includes('revealed')
+      );
+      expect(revealedCells).toHaveLength(1);
+      const resetButton = getByText('Reset Game');
       fireEvent.click(resetButton);
-      expect(queryByTestId('game-over')).not.toBeInTheDocument();
+      revealedCells = getAllByTestId('board-cell').filter((c) =>
+        c.className.includes('revealed')
+      );
+      expect(revealedCells).toHaveLength(0);
     });
   });
 

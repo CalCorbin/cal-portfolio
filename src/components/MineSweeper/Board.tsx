@@ -60,15 +60,13 @@ const Board = ({ height, width, mines }: BoardProps) => {
 
   const resetGame = () => {
     setIsGameOver(false);
+    setIsWinner(false);
     setBoardKey((prev) => prev + 1);
     setMinePositions(placeMines());
   };
 
   return (
     <div data-testid="board-container">
-      <div data-testid="game-info">
-        <span>Mines: {mines}</span>
-      </div>
       <div data-testid="board-rows" key={boardKey}>
         {[...Array(height)].map((_, i) => {
           const rowId = `row-${i}`;
@@ -90,22 +88,28 @@ const Board = ({ height, width, mines }: BoardProps) => {
           );
         })}
       </div>
-      {isGameOver && (
-        <div data-testid="game-over">
-          <span>Game Over</span>
-          <button type="button" onClick={resetGame}>
-            Reset
-          </button>
+      <div className="mine-sweeper-messages">
+        <div data-testid="game-info">
+          <span>Mines: {mines}</span>
         </div>
-      )}
-      {isWinner && (
-        <div data-testid="game-win">
-          <span>You Win!</span>
-          <button type="button" data-testid="reset-button" onClick={resetGame}>
-            Reset
-          </button>
+        <button
+          type="button"
+          data-testid="reset-button"
+          className="reset-button"
+          onClick={resetGame}
+        >
+          Reset Game
+        </button>
+        <div
+          data-testid="game-over"
+          className="end-game-message"
+          style={{ display: !isGameOver && !isWinner ? 'none' : 'block' }}
+        >
+          {(isGameOver || isWinner) && (
+            <span>{isGameOver ? 'Game Over' : 'You Win!'}</span>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

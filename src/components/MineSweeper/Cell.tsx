@@ -1,5 +1,5 @@
 import './Cell.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type CellProps = {
   isMine: boolean;
@@ -22,6 +22,7 @@ const Cell = ({
    * @param e {React.MouseEvent} - Mouse event
    */
   const handleClick = (e: React.MouseEvent) => {
+    if (isFlagged) return;
     e.preventDefault();
     setIsRevealed(true);
     if (isMine) setIsGameOver(true);
@@ -33,18 +34,25 @@ const Cell = ({
    */
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsFlagged(true);
+    setIsFlagged(!isFlagged);
   };
+
+  useEffect(() => {
+    if (isGameOver) {
+      setIsRevealed(true);
+    }
+  }, [isGameOver]);
 
   return (
     <button
       data-testid="board-cell"
       type="button"
-      className={`mine-cell${isRevealed || isGameOver ? ' revealed' : ''}${
+      className={`mine-cell${isRevealed ? ' revealed' : ''}${
         isMine ? ' is-mine' : ''
       }`}
       onClick={(e) => handleClick(e)}
       onContextMenu={(e) => handleContextMenu(e)}
+      disabled={isRevealed || isGameOver}
     >
       {isFlagged && '🚩'}
       {isRevealed && isMine && '💣'}

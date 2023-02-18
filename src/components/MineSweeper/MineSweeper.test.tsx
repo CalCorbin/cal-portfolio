@@ -5,6 +5,6 @@ import MineSweeper from './MineSweeper';
 describe('MineSweeper', () => {
   it('should render successfully', () => {
     const { getByTestId } = render(<MineSweeper />);
-    expect(getByTestId('mine-sweeper-container')).toBeInTheDocument();
+    expect(getByTestId('mine-sweeper')).toBeInTheDocument();
   });
 });
