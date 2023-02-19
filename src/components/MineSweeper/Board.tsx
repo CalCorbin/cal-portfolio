@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import Cell from './Cell';
+import placeMines from './functions/placeMines';
 import './Board.css';
 
 type BoardProps = {
@@ -14,18 +15,13 @@ const Board = ({ height, width, mines }: BoardProps) => {
   const [boardKey, setBoardKey] = useState(0);
   const [minePositions, setMinePositions] = useState<number[][]>([]);
 
-  const placeMines = useCallback(() => {
-    const minePlacements: number[][] = [];
-    for (let i = 0; i < mines; i += 1) {
-      const x = Math.floor(Math.random() * height);
-      const y = Math.floor(Math.random() * width);
-      minePlacements.push([x, y]);
-    }
-    return minePlacements;
-  }, [height, width, mines]);
+  const handlePlacesMines = useCallback(
+    () => placeMines({ height, width, mines }),
+    [height, width, mines]
+  );
 
   // Place mines on initial render
-  useEffect(() => setMinePositions(placeMines()), []);
+  useEffect(() => setMinePositions(handlePlacesMines()), []);
 
   const isWin = useCallback(() => {
     const totalCells = height * width;
@@ -62,7 +58,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
     setIsGameOver(false);
     setIsWinner(false);
     setBoardKey((prev) => prev + 1);
-    setMinePositions(placeMines());
+    setMinePositions(handlePlacesMines());
   };
 
   return (
