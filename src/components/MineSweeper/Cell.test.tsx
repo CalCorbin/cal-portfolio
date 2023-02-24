@@ -10,6 +10,8 @@ describe('Cell', () => {
         neighbourCount={0}
         setIsGameOver={jest.fn()}
         isGameOver={false}
+        isFirstClick={false}
+        onClick={jest.fn()}
       />
     );
     expect(getByTestId('board-cell')).toBeInTheDocument();
@@ -22,6 +24,8 @@ describe('Cell', () => {
         neighbourCount={0}
         setIsGameOver={jest.fn()}
         isGameOver={false}
+        isFirstClick={false}
+        onClick={jest.fn()}
       />
     );
     const cell = getByTestId('board-cell');
@@ -39,6 +43,8 @@ describe('Cell', () => {
         neighbourCount={3}
         setIsGameOver={jest.fn()}
         isGameOver={false}
+        isFirstClick={false}
+        onClick={jest.fn()}
       />
     );
     const cell = getByTestId('board-cell');
@@ -56,6 +62,8 @@ describe('Cell', () => {
         neighbourCount={0}
         setIsGameOver={jest.fn()}
         isGameOver={false}
+        isFirstClick={false}
+        onClick={jest.fn()}
       />
     );
     const cell = getByTestId('board-cell');
@@ -73,6 +81,8 @@ describe('Cell', () => {
         neighbourCount={0}
         setIsGameOver={jest.fn()}
         isGameOver={false}
+        isFirstClick={false}
+        onClick={jest.fn()}
       />
     );
     const cell = getByTestId('board-cell');
@@ -90,6 +100,8 @@ describe('Cell', () => {
         neighbourCount={0}
         setIsGameOver={jest.fn()}
         isGameOver={false}
+        isFirstClick={false}
+        onClick={jest.fn()}
       />
     );
     const cell = getByTestId('board-cell');
@@ -112,6 +124,8 @@ describe('Cell', () => {
         neighbourCount={0}
         setIsGameOver={jest.fn()}
         isGameOver
+        isFirstClick={false}
+        onClick={jest.fn()}
       />
     );
     const cell = getByTestId('board-cell');
