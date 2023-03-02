@@ -62,10 +62,18 @@ describe('Board', () => {
     const { getAllByTestId, getByText } = render(
       <Board height={8} width={8} mines={10} />
     );
-    const cells = getAllByTestId('board-cell');
-    const mineCell = cells.find((cell) => cell.className.includes('is-mine'));
+    let cells = getAllByTestId('board-cell');
+    let mineCell = cells.find((cell) => cell.className.includes('is-mine'));
+
+    // Perform first click in the game, which is never going to be a mine.
+    await waitFor(() => {
+      if (!mineCell) throw new Error('No mine cell found');
+      fireEvent.click(mineCell);
+    });
 
     await waitFor(() => {
+      cells = getAllByTestId('board-cell');
+      mineCell = cells.find((cell) => cell.className.includes('is-mine'));
       if (!mineCell) throw new Error('No mine cell found');
       fireEvent.click(mineCell);
       expect(getByText('Game Over')).toBeInTheDocument();

@@ -12,11 +12,13 @@ type BoardProps = {
 const Board = ({ height, width, mines }: BoardProps) => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
+  const [isFirstClick, setIsFirstClick] = useState(true);
   const [boardKey, setBoardKey] = useState(0);
   const [minePositions, setMinePositions] = useState<number[][]>([]);
 
   const handlePlacesMines = useCallback(
-    () => placeMines({ height, width, mines }),
+    (firstMine?: undefined | number[]) =>
+      placeMines({ height, width, mines, firstMine }),
     [height, width, mines]
   );
 
@@ -29,18 +31,44 @@ const Board = ({ height, width, mines }: BoardProps) => {
     return revealedCells === totalCells - mines;
   }, [height, width, mines]);
 
-  const listener = useCallback(() => {
+  const handleClick = useCallback(() => {
     if (isWin()) setIsWinner(true);
-  }, [isWin]);
+  }, [isWin, isFirstClick]);
 
+  /**
+   * Add event listener to check for win condition.
+   */
   useEffect(() => {
-    document.addEventListener('click', listener);
-
-    return () => document.removeEventListener('click', listener);
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
   });
 
   const checkForMine = (x: number, y: number) =>
     minePositions.some((el) => el[0] === x && el[1] === y);
+
+  /**
+   * Handle first click on cell, if first click is a mine,
+   * then this will move the mine to a different position.
+   * @param x {number} - x position on board
+   * @param y {number} - y position on board
+   */
+  const handleFirstCellClick = (x: number, y: number) => {
+    if (isFirstClick) {
+      moveMineOnFirstClick(x, y);
+      setIsFirstClick(false);
+    }
+  };
+
+  /**
+   * Move mine to a different position if first click is a mine.
+   * @param x {number} - x position on board
+   * @param y {number} - y position on board
+   */
+  const moveMineOnFirstClick = (x: number, y: number) => {
+    const isMine = checkForMine(x, y);
+    if (!isMine) return;
+    setMinePositions(handlePlacesMines([x, y]));
+  };
 
   const getNeighbourCount = (x: number, y: number) => {
     let count = 0;
@@ -57,6 +85,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
   const resetGame = () => {
     setIsGameOver(false);
     setIsWinner(false);
+    setIsFirstClick(true);
     setBoardKey((prev) => prev + 1);
     setMinePositions(handlePlacesMines());
   };
@@ -64,19 +93,21 @@ const Board = ({ height, width, mines }: BoardProps) => {
   return (
     <div data-testid="board-container">
       <div data-testid="board-rows" key={boardKey}>
-        {[...Array(height)].map((_, i) => {
-          const rowId = `row-${i}`;
+        {[...Array(height)].map((_, x) => {
+          const rowId = `row-${x}`;
           return (
             <div data-testid="board-row" className="mine-row" key={rowId}>
-              {[...Array(width)].map((__, j) => {
-                const cellId = `row-${i}-cell-${j}`;
+              {[...Array(width)].map((__, y) => {
+                const cellId = `row-${x}-cell-${y}`;
                 return (
                   <Cell
                     key={cellId}
-                    isMine={checkForMine(i, j)}
-                    neighbourCount={getNeighbourCount(i, j)}
+                    isMine={checkForMine(x, y)}
+                    isFirstClick={isFirstClick}
+                    neighbourCount={getNeighbourCount(x, y)}
                     setIsGameOver={setIsGameOver}
                     isGameOver={isGameOver}
+                    onClick={() => handleFirstCellClick(x, y)}
                   />
                 );
               })}

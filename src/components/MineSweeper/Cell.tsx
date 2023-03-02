@@ -6,6 +6,8 @@ type CellProps = {
   neighbourCount: number;
   setIsGameOver: (isGameOver: boolean) => void;
   isGameOver: boolean;
+  isFirstClick: boolean;
+  onClick: () => void;
 };
 
 const Cell = ({
@@ -13,6 +15,8 @@ const Cell = ({
   neighbourCount,
   setIsGameOver,
   isGameOver,
+  isFirstClick,
+  onClick,
 }: CellProps) => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isFlagged, setIsFlagged] = useState(false);
@@ -24,8 +28,11 @@ const Cell = ({
   const handleClick = (e: React.MouseEvent) => {
     if (isFlagged) return;
     e.preventDefault();
+    onClick();
     setIsRevealed(true);
-    if (isMine) setIsGameOver(true);
+    if (isMine && !isFirstClick) {
+      setIsGameOver(true);
+    }
   };
 
   /**
@@ -52,7 +59,6 @@ const Cell = ({
       }`}
       onClick={(e) => handleClick(e)}
       onContextMenu={(e) => handleContextMenu(e)}
-      disabled={isRevealed || isGameOver}
     >
       {isFlagged && '🚩'}
       {isRevealed && isMine && '💣'}
