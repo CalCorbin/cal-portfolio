@@ -12,7 +12,7 @@ const MineSweeper = () => (
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/MineSweeper/Board.tsx"
       />
       <div>
-        <Board height={8} width={8} mines={8} />
+        <Board height={8} width={8} mines={10} />
       </div>
     </div>
   </div>
