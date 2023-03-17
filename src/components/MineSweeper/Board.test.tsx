@@ -100,4 +100,52 @@ describe('Board', () => {
       expect(getByText('You Win!')).toBeInTheDocument();
     });
   });
+
+  it('should show the correct number of mines', async () => {
+    const { getAllByTestId } = render(
+      <Board height={8} width={8} mines={10} />
+    );
+    const cells = getAllByTestId('board-cell');
+    const mineCells = cells.filter((cell) =>
+      cell.className.includes('is-mine')
+    );
+    expect(mineCells).toHaveLength(10);
+  });
+
+  it('should handle different board sizes', async () => {
+    const { getAllByTestId } = render(
+      <Board height={16} width={16} mines={40} />
+    );
+    const cells = getAllByTestId('board-cell');
+    const mineCells = cells.filter((cell) =>
+      cell.className.includes('is-mine')
+    );
+    expect(mineCells).toHaveLength(40);
+  });
+
+  it('should handle different sized height and width', async () => {
+    const { getAllByTestId } = render(
+      <Board height={16} width={8} mines={40} />
+    );
+    const cells = getAllByTestId('board-cell');
+    const mineCells = cells.filter((cell) =>
+      cell.className.includes('is-mine')
+    );
+    expect(mineCells).toHaveLength(40);
+  });
+
+  it('should handle different sized height and width, and show winner message when all non-mine cells are revealed', async () => {
+    const { getAllByTestId, getByText } = render(
+      <Board height={16} width={8} mines={40} />
+    );
+    const cells = getAllByTestId('board-cell');
+    const nonMineCells = cells.filter(
+      (cell) => !cell.className.includes('is-mine')
+    );
+
+    await waitFor(() => {
+      nonMineCells.forEach((cell) => fireEvent.click(cell));
+      expect(getByText('You Win!')).toBeInTheDocument();
+    });
+  });
 });

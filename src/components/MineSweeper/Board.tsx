@@ -94,32 +94,24 @@ const Board = ({ height, width, mines }: BoardProps) => {
     count: number,
     row: number,
     cell: number,
-    checkedCells: string[] = []
+    checkedCells: Set<string> = new Set()
   ) => {
     if (count !== 0) return;
-    if (row < 0 || row >= height || cell < 0 || cell >= width) return;
     const cellId = `row-${row}-cell-${cell}`;
 
     // Return early if cell has already been checked
-    if (checkedCells.includes(cellId)) return;
+    if (checkedCells.has(cellId)) return;
     const cellElement = document.getElementById(cellId);
     if (cellElement?.classList.contains('revealed')) return;
 
-    checkedCells.push(cellId);
+    checkedCells.add(cellId);
 
     const cellsToUpdate: string[] = [];
     const cellsToCheck: number[][] = [];
 
     const addCellToUpdateAndCheck = (updateRow: number, updateCell: number) => {
-      const neighbourCount = getNeighbourCount(row, cell);
-      if (
-        neighbourCount === 0 &&
-        cellElement &&
-        !cellElement.classList.contains('revealed')
-      ) {
-        cellsToUpdate.push(cellId);
-        cellsToCheck.push([updateRow, updateCell]);
-      }
+      cellsToUpdate.push(cellId);
+      cellsToCheck.push([updateRow, updateCell]);
     };
 
     let toLeft = cell;
