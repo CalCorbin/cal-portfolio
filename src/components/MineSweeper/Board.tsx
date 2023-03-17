@@ -97,7 +97,6 @@ const Board = ({ height, width, mines }: BoardProps) => {
     checkedCells: Set<string> = new Set()
   ) => {
     if (count !== 0) return;
-    if (row < 0 || row >= height || cell < 0 || cell >= width) return;
     const cellId = `row-${row}-cell-${cell}`;
 
     // Return early if cell has already been checked
@@ -111,11 +110,8 @@ const Board = ({ height, width, mines }: BoardProps) => {
     const cellsToCheck: number[][] = [];
 
     const addCellToUpdateAndCheck = (updateRow: number, updateCell: number) => {
-      const neighbourCount = getNeighbourCount(row, cell);
-      if (neighbourCount === 0 && cellElement) {
-        cellsToUpdate.push(cellId);
-        cellsToCheck.push([updateRow, updateCell]);
-      }
+      cellsToUpdate.push(cellId);
+      cellsToCheck.push([updateRow, updateCell]);
     };
 
     let toLeft = cell;
