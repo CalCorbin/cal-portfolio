@@ -15,6 +15,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
   const [isFirstClick, setIsFirstClick] = useState(true);
   const [boardKey, setBoardKey] = useState(0);
   const [minePositions, setMinePositions] = useState<number[][]>([]);
+  const [emptyCells, setEmptyCells] = useState<string[]>([]);
 
   const handlePlacesMines = useCallback(
     (firstMine?: undefined | number[]) =>
@@ -82,12 +83,89 @@ const Board = ({ height, width, mines }: BoardProps) => {
     return count;
   };
 
+  /**
+   * Reveal empty cells if count is 0.
+   * @param count {number} - number of mines in neighbouring cells
+   * @param row {number} - row of cell
+   * @param cell {number} - cell of cell
+   * @param checkedCells {string[]} - array of cells already checked
+   */
+  const revealEmptyCells = (
+    count: number,
+    row: number,
+    cell: number,
+    checkedCells: string[] = []
+  ) => {
+    if (count !== 0) return;
+    if (row < 0 || row >= height || cell < 0 || cell >= width) return;
+    const cellId = `row-${row}-cell-${cell}`;
+
+    // Return early if cell has already been checked
+    if (checkedCells.includes(cellId)) return;
+    const cellElement = document.getElementById(cellId);
+    if (cellElement?.classList.contains('revealed')) return;
+
+    checkedCells.push(cellId);
+
+    const cellsToUpdate: string[] = [];
+    const cellsToCheck: number[][] = [];
+
+    const addCellToUpdateAndCheck = (updateRow: number, updateCell: number) => {
+      const neighbourCount = getNeighbourCount(row, cell);
+      if (
+        neighbourCount === 0 &&
+        cellElement &&
+        !cellElement.classList.contains('revealed')
+      ) {
+        cellsToUpdate.push(cellId);
+        cellsToCheck.push([updateRow, updateCell]);
+      }
+    };
+
+    let toLeft = cell;
+    while (toLeft > -1) {
+      addCellToUpdateAndCheck(row, toLeft);
+      if (getNeighbourCount(row, toLeft) > 0) break;
+      toLeft -= 1;
+    }
+
+    let toRight = cell;
+    while (toRight < width) {
+      addCellToUpdateAndCheck(row, toRight);
+      if (getNeighbourCount(row, toRight) > 0) break;
+      toRight += 1;
+    }
+
+    let toTop = row;
+    while (toTop > -1) {
+      addCellToUpdateAndCheck(toTop, cell);
+      if (getNeighbourCount(toTop, cell) > 0) break;
+      toTop -= 1;
+    }
+
+    let toBottom = row;
+    while (toBottom < height) {
+      addCellToUpdateAndCheck(toBottom, cell);
+      if (getNeighbourCount(toBottom, cell) > 0) break;
+      toBottom += 1;
+    }
+
+    for (let i = cellsToCheck.length - 1; i >= 0; i -= 1) {
+      const [cellRow, checkCell] = cellsToCheck[i];
+      const cellCount = getNeighbourCount(cellRow, checkCell);
+      revealEmptyCells(cellCount, cellRow, checkCell, checkedCells);
+    }
+
+    setEmptyCells((prev) => [...prev, ...cellsToUpdate]);
+  };
+
   const resetGame = () => {
     setIsGameOver(false);
     setIsWinner(false);
     setIsFirstClick(true);
     setBoardKey((prev) => prev + 1);
     setMinePositions(handlePlacesMines());
+    setEmptyCells([]);
   };
 
   return (
@@ -99,15 +177,24 @@ const Board = ({ height, width, mines }: BoardProps) => {
             <div data-testid="board-row" className="mine-row" key={rowId}>
               {[...Array(width)].map((__, y) => {
                 const cellId = `row-${x}-cell-${y}`;
+                const neighbourCount = getNeighbourCount(x, y);
+                const isMine = checkForMine(x, y);
                 return (
                   <Cell
                     key={cellId}
-                    isMine={checkForMine(x, y)}
+                    cellId={cellId}
+                    isMine={isMine}
                     isFirstClick={isFirstClick}
-                    neighbourCount={getNeighbourCount(x, y)}
+                    neighbourCount={neighbourCount}
                     setIsGameOver={setIsGameOver}
                     isGameOver={isGameOver}
-                    onClick={() => handleFirstCellClick(x, y)}
+                    onClick={() => {
+                      handleFirstCellClick(x, y);
+                    }}
+                    revealEmptyCells={() =>
+                      revealEmptyCells(neighbourCount, x, y)
+                    }
+                    shouldReveal={emptyCells.includes(cellId)}
                   />
                 );
               })}
