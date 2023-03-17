@@ -212,7 +212,25 @@ const Board = ({ height, width, mines }: BoardProps) => {
           style={{ display: !isGameOver && !isWinner ? 'none' : 'block' }}
         >
           {(isGameOver || isWinner) && (
-            <span>{isGameOver ? 'Game Over' : 'You Win!'}</span>
+            <div className="full-screen-overlay">
+              <img
+                src={
+                  isGameOver
+                    ? 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzA2ZGQ5ZWY1N2Q5ZjRjZTAyNTJiYzdmY2Y3MmMzOGNhNDRmMDllZCZjdD1n/8J1QwMjshEm2s/giphy.gif'
+                    : 'https://media.giphy.com/media/35HTaxVJWzp2QOShct/giphy.gif'
+                }
+                alt="you win game"
+              />
+              <span>{isGameOver ? 'Game Over' : 'You Win!'}</span>
+              <button
+                type="button"
+                data-testid="reset-button"
+                className="reset-button"
+                onClick={resetGame}
+              >
+                Play Again
+              </button>
+            </div>
           )}
         </div>
       </div>
