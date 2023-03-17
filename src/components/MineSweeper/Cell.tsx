@@ -48,6 +48,7 @@ const Cell = ({
    */
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (isRevealed) return;
     setIsFlagged(!isFlagged);
   };
 
