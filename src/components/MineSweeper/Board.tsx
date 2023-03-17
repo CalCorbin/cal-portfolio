@@ -210,20 +210,17 @@ const Board = ({ height, width, mines }: BoardProps) => {
           className="end-game-message"
           style={{ display: !isGameOver && !isWinner ? 'none' : 'block' }}
         >
-          {(isGameOver || isWinner) && (
+          {isGameOver && !isWinner && <span>Game Over :(</span>}
+          {isWinner && (
             <div className="full-screen-overlay">
               <img
-                src={
-                  isGameOver
-                    ? 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzA2ZGQ5ZWY1N2Q5ZjRjZTAyNTJiYzdmY2Y3MmMzOGNhNDRmMDllZCZjdD1n/8J1QwMjshEm2s/giphy.gif'
-                    : 'https://media.giphy.com/media/35HTaxVJWzp2QOShct/giphy.gif'
-                }
+                src="https://media.giphy.com/media/35HTaxVJWzp2QOShct/giphy.gif"
                 alt="you win game"
               />
-              <span>{isGameOver ? 'Game Over' : 'You Win!'}</span>
+              <span>You Win!</span>
               <button
                 type="button"
-                data-testid="reset-button"
+                data-testid="win-reset-button"
                 className="reset-button"
                 onClick={resetGame}
               >

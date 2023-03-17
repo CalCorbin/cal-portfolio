@@ -82,7 +82,7 @@ describe('Board', () => {
       mineCell = cells.find((cell) => cell.className.includes('is-mine'));
       if (!mineCell) throw new Error('No mine cell found');
       fireEvent.click(mineCell);
-      expect(getByText('Game Over')).toBeInTheDocument();
+      expect(getByText('Game Over :(')).toBeInTheDocument();
     });
   });
 
