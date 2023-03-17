@@ -96,7 +96,6 @@ const Board = ({ height, width, mines }: BoardProps) => {
     cell: number,
     checkedCells: Set<string> = new Set()
   ) => {
-    if (count !== 0) return;
     const cellId = `row-${row}-cell-${cell}`;
 
     // Return early if cell has already been checked
