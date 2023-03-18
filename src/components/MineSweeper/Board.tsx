@@ -102,6 +102,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
     if (checkedCells.has(cellId)) return;
     const cellElement = document.getElementById(cellId);
     if (cellElement?.classList.contains('revealed')) return;
+    if (cellElement?.classList.contains('is-mine')) return;
 
     checkedCells.add(cellId);
 
