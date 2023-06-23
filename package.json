@@ -43,7 +43,7 @@
     "eslint-config-import": "0.13.0",
     "fetch-mock": "^9.11.0",
     "firebase": "9.23.0",
-    "graphql": "16.7.0",
+    "graphql": "16.7.1",
     "mocha": "10.2.0",
     "prop-types": "15.8.1",
     "react": "18.2.0",
