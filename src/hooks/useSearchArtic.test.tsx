@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { renderHook } from '@testing-library/react-hooks';
+import { act, renderHook, RenderHookResult } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import useSearchArtic from './useSearchArtic';
 import API_URLS from '../constants/apiUrls';
@@ -68,15 +68,19 @@ describe('useSearchArtic', () => {
   );
 
   it('should return the correct data from useSearchArtic', async () => {
-    const { result, waitFor } = renderHook(
-      () => useSearchArtic('samurai', true),
-      {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let renderedHook: any;
+
+    await act(async () => {
+      renderedHook = renderHook(() => useSearchArtic('samurai', true), {
         wrapper: createWrapper(),
-      }
-    );
+      });
+    });
 
-    await waitFor(() => result.current.isSuccess);
-
-    expect(result.current.data).toEqual(expectedResponse);
+    if (renderedHook) {
+      expect(renderedHook.result.current.data).toEqual(expectedResponse);
+    } else {
+      throw new Error('renderedHook is undefined');
+    }
   });
 });
