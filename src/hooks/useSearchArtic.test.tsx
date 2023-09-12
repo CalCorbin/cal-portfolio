@@ -16,7 +16,7 @@ describe('useSearchArtic', () => {
         },
       },
     });
-    return function ({ children }: { children: React.ReactNode }) {
+    return function TestComponent({ children }: { children: React.ReactNode }) {
       return (
         <QueryClientProvider client={queryClient}>
           {children}
