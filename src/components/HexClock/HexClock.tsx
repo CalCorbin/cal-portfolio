@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import './HexClock.css';
+import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
+import styles from './HexClock.module.css';
 
 const HexClock = () => {
   const [time, setTime] = useState<string>();
@@ -41,14 +41,18 @@ const HexClock = () => {
   }, [time]);
 
   return (
-    <div data-testid="hexclock-page" id="hex" className="hexclock-page">
+    <div
+      data-testid="hexclock-page"
+      id="hex"
+      className={styles['hexclock-page']}
+    >
       <Header
         title="HexClock"
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/HexClock/HexClock.tsx"
         useDarkMode
       />
-      <div className="hex-content">
-        <div className="time-text" data-testid="time-display">
+      <div className={styles['hex-content']}>
+        <div className={styles['time-text']} data-testid="time-display">
           {time}
         </div>
         <h1>Current color: {colorName}</h1>

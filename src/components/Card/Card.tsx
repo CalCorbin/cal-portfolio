@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Card.css';
+import styles from './Card.module.css';
 
 interface CardProps {
   data: {
@@ -12,7 +12,7 @@ interface CardProps {
 }
 
 const Card = ({ data }: CardProps) => (
-  <div className="simple-card" data-testid={`card-${data.id}`}>
+  <div className={styles['simple-card']} data-testid={`card-${data.id}`}>
     <a
       href={data.link}
       target="_blank"

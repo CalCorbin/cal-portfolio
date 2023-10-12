@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './CatChat.css';
+import { useState, useEffect, useRef } from 'react';
 import CATPHRASES from '../../constants/catPhrases';
 import Header from '../../components/Header/Header';
+import styles from './CatChat.module.css';
 
 interface ChatMessage {
   author: string;
@@ -62,19 +62,19 @@ const CatChat = () => {
   };
 
   return (
-    <div data-testid="cat-chat-page" className="cat-chat-page">
+    <div data-testid="cat-chat-page" className={styles['cat-chat-page']}>
       <Header
         title="Cat Chat"
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/CatChat/CatChat.tsx"
       />
-      <div className="chat-container">
-        <div className="messages">
+      <div className={styles['chat-container']}>
+        <div className={styles.messages}>
           {chat.length >= 1 ? (
             chat.map((chatMessage, index) => (
               <div
                 key={`${chatMessage.author}_${randomInt(9000)}`}
-                className={`message ${
-                  chatMessage.author === 'You' ? 'sender' : 'cat'
+                className={`${styles.message} ${
+                  chatMessage.author === 'You' ? styles.sender : styles.cat
                 }`}
                 data-testid={`${chatMessage.author}-${index}`}
               >
@@ -91,7 +91,7 @@ const CatChat = () => {
         </div>
         <form onSubmit={sendMessage}>
           <hr />
-          <div>
+          <div className={styles['chat-input']}>
             <input
               type="text"
               value={draftMessage}

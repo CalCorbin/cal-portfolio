@@ -6,6 +6,9 @@
 .pnp.js
 package-lock.json
 
+# NextJS
+.next/
+
 # firebase
 .firebase/
 

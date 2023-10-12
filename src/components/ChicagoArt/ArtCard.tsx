@@ -1,5 +1,5 @@
 import { ArtProps } from './ChicagoArtInterface';
-import './ArtCard.css';
+import styles from './ArtCard.module.css';
 
 const ArtCard = ({
   title,
@@ -10,19 +10,19 @@ const ArtCard = ({
 }: ArtProps) => {
   if (!imageId) return null;
   return (
-    <div className="art" data-testid={`art-listing-${imageId}`}>
+    <div className={styles.art} data-testid={`art-listing-${imageId}`}>
       <img
         src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
         alt={thumbnail?.alt_text || title}
       />
-      <div className="art-overlay">
+      <div className={styles['art-overlay']}>
         <div className="art-title" data-testid={`art-listing-title-${imageId}`}>
           {title}
         </div>
         {artistTitle ? (
           <a
             href={`https://www.artic.edu/artists/${artistId}/`}
-            className="artist"
+            className={styles.artist}
             target="_blank"
             rel="noreferrer"
             data-testid={`art-listing-artist-${imageId}`}
@@ -31,7 +31,7 @@ const ArtCard = ({
           </a>
         ) : (
           <div
-            className="artist-unknown"
+            className={styles['artist-unknown']}
             style={{ cursor: 'default' }}
             data-testid={`artist-unknown-${imageId}`}
           >

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useSearchArtic from '../../hooks/useSearchArtic';
 import Header from '../../components/Header/Header';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
 import ArtCard from './ArtCard';
 import { ArtProps } from './ChicagoArtInterface';
-import './ChicagoArt.css';
+import styles from './ChicagoArt.module.css';
 
 const ChicagoArt = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,15 +42,15 @@ const ChicagoArt = () => {
   if (isError) return <div>Something went wrong</div>;
 
   return (
-    <div className="art-page" data-testid="chicago-art">
-      <div className="header-container">
+    <div className={styles['art-page']} data-testid="chicago-art">
+      <div className={styles['header-container']}>
         <img
           src="https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg"
           alt="water lily pond"
-          className="header-image"
+          className={styles['header-image']}
         />
-        <div className="header-overlay" />
-        <div className="search-container">
+        <div className={styles['header-overlay']} />
+        <div className={styles['search-container']}>
           <Header
             repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
             title="Art Search"
@@ -60,9 +60,12 @@ const ChicagoArt = () => {
             Enter a search term below and explore thousands of images from the
             digital collection of the Art Institute of Chicago.
           </p>
-          <div className="search-bar">
-            <FontAwesomeIcon icon={faSearch} className="search-icon" />
-            <form onSubmit={handleSubmit} className="search-form">
+          <div className={styles['search-bar']}>
+            <FontAwesomeIcon
+              icon={faSearch}
+              className={styles['search-icon']}
+            />
+            <form onSubmit={handleSubmit} className={styles['search-form']}>
               <input
                 id="search"
                 type="text"
@@ -79,7 +82,7 @@ const ChicagoArt = () => {
       {isLoading || isFetching ? (
         <Loading />
       ) : (
-        <div className="result-container">
+        <div className={styles['result-container']}>
           {art?.map((item: ArtProps) => (
             <ArtCard
               key={item.image_id}

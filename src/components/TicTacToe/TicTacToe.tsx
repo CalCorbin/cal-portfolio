@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import './TicTacToe.css';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import ToastNotification from './ToastNotification';
 import Header from '../Header/Header';
 import BoardRow from './BoardRow';
@@ -7,6 +6,7 @@ import useCheckForWinner from './hooks/useCheckForWinner';
 import getCpuTurn from './functions/getCpuTurn';
 import { GameRecord, PlayerOption, Players, Winner } from './types';
 import displayWinner from './functions/displayWinner';
+import styles from './TicTacToe.module.css';
 
 type TicTacToeProps = {
   selectedPlayer: PlayerOption;
@@ -86,9 +86,12 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
     if (key && key !== 'Enter') {
       return;
     }
+
+    // If the cell is already filled, the CPU is next, or there is a winner, return.
     if (board[row][index] !== '') return;
     if (isCpuNext) return;
     if (winner) return;
+
     board[row][index] = players?.HUMAN;
     setBoard((prevBoard) => [...prevBoard]);
     checkForWinner();
@@ -134,18 +137,18 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   }, [playCpuTurn, board, winner, isCpuNext]);
 
   return (
-    <div className="tictactoe-background">
-      <div className="container">
+    <div className={styles['tictactoe-background']}>
+      <div className={styles.container}>
         <Header
           title="Tic Tac Toe"
           repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
         />
         <ToastNotification message="NOW IN GAME" deleteTime={2000} />
-        <div className="current-turn" data-testid="turn-display">
+        <div className={styles['current-turn']} data-testid="turn-display">
           {winner ? displayWinner(winner, record) : displayTurn()}
         </div>
         <div data-testid="tictactoe-screen">
-          <div className="board-row" data-testid="row-0">
+          <div className={styles['board-row']} data-testid="row-0">
             {board[0].map((cell, index) => (
               <BoardRow
                 row={0}
@@ -157,7 +160,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
               />
             ))}
           </div>
-          <div className="board-row" data-testid="row-1">
+          <div className={styles['board-row']} data-testid="row-1">
             {board[1].map((cell, index) => (
               <BoardRow
                 row={1}
@@ -169,7 +172,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
               />
             ))}
           </div>
-          <div className="board-row" data-testid="row-2">
+          <div className={styles['board-row']} data-testid="row-2">
             {board[2].map((cell, index) => (
               <BoardRow
                 row={2}
@@ -183,11 +186,12 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
           </div>
         </div>
         <button
-          className="game-button"
+          className={styles['game-button']}
           // Using visibility here ensures the tictactoe box doesn't shift when the button is hidden.
           style={{ visibility: winner ? 'visible' : 'hidden' }}
           onClick={playAgain}
           type="button"
+          data-testid="play-again"
         >
           PLAY AGAIN
         </button>

@@ -26,7 +26,7 @@ describe('TicTacToe', () => {
     });
   });
 
-  it('should render not update the cell if player presses a key besides enter', async () => {
+  it('should not update the cell if player presses a key besides enter', async () => {
     render(<TicTacToe selectedPlayer="O" />);
 
     const cell = screen.getByTestId('cell-0-0');
@@ -52,5 +52,21 @@ describe('TicTacToe', () => {
       },
       { timeout: 4000 }
     );
+  });
+
+  it('should reset the game when the player clicks the reset button', async () => {
+    render(<TicTacToe selectedPlayer="O" />);
+
+    // Play a round
+    let cell = screen.getByTestId('cell-0-0');
+    cell.click();
+
+    // Reset the game
+    const resetButton = screen.getByTestId('play-again');
+    resetButton.click();
+
+    // Check that the cell is empty
+    cell = screen.getByTestId('cell-0-0');
+    expect(cell.textContent).toBe('');
   });
 });
