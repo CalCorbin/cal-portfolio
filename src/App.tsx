@@ -18,7 +18,7 @@ import Firebase, { FirebaseContext } from './components/Firebase';
 
 const App = () => {
   const client = new ApolloClient({
-    uri: 'https://api.spacex.land/graphql/',
+    uri: 'https://main--spacex-l4uc6p.apollographos.net/graphql',
     cache: new InMemoryCache(),
   });
 
