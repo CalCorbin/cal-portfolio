@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './ToastNotification.css';
+import styles from './ToastNotification.module.css';
 
 interface ToastNotificationProps {
   message: string;
@@ -16,7 +16,13 @@ const ToastNotification = ({ message, deleteTime }: ToastNotificationProps) => {
   }, [deleteTime]);
 
   return (
-    <div className={`toast-container ${visible && 'visible'}`}>{message}</div>
+    <div
+      className={`${styles['toast-container']} ${
+        visible ? styles.visible : ''
+      }`}
+    >
+      {message}
+    </div>
   );
 };
 

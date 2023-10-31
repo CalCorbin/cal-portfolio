@@ -1,19 +1,10 @@
-import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ROUTES from '../../constants/routes';
 import LandingPage from './Landing';
 
 describe('<Landing />', () => {
   beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <Routes>
-          <Route path={ROUTES.LANDING} element={<LandingPage />} />
-        </Routes>
-      </BrowserRouter>
-    );
+    render(<LandingPage />);
   });
 
   afterEach(cleanup);

@@ -1,5 +1,4 @@
-import React from 'react';
-import './BoardRow.css';
+import styles from './BoardRow.module.css';
 
 type BoardRowProps = {
   row: number;
@@ -23,9 +22,11 @@ const BoardRow = ({
   let borderClasses = '';
 
   if (row === 0 || row === 1) {
-    borderClasses += `${rowIndex !== 2 && 'border-right'} border-bottom`;
+    borderClasses += `${rowIndex !== 2 && styles['border-right']} ${
+      styles['border-bottom']
+    }`;
   } else {
-    borderClasses += `${rowIndex !== 2 && 'border-right'}`;
+    borderClasses += `${rowIndex !== 2 && styles['border-right']}`;
   }
 
   const isWinningCell = winningCells?.some(
@@ -38,7 +39,7 @@ const BoardRow = ({
     <span
       onClick={(e) => onCellClick(e, row, rowIndex)}
       onKeyDown={(e) => onCellClick(e, row, rowIndex)}
-      className={`cell ${borderClasses} ${isWinningCell}`}
+      className={`${styles.cell} ${borderClasses} ${isWinningCell}`}
       data-testid={`cell-${row}-${rowIndex}`}
       role="button"
       tabIndex={0}

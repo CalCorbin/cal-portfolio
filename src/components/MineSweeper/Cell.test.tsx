@@ -135,6 +135,29 @@ describe('Cell', () => {
     });
   });
 
+  it('should not do anything if user right clicks a revealed cell', async () => {
+    const { getByTestId } = render(
+      <Cell
+        cellId="0-0"
+        isMine={false}
+        neighbourCount={0}
+        setIsGameOver={jest.fn()}
+        isGameOver={false}
+        isFirstClick={false}
+        onClick={jest.fn()}
+        revealEmptyCells={jest.fn()}
+        shouldReveal={true}
+      />
+    );
+    const cell = getByTestId('board-cell');
+
+    await waitFor(() => {
+      fireEvent.contextMenu(cell);
+      expect(getByTestId('board-cell')).toHaveClass('revealed');
+      expect(getByTestId('board-cell')).not.toHaveTextContent('🚩');
+    });
+  });
+
   it('should reveal all cells if the game is over', async () => {
     const { getByTestId } = render(
       <Cell

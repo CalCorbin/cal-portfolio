@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import './HomeScreen.css';
+import { useState } from 'react';
 import MatchScreen from './MatchScreen';
 import TicTacToe from './TicTacToe';
 import Header from '../Header/Header';
 import { PlayerOption } from './types';
+import styles from './HomeScreen.module.css';
 
 const HomeScreen = () => {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerOption | null>(
@@ -43,16 +43,19 @@ const HomeScreen = () => {
   }
 
   return (
-    <div className="home-screen tictactoe-background" data-testid="home-screen">
+    <div
+      className={`${styles['home-screen']} ${styles['tictactoe-background']}`}
+      data-testid="home-screen"
+    >
       <Header
         title="Tic Tac Toe"
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
       />
-      <div className="item">WELCOME</div>
-      <div className="item">PICK YOUR PLAYER</div>
-      <div className="item player-selection">
+      <div className={styles.item}>WELCOME</div>
+      <div className={styles.item}>PICK YOUR PLAYER</div>
+      <div className={`${styles.item} ${styles['player-selection']}`}>
         <div
-          className="player-selection__player"
+          className={styles['player-selection__player']}
           onClick={() => handlePlayerSelect('X')}
           onKeyDown={(e) => handleKeySelect(e, 'X')}
           role="button"
@@ -61,13 +64,13 @@ const HomeScreen = () => {
           <span>X</span>
           <hr
             data-testid="player-x-underline"
-            className={`player-selection__underline ${
-              selectedPlayer === 'X' ? 'active' : ''
+            className={`${styles['player-selection__underline']} ${
+              selectedPlayer === 'X' ? styles.active : ''
             }`}
           />
         </div>
         <div
-          className="player-selection__player"
+          className={styles['player-selection__player']}
           onClick={() => handlePlayerSelect('O')}
           onKeyDown={(e) => handleKeySelect(e, 'O')}
           role="button"
@@ -76,14 +79,16 @@ const HomeScreen = () => {
           <span>O</span>
           <hr
             data-testid="player-o-underline"
-            className={`player-selection__underline ${
-              selectedPlayer === 'O' ? 'active' : ''
+            className={`${styles['player-selection__underline']} ${
+              selectedPlayer === 'O' ? styles.active : ''
             }`}
           />
         </div>
       </div>
       <button
-        className={`match-button ${!selectedPlayer && 'disabled'}`}
+        className={`${styles['match-button']} ${
+          !selectedPlayer ? styles.disabled : ''
+        }`}
         onClick={handleMatch}
         disabled={!selectedPlayer}
         type="button"
