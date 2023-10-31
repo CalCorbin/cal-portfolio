@@ -1,5 +1,5 @@
-import './Cell.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import styles from './Cell.module.css';
 
 type CellProps = {
   cellId: string;
@@ -61,14 +61,18 @@ const Cell = ({
     }
   }, [isGameOver, shouldReveal]);
 
+  const classNames = [
+    styles['mine-cell'],
+    isRevealed && styles.revealed,
+    isMine && styles['is-mine'],
+  ].join(' ');
+
   return (
     <button
       id={cellId}
       data-testid="board-cell"
       type="button"
-      className={`mine-cell${isRevealed ? ' revealed' : ''}${
-        isMine ? ' is-mine' : ''
-      }`}
+      className={classNames}
       onClick={(e) => handleClick(e)}
       onContextMenu={(e) => handleContextMenu(e)}
     >

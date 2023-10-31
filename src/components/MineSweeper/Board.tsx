@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import Cell from './Cell';
 import placeMines from './functions/placeMines';
-import './Board.css';
+import styles from './Board.module.css';
 
 type BoardProps = {
   height: number;
@@ -166,7 +166,11 @@ const Board = ({ height, width, mines }: BoardProps) => {
         {[...Array(height)].map((_, x) => {
           const rowId = `row-${x}`;
           return (
-            <div data-testid="board-row" className="mine-row" key={rowId}>
+            <div
+              data-testid="board-row"
+              className={styles['mine-row']}
+              key={rowId}
+            >
               {[...Array(width)].map((__, y) => {
                 const cellId = `row-${x}-cell-${y}`;
                 const neighbourCount = getNeighbourCount(x, y);
@@ -194,26 +198,26 @@ const Board = ({ height, width, mines }: BoardProps) => {
           );
         })}
       </div>
-      <div className="mine-sweeper-messages">
+      <div className={styles['mine-sweeper-messages']}>
         <div data-testid="game-info">
           <span>Mines: {mines}</span>
         </div>
         <button
           type="button"
           data-testid="reset-button"
-          className="reset-button"
+          className={styles['reset-button']}
           onClick={resetGame}
         >
           Reset Game
         </button>
         <div
           data-testid="game-over"
-          className="end-game-message"
+          className={styles['end-game-message']}
           style={{ display: !isGameOver && !isWinner ? 'none' : 'block' }}
         >
           {isGameOver && !isWinner && <span>Game Over :(</span>}
           {isWinner && (
-            <div className="full-screen-overlay">
+            <div className={styles['full-screen-overlay']}>
               <img
                 src="https://media.giphy.com/media/35HTaxVJWzp2QOShct/giphy.gif"
                 alt="you win game"
@@ -222,7 +226,7 @@ const Board = ({ height, width, mines }: BoardProps) => {
               <button
                 type="button"
                 data-testid="win-reset-button"
-                className="reset-button"
+                className={styles['reset-button']}
                 onClick={resetGame}
               >
                 Play Again

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IShip, Mission } from './ShipInterface';
-import './Ship.css';
+import styles from './Ship.module.css';
 
 const Ship = ({ ship }: IShip) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,11 @@ const Ship = ({ ship }: IShip) => {
   };
 
   return (
-    <div className="ship-card" data-testid={`ship-${ship.id}`} key={ship.id}>
+    <div
+      className={styles['ship-card']}
+      data-testid={`ship-${ship.id}`}
+      key={ship.id}
+    >
       <h2>{ship.name}</h2>
       {ship.image ? (
         <img
@@ -22,7 +26,7 @@ const Ship = ({ ship }: IShip) => {
       ) : (
         <div data-testid={`ship-no-image-${ship.id}`}>No Image Available</div>
       )}
-      <div className="ship-card-body">
+      <div className={styles['ship-card-body']}>
         <div>
           <strong>Status:</strong> {ship.active ? 'Active' : 'Inactive'}
         </div>
@@ -57,8 +61,8 @@ const Ship = ({ ship }: IShip) => {
         Missions
       </button>
       {isOpen ? (
-        <div className="modal" data-testid={`missions-modal-${ship.id}`}>
-          <div className="modal-content">
+        <div className={styles.modal} data-testid={`missions-modal-${ship.id}`}>
+          <div className={styles['modal-content']}>
             <button
               type="button"
               onClick={handleMissionOpening}

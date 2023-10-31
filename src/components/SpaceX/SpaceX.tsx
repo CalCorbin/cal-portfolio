@@ -1,10 +1,9 @@
-import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import './SpaceX.css';
 import Ship from '../../components/Ship/Ship';
 import Header from '../../components/Header/Header';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
 import { IShip } from '../../components/Ship/ShipInterface';
+import styles from './SpaceX.module.css';
 
 export const GET_SHIPS = gql`
   query {
@@ -31,13 +30,13 @@ const SpaceX = () => {
   if (error) return <p data-testid="error-state">Error...</p>;
 
   return (
-    <div data-testid="spacex-page" className="spacex-page">
+    <div data-testid="spacex-page" className={styles['spacex-page']}>
       <Header
         title="SpaceX Marine Transport Ships"
         repoLink="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX/SpaceX.tsx"
       />
       <hr />
-      <div className="ship-container">
+      <div className={styles['ship-container']}>
         {data.ships.map((ship: IShip['ship']) => (
           <Ship key={ship.id} ship={ship} />
         ))}

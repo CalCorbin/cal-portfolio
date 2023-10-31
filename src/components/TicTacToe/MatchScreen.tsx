@@ -1,9 +1,9 @@
-import Loading from '../Loading';
-import './MatchScreen.css';
+import Loading from '../Loading/Loading';
+import styles from './MatchScreen.module.css';
 
 const MatchScreen = () => (
-  <div className="tictactoe-background">
-    <div className="match-screen" data-testid="match-screen">
+  <div className={styles['tictactoe-background']}>
+    <div className={styles['match-screen']} data-testid="match-screen">
       <div>Finding an opponent...</div>
       <Loading />
     </div>

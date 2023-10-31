@@ -1,11 +1,10 @@
-import React from 'react';
 import Board from './Board';
 import Header from '../Header/Header';
-import './MineSweeper.css';
+import styles from './MineSweeper.module.css';
 
 const MineSweeper = () => (
-  <div className="mine-sweeper" data-testid="mine-sweeper">
-    <div className="mine-sweeper-container">
+  <div className={styles['mine-sweeper']} data-testid="mine-sweeper">
+    <div className={styles['mine-sweeper-container']}>
       <Header
         useDarkMode
         title="Mine Sweeper"
