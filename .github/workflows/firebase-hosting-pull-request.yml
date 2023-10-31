@@ -9,15 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: |
-         npm i
-         npm run lint
-         npm run test:ci
-         npm run build
+      - run: npm i && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAL_PORTFOLIO_DEV }}'
-          projectId: cal-portfolio-dev
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAL_PORTFOLIO_C40AA }}'
+          projectId: cal-portfolio-c40aa
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks

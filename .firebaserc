@@ -2,6 +2,6 @@
   "projects": {
     "production": "cal-portfolio-c40aa",
     "dev": "cal-portfolio-dev",
-    "default": "cal-portfolio-dev"
+    "default": "cal-portfolio-c40aa"
   }
 }
