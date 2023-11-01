@@ -39,7 +39,7 @@ const BoardRow = ({
     <span
       onClick={(e) => onCellClick(e, row, rowIndex)}
       onKeyDown={(e) => onCellClick(e, row, rowIndex)}
-      className={`${styles.cell} ${borderClasses} ${isWinningCell}`}
+      className={`${styles.cell} ${borderClasses} ${styles[isWinningCell]}`}
       data-testid={`cell-${row}-${rowIndex}`}
       role="button"
       tabIndex={0}
