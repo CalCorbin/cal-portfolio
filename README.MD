@@ -13,7 +13,8 @@ This repo hosts the code for my personal developer site. This is always a consta
 1. Clone repo.
 2. Install firebase tools `npm install -g firebase-tools`
 3. Run `npm install` in root project directory.
-4. Run `npm start`, if all goes well the browser will open to `http://localhost:3000`
+4. Run `npm run dev`.
+5. If everything went well, you should be able to open `http://localhost:3000` in your browser and see the site. 
 
 ## Pull Requests
 
@@ -21,7 +22,6 @@ Do the following before creating a pull request.
 1. If you're going to make a change, write at least one test for your change.
 2. Run `npm run lint` and fix any errors
 3. Run `npm run test` and fix any errors
-4. Run `npm run test:ci` and fix any errors
 
 ## Testing
 
