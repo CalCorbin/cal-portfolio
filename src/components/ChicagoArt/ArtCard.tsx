@@ -16,7 +16,10 @@ const ArtCard = ({
         alt={thumbnail?.alt_text || title}
       />
       <div className={styles['art-overlay']}>
-        <div className="art-title" data-testid={`art-listing-title-${imageId}`}>
+        <div
+          className={styles['art-title']}
+          data-testid={`art-listing-title-${imageId}`}
+        >
           {title}
         </div>
         {artistTitle ? (
