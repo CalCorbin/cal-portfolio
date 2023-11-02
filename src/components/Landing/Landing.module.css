@@ -52,13 +52,6 @@
 }
 
 .projectsContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.projectCards {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }

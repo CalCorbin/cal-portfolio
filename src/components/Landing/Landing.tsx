@@ -47,13 +47,12 @@ const Landing = () => (
         </a>
       </div>
     </div>
+
+    <h2 className={styles.projectHeader}>projects</h2>
     <div data-testid="projects-section" className={styles.projectsContainer}>
-      <h2 className={styles.projectHeader}>projects</h2>
-      <div className={styles.projectCards}>
-        {PROJECTS.map((project) => (
-          <Card key={project.id} data={project} />
-        ))}
-      </div>
+      {PROJECTS.map((project) => (
+        <Card key={project.id} data={project} />
+      ))}
     </div>
   </div>
 );
