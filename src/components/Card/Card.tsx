@@ -12,19 +12,19 @@ interface CardProps {
 }
 
 const Card = ({ data }: CardProps) => (
-  <div className={styles['simple-card']} data-testid={`card-${data.id}`}>
+  <div className={styles.simpleCard} data-testid={`card-${data.id}`}>
+    <img
+      style={{ width: '90%', margin: '10px' }}
+      alt={data.title}
+      src={data.img}
+      data-testid={`card-image-${data.id}`}
+    />
     <a
       href={data.link}
       target="_blank"
       rel="noreferrer"
       data-testid={`card-link-${data.id}`}
     >
-      <img
-        style={{ width: '90%', margin: '10px' }}
-        alt={data.title}
-        src={data.img}
-        data-testid={`card-image-${data.id}`}
-      />
       <div>{data.title}</div>
     </a>
   </div>

@@ -9,15 +9,9 @@ import styles from './Landing.module.css';
 const Landing = () => (
   <div data-testid="landing-page" className={styles.landing}>
     <div data-testid="header-title" className={styles.header}>
-      <div className={styles['my-name']}>cal corbin</div>
-      <div data-testid="about-me" className={styles['about-me']}>
-        I am a fullstack software engineer with proven experience in Javascript,
-        Python, and modern Quality Assurance principles. I have a college
-        background in classical music and geography, and I bring that passion
-        for elegance and detail to every aspect of my work. If you are
-        interested in a custom software solution, getting a copy of my resume,
-        or just meeting up for coffee, then reach out to me through email or
-        LinkedIn.
+      <div className={styles.myName}>cal corbin</div>
+      <div data-testid="about-me" className={styles.jobTitle}>
+        software engineer
       </div>
       <div className={styles.social}>
         <a data-testid="cal-email" href="mailto:calcorbin@gmail.com">
@@ -53,11 +47,9 @@ const Landing = () => (
         </a>
       </div>
     </div>
-
-    <div data-testid="projects-section">
-      <div className={styles['section-header']}>projects</div>
-      <hr />
-      <div className={styles['projects-container']}>
+    <div data-testid="projects-section" className={styles.projectsContainer}>
+      <h2 className={styles.projectHeader}>projects</h2>
+      <div className={styles.projectCards}>
         {PROJECTS.map((project) => (
           <Card key={project.id} data={project} />
         ))}
