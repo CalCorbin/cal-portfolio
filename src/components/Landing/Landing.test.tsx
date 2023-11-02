@@ -34,6 +34,6 @@ describe('<Landing />', () => {
   });
 
   it('should render a card', () => {
-    expect(screen.getByTestId('card-link-1')).toBeInTheDocument();
+    expect(screen.getByText(/SpaceX GraphQL/)).toBeInTheDocument();
   });
 });

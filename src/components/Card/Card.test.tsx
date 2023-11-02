@@ -15,10 +15,6 @@ const mockCard = {
   img: 'https://images.unsplash.com/photo-1550479023-2a811e19dfd3',
 };
 
-it('should render', () => {
-  expect(screen.getByTestId('card-1')).toBeInTheDocument();
-});
-
 it('should render title', () => {
   expect(screen.getByText(mockCard.title)).toBeInTheDocument();
 });

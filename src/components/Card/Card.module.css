@@ -10,15 +10,12 @@
   padding: .5rem;
   width: 20rem;
   height: 22rem;
+  text-decoration: none;
+  color: black;
 }
 
 .simpleCard img {
   height: 15rem;
   width: 90%;
   object-fit: cover;
-}
-
-.simpleCard a {
-  text-decoration: none;
-  color: black;
 }
