@@ -9,8 +9,12 @@ describe('<Landing />', () => {
 
   afterEach(cleanup);
 
-  it('should render', () => {
-    expect(screen.getByTestId('landing-page')).toBeInTheDocument();
+  it('should render my name', () => {
+    expect(screen.getByText('cal corbin')).toBeInTheDocument();
+  });
+
+  it('should render job title', () => {
+    expect(screen.getByText('software engineer')).toBeInTheDocument();
   });
 
   it('should render header', () => {
