@@ -8,6 +8,7 @@ package-lock.json
 
 # NextJS
 .next/
+next-env.d.ts
 
 # firebase
 .firebase/
