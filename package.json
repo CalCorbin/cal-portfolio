@@ -9,7 +9,8 @@
     "bump": "npx npm-check-updates -u && npm install",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -58,6 +59,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "babel-jest": "^29.7.0",
+    "cypress": "^13.4.0",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",

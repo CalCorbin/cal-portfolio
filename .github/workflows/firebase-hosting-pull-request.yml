@@ -15,9 +15,16 @@ jobs:
           npm run test:ci
           npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        id: firebase_hosting_preview
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAL_PORTFOLIO_C40AA }}'
           projectId: cal-portfolio-c40aa
+          expires: 1h
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+      - name: Deploy complete
+        run: |
+          echo "Deploy complete"
+          echo "View your PR preview at ${{ steps.firebase_hosting_preview.outputs.previewUrl }}"
+
