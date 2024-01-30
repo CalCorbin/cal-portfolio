@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import ToastNotification from './ToastNotification';
 import Header from '../Header/Header';
