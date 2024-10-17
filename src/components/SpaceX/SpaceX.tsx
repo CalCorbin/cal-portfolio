@@ -33,7 +33,7 @@ const SpaceX = () => {
     <div data-testid="spacex-page" className={styles['spacex-page']}>
       <Header
         title="SpaceX Marine Transport Ships"
-        repoLink="https://github.com/CalCorbin/cal-portfolio/tree/master/src/pages/SpaceX/SpaceX.tsx"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/tree/master/src/components/SpaceX/SpaceX.tsx"
       />
       <hr />
       <div className={styles['ship-container']}>

@@ -65,7 +65,7 @@ const CatChat = () => {
     <div data-testid="cat-chat-page" className={styles['cat-chat-page']}>
       <Header
         title="Cat Chat"
-        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/CatChat/CatChat.tsx"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/CatChat/CatChat.tsx"
       />
       <div className={styles['chat-container']}>
         <div className={styles.messages}>
