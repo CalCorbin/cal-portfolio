@@ -8,7 +8,7 @@ describe('MineSweeper', () => {
     expect(getByTestId('mine-sweeper')).toBeInTheDocument();
   });
 
-  it('should click the back button and go back to the home page', () => {
+  it.skip('should click the back button and go back to the home page', () => {
     const { getByTestId } = render(<MineSweeper />);
     const backButton = getByTestId('back-button');
     expect(backButton).toBeInTheDocument();

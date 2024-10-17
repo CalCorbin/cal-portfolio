@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Card.module.css';
 
 interface CardProps {
@@ -8,6 +7,7 @@ interface CardProps {
     title: string;
     link: string;
     img: string;
+    hasBackButton: boolean;
   };
 }
 
@@ -15,7 +15,7 @@ const Card = ({ data }: CardProps) => (
   <a
     className={styles.simpleCard}
     href={data.link}
-    target="_blank"
+    target={data.hasBackButton ? '_self' : '_blank'}
     rel="noreferrer"
   >
     <img
@@ -30,15 +30,6 @@ const Card = ({ data }: CardProps) => (
 
 Card.defaultProps = {
   data: null,
-};
-
-Card.propTypes = {
-  data: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    img: PropTypes.string,
-    link: PropTypes.string,
-  }),
 };
 
 export default Card;
