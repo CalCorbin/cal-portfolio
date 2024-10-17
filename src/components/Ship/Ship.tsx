@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { IShip, Mission } from './ShipInterface';
 import styles from './Ship.module.css';
 
@@ -91,24 +90,6 @@ const Ship = ({ ship }: IShip) => {
 
 Ship.defaultProps = {
   ship: null,
-};
-
-Ship.propTypes = {
-  ship: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    home_port: PropTypes.string,
-    active: PropTypes.bool,
-    image: PropTypes.string,
-    url: PropTypes.string,
-    weight_lbs: PropTypes.number,
-    missions: PropTypes.arrayOf(
-      PropTypes.shape({
-        flight: PropTypes.string,
-        name: PropTypes.string,
-      })
-    ),
-  }),
 };
 
 export default Ship;
