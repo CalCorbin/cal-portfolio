@@ -52,7 +52,7 @@ const ChicagoArt = () => {
         <div className={styles['header-overlay']} />
         <div className={styles['search-container']}>
           <Header
-            repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/pages/ChicagoArt/ChicagoArt.tsx"
+            repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/ChicagoArt/ChicagoArt.tsx"
             title="Art Search"
             useDarkMode
           />
