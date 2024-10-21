@@ -8,25 +8,26 @@ interface HeaderProps {
   useDarkMode?: boolean;
 }
 
-const Header = ({ title, repoLink, useDarkMode }: HeaderProps) => {
+const Header = ({ title, repoLink, useDarkMode = false }: HeaderProps) => {
   const color = useDarkMode ? 'white' : 'black';
   return (
-    <div className={styles['header-row']}>
-      <div style={{ color }}>{title}</div>
+    <header
+      className={styles['header-row']}
+      data-testid="project-header"
+      role="banner"
+    >
+      <h1 style={{ color }}>{title}</h1>
       <a
-        data-testid="project-header"
+        data-testid="code-sample-link"
         target="_blank"
         rel="noopener noreferrer"
         href={repoLink}
+        aria-label={`View the code for ${title} on GitHub`}
       >
         <FontAwesomeIcon size="sm" icon={faGithub} style={{ color }} />
       </a>
-    </div>
+    </header>
   );
-};
-
-Header.defaultProps = {
-  useDarkMode: false,
 };
 
 export default Header;
