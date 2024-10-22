@@ -1,4 +1,4 @@
-describe('Furbot e2e tests', () => {
+describe('Furbot', () => {
   beforeEach(() => {
     cy.visit('/');
   });
@@ -10,9 +10,6 @@ describe('Furbot e2e tests', () => {
       .click();
 
     // Verify the github readme page loads for furbot
-    cy.origin('https://github.com', () => {
-      cy.get('div[id="repository-container-header"]').should('be.visible');
-      cy.contains('a', 'furbot').should('be.visible');
-    });
+    cy.assertGithubReadmeLoaded('furbot');
   });
 });

@@ -1,4 +1,4 @@
-describe('Minesweeper e2e tests', () => {
+describe('Minesweeper', () => {
   beforeEach(() => {
     cy.visit('/');
   });
@@ -12,10 +12,6 @@ describe('Minesweeper e2e tests', () => {
     cy.findByRole('link', { name: 'View the code for Mine Sweeper on GitHub' })
       .invoke('removeAttr', 'target')
       .click();
-
-    // Verify the github code example page loads
-    cy.origin('https://github.com', () => {
-      cy.get('div[data-testid="blob-size"]').should('be.visible');
-    });
+    cy.assertGithubCodeExampleLoaded();
   });
 });
