@@ -1,11 +1,14 @@
+import { render, fireEvent, screen } from '@testing-library/react';
 import BackButton from './BackButton';
-import { render, fireEvent } from '@testing-library/react';
 
 describe('<BackButton />', () => {
+  const prepareComponent = () => render(<BackButton />);
+
   it('should fire window.history.back() when clicked', () => {
     const spy = jest.spyOn(window.history, 'back');
-    const { getByTestId } = render(<BackButton />);
-    fireEvent.click(getByTestId('back-button'));
+    prepareComponent();
+
+    fireEvent.click(screen.getByLabelText('Go back'));
     expect(spy).toHaveBeenCalled();
   });
 });

@@ -1,9 +1,11 @@
 import Board from './Board';
 import Header from '../Header/Header';
 import styles from './MineSweeper.module.css';
+import BackButton from '../BackButton/BackButton';
 
 const MineSweeper = () => (
   <div className={styles['mine-sweeper']} data-testid="mine-sweeper">
+    <BackButton />
     <div className={styles['mine-sweeper-container']}>
       <Header
         useDarkMode

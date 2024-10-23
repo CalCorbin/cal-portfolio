@@ -14,7 +14,7 @@ const PROJECTS: Array<Project> = [
     title: 'MineSweeper',
     link: ROUTES.MINESWEEPER,
     img: 'https://images.pexels.com/photos/4811240/pexels-photo-4811240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    hasBackButton: false,
+    hasBackButton: true,
   },
   {
     id: 8,
