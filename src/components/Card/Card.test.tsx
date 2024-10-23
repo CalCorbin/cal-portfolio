@@ -10,7 +10,6 @@ describe('Card', () => {
       title: 'Star Trek Next Generation Elevator Game',
       link: 'https://github.com/CalCorbin/elevatorGame',
       img: 'https://images.unsplash.com/photo-1550479023-2a811e19dfd3',
-      hasBackButton: false,
     },
   };
 
@@ -34,17 +33,5 @@ describe('Card', () => {
       'href',
       initialProps.data.link
     );
-  });
-
-  it('should render _self if hasBackButton is true', async () => {
-    prepareComponent({
-      data: { ...initialProps.data, hasBackButton: true },
-    });
-    expect(screen.getByRole('link')).toHaveAttribute('target', '_self');
-  });
-
-  it('should render _blank if hasBackButton is false', async () => {
-    prepareComponent();
-    expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
   });
 });

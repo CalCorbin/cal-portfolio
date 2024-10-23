@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
 import { IShip } from '../../components/Ship/ShipInterface';
 import styles from './SpaceX.module.css';
+import BackButton from '../BackButton/BackButton';
 
 export const GET_SHIPS = gql`
   query {
@@ -31,6 +32,7 @@ const SpaceX = () => {
 
   return (
     <div data-testid="spacex-page" className={styles['spacex-page']}>
+      <BackButton />
       <Header
         title="SpaceX Marine Transport Ships"
         repoLink="https://github.com/CalCorbin/cal-portfolio/tree/master/src/components/SpaceX/SpaceX.tsx"

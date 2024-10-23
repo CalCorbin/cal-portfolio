@@ -96,4 +96,16 @@ describe('<ChicagoArt />', () => {
     });
     expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
   });
+
+  it('should render back button', () => {
+    setup({
+      data: mockedArt,
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    const backButton = screen.getByLabelText('Go back');
+    expect(backButton).toBeInTheDocument();
+  });
 });

@@ -7,13 +7,11 @@ import {
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TicTacToe from './TicTacToe';
-import { PlayerOption } from './types';
 
 describe('TicTacToe', () => {
-  it('renders TicTacToe component', () => {
-    const playerOption: PlayerOption = 'X';
-    render(<TicTacToe selectedPlayer={playerOption} />);
-    expect(screen.getByTestId('tictactoe-screen')).toBeInTheDocument();
+  it('should render back button', () => {
+    render(<TicTacToe selectedPlayer="X" />);
+    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
   });
 
   it('should render correct player option when player clicks a cell during the game', async () => {

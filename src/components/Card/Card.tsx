@@ -7,7 +7,6 @@ interface CardProps {
     title: string;
     link: string;
     img: string;
-    hasBackButton: boolean;
   };
 }
 
@@ -15,7 +14,7 @@ const Card = ({ data }: CardProps) => (
   <a
     className={styles.simpleCard}
     href={data.link}
-    target={data.hasBackButton ? '_self' : '_blank'}
+    target={'_self'}
     rel="noreferrer"
   >
     <img
