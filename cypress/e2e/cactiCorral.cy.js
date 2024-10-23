@@ -5,7 +5,7 @@ describe('Cacti Corral', () => {
 
   it('should open the Cacti Corral page and view a github code sample', () => {
     // Open the Cacti Corral page
-    cy.contains('a', 'Cacti Corral').invoke('removeAttr', 'target').click();
+    cy.contains('a', 'Cacti Corral').click();
 
     // Verify the Cacti Corral github code example loads
     cy.assertGithubReadmeLoaded('cacti-corral');

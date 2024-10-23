@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import CATPHRASES from '../../constants/catPhrases';
 import Header from '../../components/Header/Header';
 import styles from './CatChat.module.css';
+import BackButton from '../BackButton/BackButton';
 
 interface ChatMessage {
   author: string;
@@ -63,6 +64,7 @@ const CatChat = () => {
 
   return (
     <div data-testid="cat-chat-page" className={styles['cat-chat-page']}>
+      <BackButton />
       <Header
         title="Cat Chat"
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/CatChat/CatChat.tsx"

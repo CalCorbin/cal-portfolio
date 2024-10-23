@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useSearchArtic from '../../hooks/useSearchArtic';
+import BackButton from '../BackButton/BackButton';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
 import ArtCard from './ArtCard';
@@ -50,6 +51,7 @@ const ChicagoArt = () => {
           className={styles['header-image']}
         />
         <div className={styles['header-overlay']} />
+        <BackButton />
         <div className={styles['search-container']}>
           <Header
             repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/ChicagoArt/ChicagoArt.tsx"

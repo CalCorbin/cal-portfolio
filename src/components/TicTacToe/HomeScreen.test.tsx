@@ -5,9 +5,9 @@ import HomeScreen from './HomeScreen';
 describe('Homescreen', () => {
   const setup = () => render(<HomeScreen />);
 
-  it('renders Homescreen component', () => {
+  it('should render back button', () => {
     setup();
-    expect(screen.getByTestId('home-screen')).toBeInTheDocument();
+    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
   });
 
   it('should update active player when player is selected', async () => {

@@ -85,11 +85,8 @@ describe('<SpaceX />', () => {
 
   afterEach(cleanup);
 
-  it('should render spacex page', () => {
-    expect(screen.getByTestId('spacex-page')).toBeInTheDocument();
-    expect(
-      screen.getByText(/SpaceX Marine Transport Ships/)
-    ).toBeInTheDocument();
+  it('should render back button', () => {
+    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
   });
 
   it('should render three ships', () => {
