@@ -6,8 +6,10 @@ describe('MineSweeper', () => {
   const prepareComponent = () => render(<MineSweeper />);
   afterEach(cleanup);
 
-  it('should render back button', () => {
+  it('should render', () => {
     prepareComponent();
-    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Mine Sweeper' })
+    ).toBeInTheDocument();
   });
 });

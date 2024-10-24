@@ -18,10 +18,6 @@ describe('<CatChat/>', () => {
 
   afterEach(cleanup);
 
-  it('should render back button', () => {
-    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
-  });
-
   it('should render disabled send button', () => {
     expect(screen.getByTestId('send-button')).toBeDisabled();
   });

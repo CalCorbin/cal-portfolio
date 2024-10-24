@@ -16,16 +16,4 @@ describe('Chicago Art', () => {
       .click();
     cy.assertGithubCodeExampleLoaded();
   });
-
-  it('should open the Chicago Art page, then navigate back to the home page', () => {
-    // Open the Chicago Art page
-    cy.contains('a', 'Art Institute of Chicago Search').click();
-
-    // Verify the Chicago Art page loads and navigate back to the home page
-    cy.contains('h1', 'Art Search').should('be.visible');
-    cy.contains('button', 'Back').click();
-
-    // Verify the home page loads
-    cy.contains('div', 'cal corbin').should('be.visible');
-  });
 });
