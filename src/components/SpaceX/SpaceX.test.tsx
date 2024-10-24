@@ -85,10 +85,6 @@ describe('<SpaceX />', () => {
 
   afterEach(cleanup);
 
-  it('should render back button', () => {
-    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
-  });
-
   it('should render three ships', () => {
     expect(screen.getByTestId('ship-GOMSTREE')).toBeInTheDocument();
     expect(screen.getByTestId('ship-GOPURSUIT')).toBeInTheDocument();

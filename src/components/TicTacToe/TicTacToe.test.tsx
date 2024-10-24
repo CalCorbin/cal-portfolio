@@ -9,11 +9,6 @@ import '@testing-library/jest-dom';
 import TicTacToe from './TicTacToe';
 
 describe('TicTacToe', () => {
-  it('should render back button', () => {
-    render(<TicTacToe selectedPlayer="X" />);
-    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
-  });
-
   it('should render correct player option when player clicks a cell during the game', async () => {
     render(<TicTacToe selectedPlayer="O" />);
 

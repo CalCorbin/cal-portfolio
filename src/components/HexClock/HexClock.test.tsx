@@ -30,10 +30,6 @@ describe('<HexClock />', () => {
       expect(screen.getByText(/exotic banana/)).toBeInTheDocument()
     );
   });
-
-  it('should render back button', () => {
-    expect(screen.getByLabelText('Go back')).toBeInTheDocument();
-  });
 });
 
 describe('Testing time with zeros', () => {

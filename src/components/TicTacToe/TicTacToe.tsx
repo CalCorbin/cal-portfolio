@@ -2,7 +2,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import ToastNotification from './ToastNotification';
 import Header from '../Header/Header';
-import BackButton from '../BackButton/BackButton';
 import BoardRow from './BoardRow';
 import useCheckForWinner from './hooks/useCheckForWinner';
 import getCpuTurn from './functions/getCpuTurn';
@@ -141,7 +140,6 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
   return (
     <div className={styles['tictactoe-background']}>
       <div className={styles.container}>
-        <BackButton />
         <Header
           title="Tic Tac Toe"
           repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"

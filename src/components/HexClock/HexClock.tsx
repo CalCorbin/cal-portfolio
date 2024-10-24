@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
-import BackButton from '../BackButton/BackButton';
 import styles from './HexClock.module.css';
 
 const HexClock = () => {
@@ -47,7 +46,6 @@ const HexClock = () => {
       id="hex"
       className={styles['hexclock-page']}
     >
-      <BackButton />
       <Header
         title="HexClock"
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/HexClock/HexClock.tsx"

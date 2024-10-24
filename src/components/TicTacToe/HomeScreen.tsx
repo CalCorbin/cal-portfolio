@@ -2,7 +2,6 @@ import { useState } from 'react';
 import MatchScreen from './MatchScreen';
 import TicTacToe from './TicTacToe';
 import Header from '../Header/Header';
-import BackButton from '../BackButton/BackButton';
 import { PlayerOption } from './types';
 import styles from './HomeScreen.module.css';
 
@@ -46,7 +45,6 @@ const HomeScreen = () => {
         <TicTacToe selectedPlayer={selectedPlayer} />
       ) : (
         <>
-          <BackButton />
           <Header
             title="Tic Tac Toe"
             repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
