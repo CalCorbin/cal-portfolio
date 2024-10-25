@@ -34,9 +34,15 @@
   justify-content: center;
 }
 
-.social-icon {
+.socialIcon {
   margin: .5rem .5rem 2rem;
   color: black;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.socialIcon:hover {
+  transform: scale(1.2);
+  color: #1e90ff;
 }
 
 .landing hr {

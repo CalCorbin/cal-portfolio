@@ -18,7 +18,7 @@ const Landing = () => (
           <FontAwesomeIcon
             size="2x"
             icon={faEnvelope}
-            className={styles['social-icon']}
+            className={styles.socialIcon}
           />
         </a>
         <a
@@ -30,7 +30,7 @@ const Landing = () => (
           <FontAwesomeIcon
             size="2x"
             icon={faLinkedin}
-            className={styles['social-icon']}
+            className={styles.socialIcon}
           />
         </a>
         <a
@@ -42,7 +42,7 @@ const Landing = () => (
           <FontAwesomeIcon
             size="2x"
             icon={faGithub}
-            className={styles['social-icon']}
+            className={styles.socialIcon}
           />
         </a>
       </div>
