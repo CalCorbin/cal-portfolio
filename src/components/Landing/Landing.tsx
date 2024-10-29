@@ -23,7 +23,7 @@ const Landing = () => (
         </a>
         <a
           data-testid="cal-linkedin"
-          target="_blank"
+          target="_self"
           rel="noopener noreferrer"
           href="https://www.linkedin.com/in/calcorbin/"
         >
@@ -35,7 +35,7 @@ const Landing = () => (
         </a>
         <a
           data-testid="cal-github"
-          target="_blank"
+          target="_self"
           rel="noopener noreferrer"
           href="https://github.com/CalCorbin"
         >
