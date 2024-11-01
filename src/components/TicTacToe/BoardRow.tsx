@@ -17,7 +17,7 @@ const BoardRow = ({
   rowIndex,
   onCellClick,
   board,
-  winningCells,
+  winningCells = [],
 }: BoardRowProps) => {
   let borderClasses = '';
 
@@ -47,10 +47,6 @@ const BoardRow = ({
       {board[row][rowIndex]}
     </span>
   );
-};
-
-BoardRow.defaultProps = {
-  winningCells: [],
 };
 
 export default BoardRow;
