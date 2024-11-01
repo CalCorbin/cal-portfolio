@@ -13,7 +13,7 @@ describe('<HexClock />', () => {
       })
     );
 
-    console.error = jest.fn(); // eslint-disable-line no-console
+    console.error = jest.fn();
 
     render(<HexClock />);
   });
