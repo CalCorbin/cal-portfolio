@@ -9,3 +9,4 @@
 - Fix fetch-mock dependency weirdness
 - Figure out the following warning from Next.js:
   -  `⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload`
+- Convert `master` branch to `main`

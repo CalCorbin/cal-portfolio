@@ -8,18 +8,14 @@ import styles from './Landing.module.css';
 
 const Landing = () => (
   <div data-testid="landing-page" className={styles.landing}>
-    <div data-testid="header-title" className={styles.header}>
-      <div className={styles.myName}>cal corbin</div>
+    <header data-testid="header-title" className={styles.header}>
+      <h1>cal corbin</h1>
       <div data-testid="about-me" className={styles.jobTitle}>
         software engineer
       </div>
       <div className={styles.social}>
         <a data-testid="cal-email" href="mailto:calcorbin@gmail.com">
-          <FontAwesomeIcon
-            size="2x"
-            icon={faEnvelope}
-            className={styles.socialIcon}
-          />
+          <FontAwesomeIcon size="2x" icon={faEnvelope} />
         </a>
         <a
           data-testid="cal-linkedin"
@@ -27,11 +23,7 @@ const Landing = () => (
           rel="noopener noreferrer"
           href="https://www.linkedin.com/in/calcorbin/"
         >
-          <FontAwesomeIcon
-            size="2x"
-            icon={faLinkedin}
-            className={styles.socialIcon}
-          />
+          <FontAwesomeIcon size="2x" icon={faLinkedin} />
         </a>
         <a
           data-testid="cal-github"
@@ -39,16 +31,11 @@ const Landing = () => (
           rel="noopener noreferrer"
           href="https://github.com/CalCorbin"
         >
-          <FontAwesomeIcon
-            size="2x"
-            icon={faGithub}
-            className={styles.socialIcon}
-          />
+          <FontAwesomeIcon size="2x" icon={faGithub} />
         </a>
       </div>
-    </div>
-
-    <h2 className={styles.projectHeader}>projects</h2>
+    </header>
+    <h2>projects</h2>
     <div data-testid="projects-section" className={styles.projectsContainer}>
       {PROJECTS.map((project) => (
         <Card key={project.id} data={project} />
