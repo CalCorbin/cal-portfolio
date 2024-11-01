@@ -27,8 +27,4 @@ const Card = ({ data }: CardProps) => (
   </a>
 );
 
-Card.defaultProps = {
-  data: null,
-};
-
 export default Card;
