@@ -9,6 +9,8 @@ const Ship = ({ ship }: IShip) => {
     setIsOpen((prev) => !prev);
   };
 
+  if (!ship) return null;
+
   return (
     <div
       className={styles['ship-card']}
@@ -86,10 +88,6 @@ const Ship = ({ ship }: IShip) => {
       ) : null}
     </div>
   );
-};
-
-Ship.defaultProps = {
-  ship: null,
 };
 
 export default Ship;

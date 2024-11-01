@@ -8,6 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
+import pluginCypress from 'eslint-plugin-cypress/flat';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,6 +19,7 @@ const compat = new FlatCompat({
 });
 
 export default [
+  // Files to ignore
   {
     ignores: [
       'build/*.js',
@@ -38,7 +40,6 @@ export default [
       import: fixupPluginRules(_import),
       '@typescript-eslint': typescriptEslint,
     },
-
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -46,41 +47,36 @@ export default [
         ...globals.jest,
         ...globals.node,
       },
-
       parser: tsParser,
     },
-
     settings: {
       'import/parsers': {
         '@typescript-eslint/parser': ['.ts', '.tsx'],
       },
-
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
           project: './tsconfig.json',
         },
       },
-
       react: {
         version: 'detect',
       },
     },
-
     rules: {
       'react/jsx-filename-extension': 0,
       'no-underscore-dangle': 0,
       'func-names': 0,
       'no-use-before-define': 0,
-
       'react/function-component-definition': [
         2,
         {
           namedComponents: 'arrow-function',
         },
       ],
-
       'react/react-in-jsx-scope': 0,
     },
   },
+  // Cypress
+  pluginCypress.configs.recommended,
 ];

@@ -29,9 +29,9 @@ const mockShip: IShip = {
 describe('<Ship />', () => {
   afterEach(cleanup);
 
-  it('should render', () => {
-    render(<Ship ship={mockShip.ship} />);
-    expect(screen.getByTestId('ship-GOMSTREE')).toBeInTheDocument();
+  it('should not render with null data', () => {
+    render(<Ship />);
+    expect(screen.queryByTestId('ship-GOMSTREE')).toBeNull();
   });
 
   it('should render weightless ship', () => {
