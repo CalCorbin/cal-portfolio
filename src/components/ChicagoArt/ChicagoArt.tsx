@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useSearchArtic from '../../hooks/useSearchArtic';
@@ -9,7 +9,7 @@ import { ArtProps } from './ChicagoArtInterface';
 import styles from './ChicagoArt.module.css';
 
 const ChicagoArt = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('still life');
   const [enableSearch, setEnableSearch] = useState(false);
 
   const {
@@ -20,12 +20,17 @@ const ChicagoArt = () => {
   } = useSearchArtic(searchTerm, enableSearch);
 
   /**
+   * @description - Fire useEffect on page load to return default set of images.
+   */
+  useEffect(() => setEnableSearch(true), []);
+
+  /**
    * @description - This function is used to handle the search input. The search query
    * hook is disabled until the user clicks the search button.
    * @param e - React.ChangeEvent<HTMLInputElement>
    */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (enableSearch) setEnableSearch(false);
+    setEnableSearch(false);
     setSearchTerm(e.target.value);
   };
 
@@ -85,7 +90,7 @@ const ChicagoArt = () => {
         <div className={styles['result-container']}>
           {art?.map((item: ArtProps) => (
             <ArtCard
-              key={item.image_id}
+              key={item?.image_id}
               title={item.title}
               artist_title={item.artist_title}
               artist_id={item.artist_id}
