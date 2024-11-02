@@ -2,6 +2,7 @@
 
 - Create hover state for cards that shows a description of the project
 - Create a new page for the blog
+- Add ability to click the name of a result on Chicago Art and go to the detail page for that item
 - Create automated package versioning that informs me of errors
 - Create a websocket project that allows users to draw together
 - Add 'no .only' rule to eslint
