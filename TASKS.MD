@@ -1,5 +1,6 @@
 # Portfolio Task List
 
+- Create linked list visualizer
 - Create hover state for cards that shows a description of the project
 - Create a new page for the blog
 - Add ability to click the name of a result on Chicago Art and go to the detail page for that item
