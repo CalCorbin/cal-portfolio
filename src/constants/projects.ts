@@ -44,7 +44,8 @@ const PROJECTS: Array<Project> = [
     title: 'Cat Chat',
     link: ROUTES.CATCHAT,
     img: 'https://images.unsplash.com/photo-1549545931-59bf067af9ab',
-    description: 'Chat with a ornery virtual cat. See what the cat has to say!',
+    description:
+      'Chat with an ornery virtual cat. See what the cat has to say!',
   },
   {
     id: 9,
