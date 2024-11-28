@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import CATPHRASES from '../../constants/catPhrases';
 import Header from '../../components/Header/Header';
-import HelmetData from '../HelmetData/HelmetData';
+import MetaDataTags from '../MetaDataTags/MetaDataTags';
 import PROJECTS from '../../constants/projects';
 import styles from './CatChat.module.css';
 
@@ -67,7 +67,7 @@ const CatChat = () => {
 
   return (
     <div data-testid="cat-chat-page" className={styles['cat-chat-page']}>
-      <HelmetData
+      <MetaDataTags
         title={catChatData.title}
         description={catChatData.description}
         image={catChatData.img}
