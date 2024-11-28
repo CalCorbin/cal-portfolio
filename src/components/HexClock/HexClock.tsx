@@ -7,7 +7,6 @@ const HexClock = () => {
   const [hex, setHex] = useState<string | null>(null);
   const [colorName, setColorName] = useState('n/a');
 
-  let timer: NodeJS.Timeout;
   useEffect(() => {
     const setUpTime = () => {
       const date = new Date();
@@ -33,7 +32,7 @@ const HexClock = () => {
 
     setUpTime();
     fetchColorName();
-    setTimeout(setUpTime, 1000);
+    const timer = setTimeout(setUpTime, 1000);
 
     return () => {
       clearTimeout(timer);
