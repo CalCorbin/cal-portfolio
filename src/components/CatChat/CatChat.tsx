@@ -1,7 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import CATPHRASES from '../../constants/catPhrases';
 import Header from '../../components/Header/Header';
+import HelmetData from '../HelmetData/HelmetData';
+import PROJECTS from '../../constants/projects';
 import styles from './CatChat.module.css';
+
+const catChatData = PROJECTS[4];
 
 interface ChatMessage {
   author: string;
@@ -63,6 +67,12 @@ const CatChat = () => {
 
   return (
     <div data-testid="cat-chat-page" className={styles['cat-chat-page']}>
+      <HelmetData
+        title={catChatData.title}
+        description={catChatData.description}
+        image={catChatData.img}
+        url={`https://calcorbin.com${catChatData.link}`}
+      />
       <Header
         title="Cat Chat"
         repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/CatChat/CatChat.tsx"
