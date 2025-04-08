@@ -10,6 +10,7 @@ const Landing = () => (
   <div data-testid="landing-page" className={styles.landing}>
     <header data-testid="header-title" className={styles.header}>
       <h1>cal corbin</h1>
+      <h2>Hailtrace demo</h2>
       <div data-testid="about-me" className={styles.jobTitle}>
         software engineer
       </div>
