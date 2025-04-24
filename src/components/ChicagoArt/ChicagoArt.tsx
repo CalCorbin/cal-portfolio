@@ -67,7 +67,7 @@ const ChicagoArt = () => {
           </p>
           <div className={styles.searchBar}>
             <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
-            <form onSubmit={handleSubmit} className={styles.searchForm}>
+            <form onSubmit={handleSubmit}>
               <input
                 id="search"
                 type="text"
