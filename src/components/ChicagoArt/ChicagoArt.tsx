@@ -47,15 +47,15 @@ const ChicagoArt = () => {
   if (isError) return <div>Something went wrong</div>;
 
   return (
-    <div className={styles['art-page']} data-testid="chicago-art">
-      <div className={styles['header-container']}>
+    <div className={styles.artPage} data-testid="chicago-art">
+      <div className={styles.headerContainer}>
         <img
           src="https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/843,/0/default.jpg"
           alt="water lily pond"
-          className={styles['header-image']}
+          className={styles.headerImage}
         />
-        <div className={styles['header-overlay']} />
-        <div className={styles['search-container']}>
+        <div className={styles.headerOverlay} />
+        <div className={styles.searchContainer}>
           <Header
             repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/ChicagoArt/ChicagoArt.tsx"
             title="Art Search"
@@ -65,12 +65,9 @@ const ChicagoArt = () => {
             Enter a search term below and explore thousands of images from the
             digital collection of the Art Institute of Chicago.
           </p>
-          <div className={styles['search-bar']}>
-            <FontAwesomeIcon
-              icon={faSearch}
-              className={styles['search-icon']}
-            />
-            <form onSubmit={handleSubmit} className={styles['search-form']}>
+          <div className={styles.searchBar}>
+            <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
+            <form onSubmit={handleSubmit} className={styles.searchForm}>
               <input
                 id="search"
                 type="text"
@@ -87,7 +84,7 @@ const ChicagoArt = () => {
       {isLoading || isFetching ? (
         <Loading />
       ) : (
-        <div className={styles['result-container']}>
+        <div className={styles.resultContainer}>
           {art?.map((item: ArtProps) => (
             <ArtCard
               key={item?.image_id}
