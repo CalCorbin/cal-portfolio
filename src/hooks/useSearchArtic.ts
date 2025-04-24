@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import API_URLS from '../constants/apiUrls';
 
 interface collectionDataResponse {
@@ -46,14 +46,12 @@ const searchArtic = async (searchTerm: string) => {
  * @param enabled {boolean} - Whether or not to fetch data
  */
 export default function useSearchArtic(searchTerm: string, enabled: boolean) {
-  return useQuery(
-    ['searchResults', searchTerm],
-    () => searchArtic(searchTerm),
-    {
-      staleTime: 1000 * 60,
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      enabled,
-    }
-  );
+  return useQuery({
+    queryKey: ['searchResults', searchTerm],
+    queryFn: () => searchArtic(searchTerm),
+    staleTime: 1000 * 60,
+    gcTime: 1000 * 60,
+    refetchOnWindowFocus: false,
+    enabled,
+  });
 }
