@@ -17,8 +17,11 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Run tests
-        run: npm run test:ci -- --no-experimental-fetch
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run unit and integration tests
+        run: npm run test -- --no-experimental-fetch
 
       - name: Build project
         run: npm run build

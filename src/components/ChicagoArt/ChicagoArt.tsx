@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useSearchArtic from '../../hooks/useSearchArtic';
@@ -9,20 +9,15 @@ import { ArtProps } from './ChicagoArtInterface';
 import styles from './ChicagoArt.module.css';
 
 const ChicagoArt = () => {
+  const [searchValue, setSearchValue] = useState('still life');
   const [searchTerm, setSearchTerm] = useState('still life');
-  const [enableSearch, setEnableSearch] = useState(false);
 
   const {
     data: art,
     isLoading,
     isFetching,
     isError,
-  } = useSearchArtic(searchTerm, enableSearch);
-
-  /**
-   * @description - Fire useEffect on page load to return default set of images.
-   */
-  useEffect(() => setEnableSearch(true), []);
+  } = useSearchArtic(searchTerm);
 
   /**
    * @description - This function is used to handle the search input. The search query
@@ -30,8 +25,7 @@ const ChicagoArt = () => {
    * @param e - React.ChangeEvent<HTMLInputElement>
    */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEnableSearch(false);
-    setSearchTerm(e.target.value);
+    setSearchValue(e.target.value);
   };
 
   /**
@@ -41,7 +35,7 @@ const ChicagoArt = () => {
    */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setEnableSearch(true);
+    setSearchTerm(searchValue);
   };
 
   if (isError) return <div>Something went wrong</div>;
@@ -58,13 +52,8 @@ const ChicagoArt = () => {
         <div className={styles.searchContainer}>
           <Header
             repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/ChicagoArt/ChicagoArt.tsx"
-            title="Art Search"
-            useDarkMode
+            title="Chicago Art Institute Explorer"
           />
-          <p>
-            Enter a search term below and explore thousands of images from the
-            digital collection of the Art Institute of Chicago.
-          </p>
           <div className={styles.searchBar}>
             <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
             <form onSubmit={handleSubmit}>
@@ -77,6 +66,13 @@ const ChicagoArt = () => {
                 aria-label="Enter a search term"
                 onChange={handleChange}
               />
+              <button
+                type="submit"
+                data-testid="search-button"
+                className={styles.searchButton}
+              >
+                Search
+              </button>
             </form>
           </div>
         </div>
