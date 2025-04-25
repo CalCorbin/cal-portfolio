@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "lint": "npx eslint src/ cypress/",
-    "test:ci": "npm run lint && npm run test",
+    "test:ci": "npm run lint && npm run test && cypress run",
     "bump": "npx npm-check-updates -u && npm install",
     "dev": "next dev",
     "build": "next build",

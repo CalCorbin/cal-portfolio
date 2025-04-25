@@ -69,7 +69,7 @@ describe('useSearchArtic', () => {
   );
 
   it('should return the correct data from useSearchArtic', async () => {
-    const { result } = renderHook(() => useSearchArtic('samurai', true), {
+    const { result } = renderHook(() => useSearchArtic('samurai'), {
       wrapper: createWrapper(),
     });
 

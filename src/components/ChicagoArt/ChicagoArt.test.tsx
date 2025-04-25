@@ -68,7 +68,7 @@ describe('<ChicagoArt />', () => {
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
-  it('should enter text in the search bar and click search button', async () => {
+  it('should enter text in the search bar and submit search', async () => {
     setup({
       data: mockedArt,
       isLoading: false,
@@ -76,15 +76,20 @@ describe('<ChicagoArt />', () => {
       isError: false,
     });
 
-    // Enter text in search bar and submit
+    // Enter text in search bar
     const searchInput = screen.getByTestId('search-input');
     fireEvent.change(searchInput, { target: { value: 'monet is an artist' } });
-    fireEvent.submit(searchInput);
 
-    // Update search term and submit
+    // Find and click the search button to submit
+    const searchButton = screen.getByTestId('search-button');
+    fireEvent.click(searchButton);
+
+    // Verify the input value and submit again with a new value
     await waitFor(() => expect(searchInput).toHaveValue('monet is an artist'));
     fireEvent.change(searchInput, { target: { value: 'cal is an artist' } });
-    fireEvent.submit(searchInput);
+
+    // Click the search button again
+    fireEvent.click(searchButton);
   });
 
   it('should render error state', () => {
