@@ -47,7 +47,7 @@ const HomeScreen = () => {
         <>
           <Header
             title="Tic Tac Toe"
-            repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
+            repoLink="https://github.com/CalCorbin/cal-portfolio/blob/main/src/components/TicTacToe/TicTacToe.tsx"
           />
           <div className={styles.item}>WELCOME</div>
           <div className={styles.item}>PICK YOUR PLAYER</div>

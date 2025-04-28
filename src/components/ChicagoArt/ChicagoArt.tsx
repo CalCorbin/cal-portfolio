@@ -51,7 +51,7 @@ const ChicagoArt = () => {
         <div className={styles.headerOverlay} />
         <div className={styles.searchContainer}>
           <Header
-            repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/ChicagoArt/ChicagoArt.tsx"
+            repoLink="https://github.com/CalCorbin/cal-portfolio/blob/main/src/components/ChicagoArt/ChicagoArt.tsx"
             title="Chicago Art Institute Explorer"
           />
           <div className={styles.searchBar}>
