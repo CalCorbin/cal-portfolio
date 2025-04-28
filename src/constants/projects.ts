@@ -78,7 +78,7 @@ const PROJECTS: Array<Project> = [
   {
     id: 5,
     title: 'Test Driven Development',
-    link: 'https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/CatChat/CatChat.test.tsx',
+    link: 'https://github.com/CalCorbin/cal-portfolio/blob/main/src/components/CatChat/CatChat.test.tsx',
     img: 'https://images.unsplash.com/photo-1546833998-877b37c2e5c6',
     description:
       'A example of Test Driven Development using Jest and React Testing Library.',

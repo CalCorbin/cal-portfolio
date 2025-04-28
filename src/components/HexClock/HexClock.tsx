@@ -47,7 +47,7 @@ const HexClock = () => {
     >
       <Header
         title="HexClock"
-        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/HexClock/HexClock.tsx"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/main/src/components/HexClock/HexClock.tsx"
         useDarkMode
       />
       <div className={styles['hex-content']}>

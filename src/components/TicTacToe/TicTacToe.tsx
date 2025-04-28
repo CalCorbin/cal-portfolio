@@ -142,7 +142,7 @@ const TicTacToe = ({ selectedPlayer }: TicTacToeProps) => {
       <div className={styles.container}>
         <Header
           title="Tic Tac Toe"
-          repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/TicTacToe/TicTacToe.tsx"
+          repoLink="https://github.com/CalCorbin/cal-portfolio/blob/main/src/components/TicTacToe/TicTacToe.tsx"
         />
         <ToastNotification message="NOW IN GAME" deleteTime={2000} />
         <div className={styles['current-turn']} data-testid="turn-display">

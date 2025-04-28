@@ -75,7 +75,7 @@ const CatChat = () => {
       />
       <Header
         title="Cat Chat"
-        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/master/src/components/CatChat/CatChat.tsx"
+        repoLink="https://github.com/CalCorbin/cal-portfolio/blob/main/src/components/CatChat/CatChat.tsx"
       />
       <div className={styles['chat-container']}>
         <div className={styles.messages}>
