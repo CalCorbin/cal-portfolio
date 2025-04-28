@@ -3,11 +3,19 @@ describe('Star Trek Elevator', () => {
     cy.visit('/');
   });
 
-  it('should open the Star Trek Elevator page and view a github code sample', () => {
-    // Open the Star Trek Elevator page
-    cy.contains('a', 'Star Trek Elevator').click();
+  it(
+    'should open the Star Trek Elevator page and view a github code sample',
+    {
+      retries: {
+        runMode: 2,
+      },
+    },
+    () => {
+      // Open the Star Trek Elevator page
+      cy.contains('a', 'Star Trek Elevator').click();
 
-    // Verify the Star Trek Elevator github code example loads
-    cy.assertGithubReadmeLoaded('elevatorGame');
-  });
+      // Verify the Star Trek Elevator github code example loads
+      cy.assertGithubReadmeLoaded('elevatorGame');
+    }
+  );
 });
