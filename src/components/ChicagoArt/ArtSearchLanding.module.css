@@ -1,0 +1,39 @@
+.landingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-family: 'Poppins', sans-serif; /* Modern sans-serif font */
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #4568dc, #b06ab3);
+    border-radius: 2px;
+}
+
+.title:hover::after {
+    width: 100px;
+    transition: width 0.3s ease;
+}

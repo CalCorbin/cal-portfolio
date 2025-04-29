@@ -1,7 +1,7 @@
-import ChicagoArt from '../components/ChicagoArt/ChicagoArt';
+import ArtSearchLanding from '../components/ChicagoArt/ArtSearchLanding';
 
 const ChicagoArtPage = () => {
-  return <ChicagoArt />;
+  return <ArtSearchLanding />;
 };
 
 export default ChicagoArtPage;
