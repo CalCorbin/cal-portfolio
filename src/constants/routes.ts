@@ -5,7 +5,7 @@ const ROUTES = {
   CATCHAT: '/catchat',
   HEXCLOCK: '/hexclock',
   MAGICNUMBER: '/magicnumber',
-  CHICAGOART: '/chicagoart',
+  CHICAGOART: '/chicago-art',
   TICTACTOE: '/tictactoe',
   MINESWEEPER: '/minesweeper',
 };

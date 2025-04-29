@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ChicagoArt from './ChicagoArt';
+import SearchResults from './SearchResults';
 import useSearchArtic from '../../hooks/useSearchArtic';
 import { ArtProps } from './ChicagoArtInterface';
 
@@ -43,13 +43,13 @@ const mockedArt: Array<ArtProps> = [
   },
 ];
 
-describe('<ChicagoArt />', () => {
+describe('<SearchResults />', () => {
   const queryClient = new QueryClient();
   const setup = (mockedQueryResults: MockedQueryResults) => {
     mockedUseSearchArtic.mockReturnValue(mockedQueryResults);
     render(
       <QueryClientProvider client={queryClient}>
-        <ChicagoArt />
+        <SearchResults />
       </QueryClientProvider>
     );
   };

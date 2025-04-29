@@ -1,13 +1,26 @@
-import styles from './SearchBar.module.css';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import styles from './SearchBar.module.css';
 
-type SearchBarProps = {
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const router = useRouter();
 
-const SearchBar = ({ handleSubmit, handleChange }: SearchBarProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      router.push(
+        `/chicago-art/search?q=${encodeURIComponent(searchTerm.trim())}`
+      );
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') handleSubmit(e);
   };
