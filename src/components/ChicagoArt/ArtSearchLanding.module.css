@@ -11,7 +11,7 @@
 }
 
 .title {
-    font-family: 'Poppins', sans-serif; /* Modern sans-serif font */
+    font-family: 'Poppins', sans-serif;
     font-size: 2.5rem;
     font-weight: 300;
     color: #333;
@@ -28,13 +28,14 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
+    width: 3.75rem;
+    height: 0.25rem;
     background: linear-gradient(90deg, #4568dc, #b06ab3);
-    border-radius: 2px;
+    border-radius: 0.125rem;
+    transition: width 0.3s ease;
 }
 
 .title:hover::after {
-    width: 100px;
+    width: 6.25rem;
     transition: width 0.3s ease;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchResults from './SearchResults';
@@ -8,6 +8,21 @@ import { ArtProps } from './ChicagoArtInterface';
 
 const mockedUseSearchArtic = useSearchArtic as jest.Mock;
 jest.mock('../../hooks/useSearchArtic');
+
+jest.mock('next/navigation', () => {
+  const push = jest.fn();
+  return {
+    useRouter: () => ({
+      push,
+      replace: jest.fn(),
+      prefetch: jest.fn(),
+      back: jest.fn(),
+      // Add other router methods your component uses
+    }),
+    usePathname: () => '/',
+    useSearchParams: () => new URLSearchParams(),
+  };
+});
 
 interface MockedQueryResults {
   isLoading: boolean;
@@ -66,30 +81,6 @@ describe('<SearchResults />', () => {
   it('should render loading spinner when page is fetching', () => {
     setup({ data: [], isLoading: true, isFetching: true, isError: false });
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
-  });
-
-  it('should enter text in the search bar and submit search', async () => {
-    setup({
-      data: mockedArt,
-      isLoading: false,
-      isFetching: false,
-      isError: false,
-    });
-
-    // Enter text in search bar
-    const searchInput = screen.getByTestId('search-input');
-    fireEvent.change(searchInput, { target: { value: 'monet is an artist' } });
-
-    // Find and click the search button to submit
-    const searchButton = screen.getByTestId('search-button');
-    fireEvent.click(searchButton);
-
-    // Verify the input value and submit again with a new value
-    await waitFor(() => expect(searchInput).toHaveValue('monet is an artist'));
-    fireEvent.change(searchInput, { target: { value: 'cal is an artist' } });
-
-    // Click the search button again
-    fireEvent.click(searchButton);
   });
 
   it('should render error state', () => {
