@@ -92,4 +92,20 @@ describe('<SearchResults />', () => {
     });
     expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
   });
+
+  it('should render art cards', () => {
+    setup({
+      data: mockedArt,
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    mockedArt.forEach((art) => {
+      expect(screen.getByText(art.title)).toBeInTheDocument();
+      expect(
+        screen.getByTestId(`art-listing-${art.image_id}`)
+      ).toBeInTheDocument();
+    });
+  });
 });
