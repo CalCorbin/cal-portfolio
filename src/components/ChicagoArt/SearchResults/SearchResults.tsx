@@ -4,6 +4,7 @@ import Loading from '../../Loading/Loading';
 import ArtCard from '../ArtCard/ArtCard';
 import { ArtProps } from '../types/ChicagoArtInterface';
 import styles from './SearchResults.module.css';
+import NavBar from '../NavBar/NavBar';
 
 const SearchResults = () => {
   const searchParams = useSearchParams();
@@ -15,6 +16,7 @@ const SearchResults = () => {
 
   return (
     <div data-testid="chicago-art">
+      <NavBar />
       {isLoading || isFetching ? (
         <Loading />
       ) : (

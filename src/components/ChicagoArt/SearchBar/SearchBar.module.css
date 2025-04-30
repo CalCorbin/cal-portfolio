@@ -1,12 +1,13 @@
-.searchContainer {
+.searchForm {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: row;
     align-items: center;
-    padding: 1rem;
+    gap: 0.5rem;
+    position: relative;
+    padding: 0.5rem 1rem;
     margin: 0 auto;
     width: 25rem;
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
+    background-color: #fff;
     color: #333;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1),
@@ -16,56 +17,22 @@
     transition: all 0.3s ease;
 }
 
-.searchContainer input {
-    width: 100%;
-    height: .5rem;
-    padding: .5rem .5rem .5rem 2.5rem;
+.searchForm input {
+    height: 2rem;
     font-size: 1rem;
     border-radius: .25rem;
     outline: none;
     border: none;
-}
-
-@media (max-width: 768px) {
-    .searchContainer {
-        padding: 1.25rem;
-        width: 95%;
-    }
-
-    .searchBar input {
-        font-size: 0.9rem;
-        padding: 0.6rem 3rem 0.6rem 2.25rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .searchContainer {
-        padding: 1rem;
-        top: 40%;
-    }
-
-    .searchBar input {
-        font-size: 0.85rem;
-        padding: 0.5rem 2.5rem 0.5rem 2rem;
-    }
+    width: 100%;
 }
 
 .searchIcon {
-    position: absolute;
-    left: 1rem;
-    z-index: 2;
     color: #5e5c5c;
-    margin: auto;
     width: 1rem;
     height: 1rem;
 }
 
 .searchButton {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
     background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);
     color: #fff;
     border: none;
@@ -78,16 +45,17 @@
     letter-spacing: 0.5px;
     box-shadow: 0 4px 12px rgba(255, 117, 140, 0.3);
     transition: all 0.3s ease;
+    margin-left: auto;
 }
 
 .searchButton:hover {
     background: linear-gradient(135deg, #ff8ebf 0%, #ff8699 100%);
     box-shadow: 0 6px 16px rgba(255, 117, 140, 0.4);
-    transform: translateY(-52%);
+    transform: translateY(-2px);
 }
 
 .searchButton:active {
     background: linear-gradient(135deg, #f06e9c 0%, #f0677b 100%);
     box-shadow: 0 2px 8px rgba(255, 117, 140, 0.2);
-    transform: translateY(-48%);
+    transform: translateY(-1px);
 }
