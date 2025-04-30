@@ -3,11 +3,11 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchResults from './SearchResults';
-import useSearchArtic from '../../hooks/useSearchArtic';
-import { ArtProps } from './ChicagoArtInterface';
+import useSearchArtic from '../../../hooks/useSearchArtic';
+import { ArtProps } from '../types/ChicagoArtInterface';
 
 const mockedUseSearchArtic = useSearchArtic as jest.Mock;
-jest.mock('../../hooks/useSearchArtic');
+jest.mock('../../../hooks/useSearchArtic');
 
 jest.mock('next/navigation', () => {
   const push = jest.fn();

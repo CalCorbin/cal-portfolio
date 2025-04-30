@@ -1,4 +1,4 @@
-import { ArtProps } from './ChicagoArtInterface';
+import { ArtProps } from '../types/ChicagoArtInterface';
 import styles from './ArtCard.module.css';
 
 const ArtCard = ({

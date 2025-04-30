@@ -1,8 +1,8 @@
 import { useSearchParams } from 'next/navigation';
-import useSearchArtic from '../../hooks/useSearchArtic';
-import Loading from '../../components/Loading/Loading';
-import ArtCard from './ArtCard';
-import { ArtProps } from './ChicagoArtInterface';
+import useSearchArtic from '../../../hooks/useSearchArtic';
+import Loading from '../../Loading/Loading';
+import ArtCard from '../ArtCard/ArtCard';
+import { ArtProps } from '../types/ChicagoArtInterface';
 import styles from './SearchResults.module.css';
 
 const SearchResults = () => {

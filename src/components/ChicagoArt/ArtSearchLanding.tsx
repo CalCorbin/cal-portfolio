@@ -1,4 +1,4 @@
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 import styles from './ArtSearchLanding.module.css';
 
 const ArtSearchLanding = () => {

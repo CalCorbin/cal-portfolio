@@ -1,4 +1,4 @@
-import SearchResults from '../../components/ChicagoArt/SearchResults';
+import SearchResults from '../../components/ChicagoArt/SearchResults/SearchResults';
 
 const SearchResultsPage = () => {
   return <SearchResults />;
