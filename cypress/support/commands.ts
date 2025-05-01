@@ -13,7 +13,17 @@ Cypress.Commands.add('assertGithubCodeExampleLoaded', () => {
 // Custom command for asserting Github README loaded
 Cypress.Commands.add('assertGithubReadmeLoaded', (title: string) => {
   cy.origin('https://github.com', { args: { title } }, ({ title }) => {
-    cy.get('div[id="repository-container-header"]').should('be.visible');
-    cy.contains('a', title).should('be.visible');
+    cy.get('body').then(($body) => {
+      // Check for rate limit message first
+      if ($body.text().includes('You have exceeded a secondary rate limit.')) {
+        cy.contains('You have exceeded a secondary rate limit.').should(
+          'be.visible'
+        );
+      } else {
+        // If no rate limit message, proceed with original assertions
+        cy.get('div[id="repository-container-header"]').should('be.visible');
+        cy.contains('a', title).should('be.visible');
+      }
+    });
   });
 });
