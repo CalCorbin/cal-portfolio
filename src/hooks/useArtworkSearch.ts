@@ -44,7 +44,7 @@ const artworkSearch = async (searchTerm: string) => {
  * React Query hook to fetch art data from the Art Institute of Chicago API
  * @param searchTerm {string} - The search term to use
  */
-export default function useSearchArtic(searchTerm: string) {
+export default function useArtworkSearch(searchTerm: string) {
   return useQuery({
     queryKey: ['searchResults', searchTerm],
     queryFn: () => artworkSearch(searchTerm),

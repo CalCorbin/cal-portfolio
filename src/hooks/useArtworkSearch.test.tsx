@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import useSearchArtic from './useSearchArtic';
+import useArtworkSearch from './useArtworkSearch';
 import API_URLS from '../constants/apiUrls';
 import React from 'react';
 
@@ -28,7 +28,7 @@ const createWrapper = () => {
   };
 };
 
-describe('useSearchArtic hook', () => {
+describe('useArtworkSearch hook', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -91,7 +91,7 @@ describe('useSearchArtic hook', () => {
     });
 
     // Render the hook with a search term
-    const { result } = renderHook(() => useSearchArtic('monet'), {
+    const { result } = renderHook(() => useArtworkSearch('monet'), {
       wrapper: createWrapper(),
     });
 
@@ -135,7 +135,7 @@ describe('useSearchArtic hook', () => {
     (fetch as jest.Mock).mockRejectedValueOnce(new Error('API error'));
 
     // Render the hook
-    const { result } = renderHook(() => useSearchArtic('error-test'), {
+    const { result } = renderHook(() => useArtworkSearch('error-test'), {
       wrapper: createWrapper(),
     });
 
@@ -148,7 +148,7 @@ describe('useSearchArtic hook', () => {
   });
 
   it('should not enable query if search term is empty', async () => {
-    const { result } = renderHook(() => useSearchArtic(''), {
+    const { result } = renderHook(() => useArtworkSearch(''), {
       wrapper: createWrapper(),
     });
 

@@ -3,11 +3,11 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchResults from './SearchResults';
-import useSearchArtic from '../../../hooks/useSearchArtic';
+import useArtworkSearch from '../../../hooks/useArtworkSearch';
 import { ArtProps } from '../types/ChicagoArtInterface';
 
-const mockedUseSearchArtic = useSearchArtic as jest.Mock;
-jest.mock('../../../hooks/useSearchArtic');
+const mockedUseArtworkSearch = useArtworkSearch as jest.Mock;
+jest.mock('../../../hooks/useArtworkSearch');
 
 jest.mock('next/navigation', () => {
   const push = jest.fn();
@@ -17,7 +17,6 @@ jest.mock('next/navigation', () => {
       replace: jest.fn(),
       prefetch: jest.fn(),
       back: jest.fn(),
-      // Add other router methods your component uses
     }),
     usePathname: () => '/',
     useSearchParams: () => new URLSearchParams(),
@@ -61,7 +60,7 @@ const mockedArt: Array<ArtProps> = [
 describe('<SearchResults />', () => {
   const queryClient = new QueryClient();
   const setup = (mockedQueryResults: MockedQueryResults) => {
-    mockedUseSearchArtic.mockReturnValue(mockedQueryResults);
+    mockedUseArtworkSearch.mockReturnValue(mockedQueryResults);
     render(
       <QueryClientProvider client={queryClient}>
         <SearchResults />

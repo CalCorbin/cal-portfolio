@@ -1,5 +1,5 @@
 import { useSearchParams } from 'next/navigation';
-import useSearchArtic from '../../../hooks/useSearchArtic';
+import useArtworkSearch from '../../../hooks/useArtworkSearch';
 import Loading from '../../Loading/Loading';
 import ArtCard from '../ArtCard/ArtCard';
 import { ArtProps } from '../types/ChicagoArtInterface';
@@ -10,7 +10,7 @@ const SearchResults = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
 
-  const { data: art, isLoading, isFetching, isError } = useSearchArtic(query);
+  const { data: art, isLoading, isFetching, isError } = useArtworkSearch(query);
 
   if (isError) return <div>Something went wrong</div>;
 
