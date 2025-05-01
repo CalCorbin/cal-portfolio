@@ -10,7 +10,7 @@ interface collectionDataResponse {
  * API docs: https://api.artic.edu/docs/
  * @param searchTerm {string} - The search term to use
  */
-const searchArtic = async (searchTerm: string) => {
+const artworkSearch = async (searchTerm: string) => {
   const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
   const collections = await fetch(
     `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`,
@@ -47,9 +47,10 @@ const searchArtic = async (searchTerm: string) => {
 export default function useSearchArtic(searchTerm: string) {
   return useQuery({
     queryKey: ['searchResults', searchTerm],
-    queryFn: () => searchArtic(searchTerm),
+    queryFn: () => artworkSearch(searchTerm),
     staleTime: 1000 * 60,
     gcTime: 1000 * 60,
     refetchOnWindowFocus: false,
+    enabled: !!searchTerm,
   });
 }

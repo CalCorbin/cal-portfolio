@@ -146,4 +146,16 @@ describe('useSearchArtic hook', () => {
 
     expect(result.current.error).toBeDefined();
   });
+
+  it('should not enable query if search term is empty', async () => {
+    const { result } = renderHook(() => useSearchArtic(''), {
+      wrapper: createWrapper(),
+    });
+
+    // Verify that the query is not enabled (not in a loading state)
+    expect(result.current.isLoading).toBe(false);
+    expect(fetch).not.toHaveBeenCalled();
+    expect(result.current.fetchStatus).toBe('idle');
+    expect(result.current.data).toBeUndefined();
+  });
 });
