@@ -1,0 +1,19 @@
+.resultContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+@media (max-width: 768px) {
+    .resultContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .resultContainer {
+        grid-template-columns: 1fr;
+    }
+}

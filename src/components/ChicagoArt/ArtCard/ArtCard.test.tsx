@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ArtCard from './ArtCard';
-import { ArtProps } from './ChicagoArtInterface';
+import { ArtProps } from '../types/ChicagoArtInterface';
 
 describe('<ArtCard/>', () => {
   const mockedArt: ArtProps = {

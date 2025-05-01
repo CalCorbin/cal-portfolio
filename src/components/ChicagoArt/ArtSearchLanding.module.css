@@ -1,0 +1,41 @@
+.landingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3.75rem;
+    height: 0.25rem;
+    background: linear-gradient(90deg, #4568dc, #b06ab3);
+    border-radius: 0.125rem;
+    transition: width 0.3s ease;
+}
+
+.title:hover::after {
+    width: 6.25rem;
+    transition: width 0.3s ease;
+}

@@ -1,13 +1,27 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ChicagoArt from './ChicagoArt';
-import useSearchArtic from '../../hooks/useSearchArtic';
-import { ArtProps } from './ChicagoArtInterface';
+import SearchResults from './SearchResults';
+import useArtworkSearch from '../../../hooks/useArtworkSearch';
+import { ArtProps } from '../types/ChicagoArtInterface';
 
-const mockedUseSearchArtic = useSearchArtic as jest.Mock;
-jest.mock('../../hooks/useSearchArtic');
+const mockedUseArtworkSearch = useArtworkSearch as jest.Mock;
+jest.mock('../../../hooks/useArtworkSearch');
+
+jest.mock('next/navigation', () => {
+  const push = jest.fn();
+  return {
+    useRouter: () => ({
+      push,
+      replace: jest.fn(),
+      prefetch: jest.fn(),
+      back: jest.fn(),
+    }),
+    usePathname: () => '/',
+    useSearchParams: () => new URLSearchParams(),
+  };
+});
 
 interface MockedQueryResults {
   isLoading: boolean;
@@ -43,13 +57,13 @@ const mockedArt: Array<ArtProps> = [
   },
 ];
 
-describe('<ChicagoArt />', () => {
+describe('<SearchResults />', () => {
   const queryClient = new QueryClient();
   const setup = (mockedQueryResults: MockedQueryResults) => {
-    mockedUseSearchArtic.mockReturnValue(mockedQueryResults);
+    mockedUseArtworkSearch.mockReturnValue(mockedQueryResults);
     render(
       <QueryClientProvider client={queryClient}>
-        <ChicagoArt />
+        <SearchResults />
       </QueryClientProvider>
     );
   };
@@ -68,30 +82,6 @@ describe('<ChicagoArt />', () => {
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
-  it('should enter text in the search bar and submit search', async () => {
-    setup({
-      data: mockedArt,
-      isLoading: false,
-      isFetching: false,
-      isError: false,
-    });
-
-    // Enter text in search bar
-    const searchInput = screen.getByTestId('search-input');
-    fireEvent.change(searchInput, { target: { value: 'monet is an artist' } });
-
-    // Find and click the search button to submit
-    const searchButton = screen.getByTestId('search-button');
-    fireEvent.click(searchButton);
-
-    // Verify the input value and submit again with a new value
-    await waitFor(() => expect(searchInput).toHaveValue('monet is an artist'));
-    fireEvent.change(searchInput, { target: { value: 'cal is an artist' } });
-
-    // Click the search button again
-    fireEvent.click(searchButton);
-  });
-
   it('should render error state', () => {
     setup({
       data: [],
@@ -100,5 +90,21 @@ describe('<ChicagoArt />', () => {
       isError: true,
     });
     expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
+  });
+
+  it('should render art cards', () => {
+    setup({
+      data: mockedArt,
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    mockedArt.forEach((art) => {
+      expect(screen.getByText(art.title)).toBeInTheDocument();
+      expect(
+        screen.getByTestId(`art-listing-${art.image_id}`)
+      ).toBeInTheDocument();
+    });
   });
 });
