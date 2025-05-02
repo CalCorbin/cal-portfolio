@@ -13,8 +13,6 @@ describe('Star Trek Elevator', () => {
     () => {
       // Open the Star Trek Elevator page
       cy.contains('a', 'Star Trek Elevator').click();
-
-      // Verify the Star Trek Elevator github code example loads
       cy.assertGithubReadmeLoaded('elevatorGame');
     }
   );
