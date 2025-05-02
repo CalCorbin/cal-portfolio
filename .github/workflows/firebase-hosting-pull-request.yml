@@ -41,3 +41,10 @@ jobs:
           echo '🚀[Preview URL](${{ steps.deploy.outputs.details_url }})' |
           CYPRESS_BASE_URL=${{ steps.deploy.outputs.details_url }} npm run test:e2e
 
+      - name: Upload Cypress screenshots if tests fail
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 1
