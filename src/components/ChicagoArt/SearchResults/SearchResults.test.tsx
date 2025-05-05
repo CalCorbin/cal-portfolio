@@ -72,14 +72,16 @@ describe('<SearchResults />', () => {
     jest.clearAllMocks();
   });
 
-  it('should render loading spinner when page is loading', async () => {
+  it('should render card skeletons when page is loading', async () => {
     setup({ data: [], isLoading: true, isFetching: false, isError: false });
-    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+    const cards = screen.getAllByTestId('card-skeleton');
+    expect(cards).toHaveLength(12);
   });
 
-  it('should render loading spinner when page is fetching', () => {
+  it('should render card skeletons when page is fetching', () => {
     setup({ data: [], isLoading: true, isFetching: true, isError: false });
-    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+    const cards = screen.getAllByTestId('card-skeleton');
+    expect(cards).toHaveLength(12);
   });
 
   it('should render error state', () => {
