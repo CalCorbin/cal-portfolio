@@ -1,0 +1,42 @@
+.noResults {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  margin: 2rem auto;
+  max-width: 31rem;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.noResultsIcon {
+  margin-bottom: 1.5rem;
+  color: #6c757d;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noResultsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 0.75rem;
+}
+
+.noResultsMessage {
+  color: #6c757d;
+  font-size: 1rem;
+  line-height: 1.5;
+}

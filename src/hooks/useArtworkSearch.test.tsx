@@ -1,8 +1,9 @@
+import React from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import useArtworkSearch from './useArtworkSearch';
 import API_URLS from '../constants/apiUrls';
-import React from 'react';
+import { mockArtworkResponse, mockCollectionsResponse } from './testData';
 
 // Mock the global fetch function
 global.fetch = jest.fn();
@@ -35,37 +36,6 @@ describe('useArtworkSearch hook', () => {
 
   it('fetches artwork data with the provided search term', async () => {
     const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
-    const mockCollectionData = {
-      data: [{ id: 1 }, { id: 2 }, { id: 3 }],
-    };
-    const mockImageData = {
-      data: [
-        {
-          id: 1,
-          title: 'Artwork 1',
-          image_id: 'img1',
-          artist_title: 'Artist 1',
-          thumbnail: 'thumb1',
-          artist_id: 'aid1',
-        },
-        {
-          id: 2,
-          title: 'Artwork 2',
-          image_id: 'img2',
-          artist_title: 'Artist 2',
-          thumbnail: 'thumb2',
-          artist_id: 'aid2',
-        },
-        {
-          id: 3,
-          title: 'Artwork 3',
-          image_id: 'img3',
-          artist_title: 'Artist 3',
-          thumbnail: 'thumb3',
-          artist_id: 'aid3',
-        },
-      ],
-    };
 
     // Setup the fetch mocks
     (fetch as jest.Mock).mockImplementation((url, options) => {
@@ -75,17 +45,17 @@ describe('useArtworkSearch hook', () => {
         expect(requestBody.q).toBe('monet');
 
         return Promise.resolve({
-          json: () => Promise.resolve(mockCollectionData),
+          json: () => Promise.resolve(mockCollectionsResponse),
         });
       } else {
         // Check that the IDs are correctly included in the URL
-        expect(url).toContain('ids=1,2,3');
+        expect(url).toContain('ids=1,2,3,4,5,6,7,8,9,10,11,12');
         expect(url).toContain(
           'fields=title,image_id,artist_title,thumbnail,artist_id'
         );
 
         return Promise.resolve({
-          json: () => Promise.resolve(mockImageData),
+          json: () => Promise.resolve(mockArtworkResponse),
         });
       }
     });
@@ -100,13 +70,17 @@ describe('useArtworkSearch hook', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    // Verify the hook returns the expected data
-    expect(result.current.data).toEqual(mockImageData.data);
+    // Verify artwork and pagination results
+    const mockResultData = {
+      ...mockArtworkResponse,
+      pagination: mockCollectionsResponse.pagination,
+    };
+    expect(result.current.data).toEqual(mockResultData);
 
     // Verify fetch was called twice with the correct arguments
     expect(fetch).toHaveBeenCalledTimes(2);
 
-    // Assert first call is to search for art
+    // Assert first call is to search for artwork
     expect(fetch).toHaveBeenNthCalledWith(
       1,
       `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`,
@@ -119,6 +93,7 @@ describe('useArtworkSearch hook', () => {
           q: 'monet',
           fields: 'id',
           limit: 12,
+          page: 1,
         }),
       })
     );
@@ -126,25 +101,19 @@ describe('useArtworkSearch hook', () => {
     // Assert second call to retrieve metadata about artworks
     const secondCallArgs = (fetch as jest.Mock).mock.calls[1];
     expect(secondCallArgs[0]).toBe(
-      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=1,2,3&fields=title,image_id,artist_title,thumbnail,artist_id`
+      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=1,2,3,4,5,6,7,8,9,10,11,12&fields=title,image_id,artist_title,thumbnail,artist_id`
     );
   });
 
   it('returns error state when the API request fails', async () => {
-    // Mock fetch to reject
     (fetch as jest.Mock).mockRejectedValueOnce(new Error('API error'));
 
-    // Render the hook
     const { result } = renderHook(() => useArtworkSearch('error-test'), {
       wrapper: createWrapper(),
     });
-
-    // Wait for the query to complete
     await waitFor(() => {
       expect(result.current.isError).toBe(true);
     });
-
-    expect(result.current.error).toBeDefined();
   });
 
   it('should not enable query if search term is empty', async () => {
