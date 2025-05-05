@@ -1,10 +1,10 @@
 import { useSearchParams } from 'next/navigation';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
-import Loading from '../../Loading/Loading';
 import ArtCard from '../ArtCard/ArtCard';
 import { ArtProps } from '../types/ChicagoArtInterface';
 import styles from './SearchResults.module.css';
 import NavBar from '../NavBar/NavBar';
+import CardSkeleton from '../CardSkeleton/CardSkeleton';
 
 const SearchResults = () => {
   const searchParams = useSearchParams();
@@ -17,11 +17,11 @@ const SearchResults = () => {
   return (
     <div data-testid="chicago-art">
       <NavBar />
-      {isLoading || isFetching ? (
-        <Loading />
-      ) : (
-        <div className={styles.resultContainer}>
-          {art?.map((item: ArtProps) => (
+      <div className={styles.resultContainer}>
+        {isLoading || isFetching ? (
+          <CardSkeleton />
+        ) : (
+          art?.map((item: ArtProps) => (
             <ArtCard
               key={item?.image_id}
               title={item.title}
@@ -30,9 +30,9 @@ const SearchResults = () => {
               image_id={item.image_id}
               thumbnail={item?.thumbnail}
             />
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 };
