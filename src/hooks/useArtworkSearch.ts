@@ -8,8 +8,6 @@ const useArtworkSearch = (query: string, page: number = 1) => {
   return useQuery({
     queryKey: ['artworks', query, page],
     queryFn: async () => {
-      if (!query) return { data: [], pagination: null };
-
       // Do initial search in art collections
       const collections = await fetch(
         `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`,

@@ -30,14 +30,13 @@ const createWrapper = () => {
 };
 
 describe('useArtworkSearch hook', () => {
+  const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('fetches artwork data with the provided search term', async () => {
-    const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
-
-    // Setup the fetch mocks
     (fetch as jest.Mock).mockImplementation((url, options) => {
       if (url.includes('/search')) {
         // Check that the search term is correctly passed in the request body
@@ -103,6 +102,25 @@ describe('useArtworkSearch hook', () => {
     expect(secondCallArgs[0]).toBe(
       `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=1,2,3,4,5,6,7,8,9,10,11,12&fields=title,image_id,artist_title,thumbnail,artist_id`
     );
+  });
+
+  it('should handle no results from initial collections search', async () => {
+    (fetch as jest.Mock).mockImplementation(() => {
+      return Promise.resolve({
+        json: () => Promise.resolve({ data: [], pagination: null }),
+      });
+    });
+
+    const { result } = renderHook(() => useArtworkSearch('super mario 64'), {
+      wrapper: createWrapper(),
+    });
+
+    // Assert fetch was only called once because no collections data was returned.
+    expect(fetch).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+      expect(result.current.data).toStrictEqual({ data: [], pagination: null });
+    });
   });
 
   it('returns error state when the API request fails', async () => {
