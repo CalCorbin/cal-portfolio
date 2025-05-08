@@ -1,56 +1,50 @@
 import { useQuery } from '@tanstack/react-query';
 import API_URLS from '../constants/apiUrls';
 
-interface collectionDataResponse {
-  id: number;
-}
-
-/**
- * Fetches art data from the Art Institute of Chicago API
- * API docs: https://api.artic.edu/docs/
- * @param searchTerm {string} - The search term to use
- */
-const artworkSearch = async (searchTerm: string) => {
+const useArtworkSearch = (query: string, page: number = 1) => {
   const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
-  const collections = await fetch(
-    `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`,
-    {
-      method: 'POST',
-      headers: {
-        'access-control-allow-origin': '*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        q: searchTerm,
-        fields: 'id',
-        limit: 12,
-      }),
-    }
-  );
-  const { data: collectionData } = await collections.json();
-  const collectionIds = collectionData.map(
-    (collection: collectionDataResponse) => collection.id
-  );
-  const imageIds = await fetch(
-    `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=${collectionIds.join(
-      ','
-    )}&fields=title,image_id,artist_title,thumbnail,artist_id`
-  );
-  const { data: imageData } = await imageIds.json();
-  return imageData;
+  const pageSize = 12;
+
+  return useQuery({
+    queryKey: ['artworks', query, page],
+    queryFn: async () => {
+      if (!query) return { data: [], pagination: null };
+
+      // Do initial search in art collections
+      const collections = await fetch(
+        `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            q: query,
+            fields: 'id',
+            limit: pageSize,
+            page: page,
+          }),
+        }
+      );
+
+      const { data: collectionData, pagination } = await collections.json();
+
+      if (!collectionData.length) return { data: [], pagination };
+
+      // Gather collection ids and grab artwork images.
+      const ids = collectionData
+        .map((item: { id: number }) => item.id)
+        .join(',');
+      const artworks = await fetch(
+        `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=${ids}&fields=title,image_id,artist_title,thumbnail,artist_id`
+      );
+      const { data } = await artworks.json();
+
+      // Finally return results
+      return { data, pagination };
+    },
+    enabled: !!query,
+  });
 };
 
-/**
- * React Query hook to fetch art data from the Art Institute of Chicago API
- * @param searchTerm {string} - The search term to use
- */
-export default function useArtworkSearch(searchTerm: string) {
-  return useQuery({
-    queryKey: ['searchResults', searchTerm],
-    queryFn: () => artworkSearch(searchTerm),
-    staleTime: 1000 * 60,
-    gcTime: 1000 * 60,
-    refetchOnWindowFocus: false,
-    enabled: !!searchTerm,
-  });
-}
+export default useArtworkSearch;

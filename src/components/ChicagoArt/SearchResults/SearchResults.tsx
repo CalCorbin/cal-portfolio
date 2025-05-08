@@ -1,16 +1,22 @@
 import { useSearchParams } from 'next/navigation';
-import useArtworkSearch from '../../../hooks/useArtworkSearch';
 import ArtCard from '../ArtCard/ArtCard';
-import { ArtProps } from '../types/ChicagoArtInterface';
-import styles from './SearchResults.module.css';
 import NavBar from '../NavBar/NavBar';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
+import NoResults from './NoResults';
+import useArtworkSearch from '../../../hooks/useArtworkSearch';
+import { ArtProps } from '../types/ChicagoArtInterface';
+import styles from './SearchResults.module.css';
 
 const SearchResults = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
+  const page = Number(searchParams.get('page')) || 1;
 
-  const { data: art, isLoading, isFetching, isError } = useArtworkSearch(query);
+  const { data, isLoading, isFetching, isError } = useArtworkSearch(
+    query,
+    page
+  );
+  const art = data?.data ? data.data : [];
 
   if (isError) return <div>Something went wrong</div>;
 
@@ -20,8 +26,8 @@ const SearchResults = () => {
       <div className={styles.resultContainer}>
         {isLoading || isFetching ? (
           <CardSkeleton />
-        ) : (
-          art?.map((item: ArtProps) => (
+        ) : art.length ? (
+          art.map((item: ArtProps) => (
             <ArtCard
               key={item?.image_id}
               title={item.title}
@@ -31,6 +37,8 @@ const SearchResults = () => {
               thumbnail={item?.thumbnail}
             />
           ))
+        ) : (
+          <NoResults />
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchResults from './SearchResults';
@@ -27,10 +27,12 @@ interface MockedQueryResults {
   isLoading: boolean;
   isFetching: boolean;
   isError: boolean;
-  data: Array<ArtProps>;
+  data: {
+    data?: Array<ArtProps>;
+  };
 }
 
-const mockedArt: Array<ArtProps> = [
+const mockedArt = [
   {
     title: 'Library Ladder',
     artist_title: 'William France',
@@ -73,20 +75,30 @@ describe('<SearchResults />', () => {
   });
 
   it('should render card skeletons when page is loading', async () => {
-    setup({ data: [], isLoading: true, isFetching: false, isError: false });
+    setup({
+      data: { data: [] },
+      isLoading: true,
+      isFetching: false,
+      isError: false,
+    });
     const cards = screen.getAllByTestId('card-skeleton');
     expect(cards).toHaveLength(12);
   });
 
   it('should render card skeletons when page is fetching', () => {
-    setup({ data: [], isLoading: true, isFetching: true, isError: false });
+    setup({
+      data: { data: [] },
+      isLoading: false,
+      isFetching: true,
+      isError: false,
+    });
     const cards = screen.getAllByTestId('card-skeleton');
     expect(cards).toHaveLength(12);
   });
 
   it('should render error state', () => {
     setup({
-      data: [],
+      data: { data: [] },
       isLoading: false,
       isFetching: false,
       isError: true,
@@ -94,19 +106,53 @@ describe('<SearchResults />', () => {
     expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
   });
 
-  it('should render art cards', () => {
+  it('should render art cards', async () => {
     setup({
-      data: mockedArt,
+      data: { data: mockedArt },
       isLoading: false,
       isFetching: false,
       isError: false,
     });
 
-    mockedArt.forEach((art) => {
-      expect(screen.getByText(art.title)).toBeInTheDocument();
+    // Wait for data to render
+    await waitFor(() => {
+      // Assert art is rendered
+      expect(screen.getByText(mockedArt[0].title)).toBeInTheDocument();
+      expect(screen.getByText(mockedArt[1].title)).toBeInTheDocument();
       expect(
-        screen.getByTestId(`art-listing-${art.image_id}`)
+        screen.getByTestId(`art-listing-${mockedArt[0].image_id}`)
       ).toBeInTheDocument();
+      expect(
+        screen.getByTestId(`art-listing-${mockedArt[1].image_id}`)
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('should render when no results are returned', async () => {
+    setup({
+      data: { data: [] },
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    // Wait for data to render
+    await waitFor(() => {
+      expect(screen.getByText('No results found')).toBeInTheDocument();
+    });
+  });
+
+  it('should render when no data is present', async () => {
+    setup({
+      data: {},
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    // Wait for data to render
+    await waitFor(() => {
+      expect(screen.getByText('No results found')).toBeInTheDocument();
     });
   });
 });
