@@ -29,6 +29,10 @@ interface MockedQueryResults {
   isError: boolean;
   data: {
     data?: Array<ArtProps>;
+    pagination?: {
+      total_pages: number;
+      total: number;
+    };
   };
 }
 
@@ -126,6 +130,36 @@ describe('<SearchResults />', () => {
         screen.getByTestId(`art-listing-${mockedArt[1].image_id}`)
       ).toBeInTheDocument();
     });
+  });
+
+  it('should render pagination when there are enough results', async () => {
+    setup({
+      data: {
+        data: mockedArt,
+        pagination: {
+          total_pages: 10,
+          total: 100,
+        },
+      },
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    expect(screen.getByLabelText('pagination')).toBeInTheDocument();
+  });
+
+  it('should not render pagination when there is not enough results', async () => {
+    setup({
+      data: {
+        data: mockedArt,
+      },
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    expect(screen.queryByLabelText('pagination')).not.toBeInTheDocument();
   });
 
   it('should render when no results are returned', async () => {
