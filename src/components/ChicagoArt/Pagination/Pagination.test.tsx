@@ -1,7 +1,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { render, screen } from '@testing-library/react';
-import Pagination from './Pagination';
 import '@testing-library/jest-dom';
+import Pagination from './Pagination';
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),

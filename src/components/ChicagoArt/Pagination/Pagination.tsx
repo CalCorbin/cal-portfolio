@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import PageButton from './PageButton/PageButton';
 import styles from './Pagination.module.css';
 
 type PaginationProps = {
@@ -7,112 +8,86 @@ type PaginationProps = {
   pagination: {
     total_pages: number;
     total: number;
-  } | null;
+  };
 };
 
 const Pagination = ({ page, pagination }: PaginationProps) => {
-  if (!pagination || !pagination.total_pages) return null;
+  if (!pagination) return null;
   if (pagination.total_pages <= 1) return null;
 
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const handlePageChange = useCallback(
-    (newPage: number) => {
-      // Tests are written for the ignored line below.
-      /* istanbul ignore next */
-      if (newPage < 1 || newPage > pagination.total_pages) return;
-
+  const createPageHandler = useCallback(
+    (targetPage: number) => () => {
       const params = new URLSearchParams(searchParams.toString());
-      params.set('page', newPage.toString());
+      params.set('page', targetPage.toString());
       router.push(`?${params.toString()}`);
     },
-    [pagination.total_pages, searchParams, router]
+    [page, pagination.total_pages, searchParams, router]
   );
 
-  const handlePrevPage = useCallback(
-    () => handlePageChange(page - 1),
-    [page, handlePageChange]
-  );
-
-  const handleNextPage = useCallback(
-    () => handlePageChange(page + 1),
-    [page, handlePageChange]
-  );
-
-  const handleFirstPage = useCallback(
-    () => handlePageChange(1),
-    [page, handlePageChange]
-  );
-
-  const handleLastPage = useCallback(
-    () => handlePageChange(pagination.total_pages),
-    [page, handlePageChange]
-  );
-
-  const FirstPageButton = () => {
-    if (page > 2) {
-      return (
-        <button className={styles.pageButton} onClick={handleFirstPage}>
-          1
-        </button>
-      );
-    } else {
-      return null;
-    }
-  };
-
-  const Ellipsis = () => {
-    return <span className={styles.ellipsis}>...</span>;
-  };
+  const handlePrevPage = createPageHandler(page - 1);
+  const handleNextPage = createPageHandler(page + 1);
+  const handleFirstPage = createPageHandler(1);
+  const handleLastPage = createPageHandler(pagination.total_pages);
 
   return (
     <nav aria-label="pagination">
       <div className={styles.pagination} role="navigation" aria-label="pages">
-        <button
-          className={`${styles.pageButton} ${styles.pageArrow}`}
+        <PageButton
           onClick={handlePrevPage}
           disabled={page === 1}
-          aria-label="Previous page"
+          ariaLabel="Previous page"
+          isArrow
+          key="previous-arrow"
         >
           &larr;
-        </button>
-        <FirstPageButton />
-        {page > 3 && <Ellipsis />}
-        {/* Previous page if not first */}
+        </PageButton>
+
+        {page > 2 && (
+          <PageButton onClick={handleFirstPage} key="first-page">
+            1
+          </PageButton>
+        )}
+
+        {page > 3 && <span className={styles.ellipsis}>...</span>}
+
         {page > 1 && (
-          <button className={styles.pageButton} onClick={handlePrevPage}>
+          <PageButton onClick={handlePrevPage} key="previous-page">
             {page - 1}
-          </button>
+          </PageButton>
         )}
-        {/* Current page */}
-        <button
-          className={`${styles.pageButton} ${styles.activePage}`}
-          aria-current="page"
-        >
+
+        <PageButton isActive ariaCurrent="page" key="current-page">
           {page}
-        </button>
-        {/* Next page if not last */}
+        </PageButton>
+
         {page < pagination.total_pages && (
-          <button className={styles.pageButton} onClick={handleNextPage}>
+          <PageButton onClick={handleNextPage} key="next-page">
             {page + 1}
-          </button>
+          </PageButton>
         )}
-        {page < pagination.total_pages - 2 && <Ellipsis />}
-        {/* Last page */}
+
+        {page < pagination.total_pages - 2 && (
+          <span className={styles.ellipsis}>...</span>
+        )}
+
         {page < pagination.total_pages - 1 && (
-          <button className={styles.pageButton} onClick={handleLastPage}>
+          <PageButton onClick={handleLastPage} key="last-page">
             {pagination.total_pages}
-          </button>
+          </PageButton>
         )}
-        <button
-          className={`${styles.pageButton} ${styles.pageArrow}`}
+
+        <PageButton
           onClick={handleNextPage}
           disabled={page === pagination.total_pages}
-          aria-label="Next page"
+          ariaLabel="Next page"
+          isArrow
+          key="next-arrow"
         >
           &rarr;
-        </button>
+        </PageButton>
       </div>
       <div className={styles.paginationInfo}>
         Showing {page} of {pagination.total_pages} pages ({pagination.total}{' '}
