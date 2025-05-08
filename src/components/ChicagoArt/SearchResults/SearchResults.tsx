@@ -2,7 +2,7 @@ import { useSearchParams } from 'next/navigation';
 import ArtCard from '../ArtCard/ArtCard';
 import NavBar from '../NavBar/NavBar';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
-import NoResults from './NoResults';
+import NoResults from './NoResults/NoResults';
 import Pagination from '../Pagination/Pagination';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
 import { ArtProps } from '../types/ChicagoArtInterface';
