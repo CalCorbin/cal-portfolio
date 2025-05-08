@@ -3,6 +3,7 @@ import ArtCard from '../ArtCard/ArtCard';
 import NavBar from '../NavBar/NavBar';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import NoResults from './NoResults';
+import Pagination from '../Pagination/Pagination';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
 import { ArtProps } from '../types/ChicagoArtInterface';
 import styles from './SearchResults.module.css';
@@ -17,6 +18,7 @@ const SearchResults = () => {
     page
   );
   const art = data?.data ? data.data : [];
+  const pagination = data?.pagination;
 
   if (isError) return <div>Something went wrong</div>;
 
@@ -41,6 +43,7 @@ const SearchResults = () => {
           <NoResults />
         )}
       </div>
+      <Pagination page={page} pagination={pagination} />
     </div>
   );
 };
