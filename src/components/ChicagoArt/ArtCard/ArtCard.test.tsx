@@ -5,6 +5,7 @@ import { ArtProps } from '../types/ChicagoArtInterface';
 
 describe('<ArtCard/>', () => {
   const mockedArt: ArtProps = {
+    id: 21,
     title: 'Library Ladder',
     artist_title: 'William France',
     artist_id: 1,
@@ -19,6 +20,7 @@ describe('<ArtCard/>', () => {
 
   const setup = (props: ArtProps) => {
     const {
+      id,
       title,
       artist_title: artistTitle,
       artist_id: artistId,
@@ -27,6 +29,7 @@ describe('<ArtCard/>', () => {
     } = props;
     render(
       <ArtCard
+        id={id}
         title={title}
         artist_title={artistTitle}
         artist_id={artistId}
@@ -39,6 +42,16 @@ describe('<ArtCard/>', () => {
   it('should render', async () => {
     setup(mockedArt);
     expect(screen.getByTestId('art-listing-1234')).toBeInTheDocument();
+  });
+
+  it('should render link', async () => {
+    setup(mockedArt);
+
+    const linkElement = screen.getByRole('link');
+    expect(linkElement).toHaveAttribute(
+      'href',
+      'https://www.artic.edu/artworks/21/'
+    );
   });
 
   it('should render title', async () => {
@@ -73,27 +86,19 @@ describe('<ArtCard/>', () => {
   });
 
   it('should render unknown artist when artist is not found', async () => {
-    delete mockedArt.artist_title;
-    setup(mockedArt);
+    setup({ ...mockedArt, artist_title: null });
     fireEvent.mouseOver(screen.getByTestId('art-listing-1234'));
     await waitFor(() => {
       screen.getByTestId('art-listing-title-1234');
     });
     expect(screen.getByText(/Artist Unknown/)).toBeInTheDocument();
-    expect(screen.getByTestId('artist-unknown-1234')).toBeInTheDocument();
   });
 
-  it('should render if no thumbnail', async () => {
+  it('should render empty image card if no image is provided', async () => {
     setup({
-      title: 'Library Ladder',
-      artist_title: 'William France',
-      artist_id: 1,
-      thumbnail: {
-        lqip: 'blingblong',
-        width: 400,
-        height: 400,
-        alt_text: 'The ladder inside Full Circle',
-      },
+      ...mockedArt,
+      image_id: null,
+      thumbnail: null,
     });
 
     expect(screen.getByText(/Image Not Available/));
@@ -103,5 +108,38 @@ describe('<ArtCard/>', () => {
     });
     expect(screen.getByText(/Library Ladder/)).toBeInTheDocument();
     expect(screen.getByText(/William France/)).toBeInTheDocument();
+
+    // Assert link exists
+    const linkElement = screen.getByRole('link');
+    expect(linkElement).toHaveAttribute(
+      'href',
+      'https://www.artic.edu/artworks/21/'
+    );
+  });
+
+  it('should render empty image card for unknown artist if no image is provided', async () => {
+    setup({
+      ...mockedArt,
+      image_id: null,
+      thumbnail: null,
+      artist_title: null,
+    });
+
+    expect(screen.getByText(/Image Not Available/));
+    fireEvent.mouseOver(screen.getByTestId('art-listing-no-image'));
+    await waitFor(() => {
+      screen.getByTestId('art-listing-no-image');
+    });
+
+    // Assert artwork and unknown artist
+    expect(screen.getByText(/Artist Unknown/)).toBeInTheDocument();
+    expect(screen.getByText(/Library Ladder/)).toBeInTheDocument();
+
+    // Assert link exists
+    const linkElement = screen.getByRole('link');
+    expect(linkElement).toHaveAttribute(
+      'href',
+      'https://www.artic.edu/artworks/21/'
+    );
   });
 });

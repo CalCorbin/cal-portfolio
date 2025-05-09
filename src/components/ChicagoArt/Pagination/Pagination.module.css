@@ -7,6 +7,12 @@
     flex-wrap: wrap;
 }
 
+@media screen and (max-width: 480px) {
+    .pagination {
+        gap: 0.25rem;
+    }
+}
+
 .ellipsis {
     color: #6b7280;
     padding: 0 0.25rem;
