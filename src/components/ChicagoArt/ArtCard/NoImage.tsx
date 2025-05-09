@@ -1,32 +1,31 @@
 import styles from './ArtCard.module.css';
 
 type NoImageProps = {
+  id: number;
   title?: string;
-  artistId?: number;
-  artistTitle?: string;
+  artistTitle?: string | null;
 };
 
-const NoImage = ({ title, artistId, artistTitle }: NoImageProps) => {
+const NoImage = ({ id, title, artistTitle }: NoImageProps) => {
   return (
     <div className={styles.art} data-testid="art-listing-no-image">
-      <div className={styles.noImageContainer}>Image Not Available</div>
-      <div className={styles.artOverlay}>
-        <div
-          className={styles.artTitle}
-          data-testid="art-listing-title-no-image"
-        >
-          {title}
+      <a href={`https://www.artic.edu/artworks/${id}/`}>
+        <div className={styles.noImageContainer}>Image Not Available</div>
+        <div className={styles.artOverlay}>
+          <div
+            className={styles.artTitle}
+            data-testid="art-listing-title-no-image"
+          >
+            {title}
+          </div>
+          <div
+            className={styles.artist}
+            data-testid="art-listing-artist-no-image"
+          >
+            {artistTitle ? artistTitle : 'Artist Unknown'}
+          </div>
         </div>
-        <a
-          href={`https://www.artic.edu/artists/${artistId}/`}
-          className={styles.artist}
-          target="_blank"
-          rel="noreferrer"
-          data-testid="art-listing-artist-no-image"
-        >
-          {artistTitle}
-        </a>
-      </div>
+      </a>
     </div>
   );
 };

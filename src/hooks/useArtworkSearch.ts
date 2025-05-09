@@ -34,7 +34,7 @@ const useArtworkSearch = (query: string, page: number = 1) => {
         .map((item: { id: number }) => item.id)
         .join(',');
       const artworks = await fetch(
-        `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=${ids}&fields=title,image_id,artist_title,thumbnail,artist_id`
+        `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=${ids}&fields=id,title,image_id,artist_title,thumbnail,artist_id`
       );
       const { data } = await artworks.json();
 

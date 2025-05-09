@@ -38,6 +38,7 @@ interface MockedQueryResults {
 
 const mockedArt = [
   {
+    id: 32490432,
     title: 'Library Ladder',
     artist_title: 'William France',
     artist_id: 1,
@@ -50,6 +51,7 @@ const mockedArt = [
     },
   },
   {
+    id: 32490433,
     title:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
     artist_title: 'Chaim Soutine',
