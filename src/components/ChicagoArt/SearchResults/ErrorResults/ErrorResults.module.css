@@ -1,0 +1,60 @@
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 37.5rem;
+  margin: 3rem auto;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background-color: #fff0f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #dc3545;
+}
+
+.errorIcon {
+  margin-bottom: 1.5rem;
+  color: #dc3545;
+  background-color: #ffebeb;
+  border-radius: 50%;
+  width: 4.375rem;
+  height: 4.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 0.75rem;
+}
+
+.errorMessage {
+  color: #6c757d;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.errorButton {
+  padding: 0.75rem 1.5rem;
+  background-color: #dc3545;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.errorButton:hover {
+  background-color: #c82333;
+}
+
+.errorButton:active {
+  transform: translateY(1px);
+}

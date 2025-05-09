@@ -2,8 +2,9 @@ import { useSearchParams } from 'next/navigation';
 import ArtCard from '../ArtCard/ArtCard';
 import NavBar from '../NavBar/NavBar';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
-import NoResults from './NoResults';
+import NoResults from './NoResults/NoResults';
 import Pagination from '../Pagination/Pagination';
+import ErrorResults from './ErrorResults/ErrorResults';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
 import { ArtProps } from '../types/ChicagoArtInterface';
 import styles from './SearchResults.module.css';
@@ -20,7 +21,7 @@ const SearchResults = () => {
   const art = data?.data ? data.data : [];
   const pagination = data?.pagination;
 
-  if (isError) return <div>Something went wrong</div>;
+  if (isError) return <ErrorResults />;
 
   return (
     <div data-testid="chicago-art">

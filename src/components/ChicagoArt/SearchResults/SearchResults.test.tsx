@@ -107,7 +107,14 @@ describe('<SearchResults />', () => {
       isFetching: false,
       isError: true,
     });
-    expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
+
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "We couldn't load the artwork results. Please try refreshing the page or try again later."
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByText('Refresh Page')).toBeInTheDocument();
   });
 
   it('should render art cards', async () => {
