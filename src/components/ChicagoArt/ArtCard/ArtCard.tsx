@@ -1,3 +1,4 @@
+import NoImage from './NoImage';
 import { ArtProps } from '../types/ChicagoArtInterface';
 import styles from './ArtCard.module.css';
 
@@ -8,16 +9,20 @@ const ArtCard = ({
   image_id: imageId,
   thumbnail,
 }: ArtProps) => {
-  if (!imageId) return null;
+  if (!imageId)
+    return (
+      <NoImage artistId={artistId} artistTitle={artistTitle} title={title} />
+    );
+
   return (
     <div className={styles.art} data-testid={`art-listing-${imageId}`}>
       <img
-        src={`https://www.artic.edu/iiif/2/${imageId}/full/400,/0/default.jpg`}
+        src={`https://www.artic.edu/iiif/2/${imageId}/full/300,/0/default.jpg`}
         alt={thumbnail?.alt_text || title}
       />
-      <div className={styles['art-overlay']}>
+      <div className={styles.artOverlay}>
         <div
-          className={styles['art-title']}
+          className={styles.artTitle}
           data-testid={`art-listing-title-${imageId}`}
         >
           {title}
@@ -34,7 +39,7 @@ const ArtCard = ({
           </a>
         ) : (
           <div
-            className={styles['artist-unknown']}
+            className={styles.artistUnknown}
             style={{ cursor: 'default' }}
             data-testid={`artist-unknown-${imageId}`}
           >

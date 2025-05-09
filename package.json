@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "npx eslint src/ cypress/",
     "test:ci": "npm run lint && npm run test && cypress run",
     "bump": "npx npm-check-updates -u && npm install",
