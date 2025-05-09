@@ -32,11 +32,11 @@ const SearchResults = () => {
         ) : art.length ? (
           art.map((item: ArtProps) => (
             <ArtCard
-              key={item?.image_id}
+              key={`${item.artist_id}-${item.title}`}
               title={item.title}
               artist_title={item.artist_title}
               artist_id={item.artist_id}
-              image_id={item.image_id}
+              image_id={item?.image_id}
               thumbnail={item?.thumbnail}
             />
           ))

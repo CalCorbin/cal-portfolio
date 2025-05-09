@@ -83,9 +83,25 @@ describe('<ArtCard/>', () => {
     expect(screen.getByTestId('artist-unknown-1234')).toBeInTheDocument();
   });
 
-  it('should not render if no imageId', async () => {
-    delete mockedArt.image_id;
-    setup(mockedArt);
-    expect(screen.queryByTestId('art-listing-1234')).not.toBeInTheDocument();
+  it('should render if no thumbnail', async () => {
+    setup({
+      title: 'Library Ladder',
+      artist_title: 'William France',
+      artist_id: 1,
+      thumbnail: {
+        lqip: 'blingblong',
+        width: 400,
+        height: 400,
+        alt_text: 'The ladder inside Full Circle',
+      },
+    });
+
+    expect(screen.getByText(/Image Not Available/));
+    fireEvent.mouseOver(screen.getByTestId('art-listing-no-image'));
+    await waitFor(() => {
+      screen.getByTestId('art-listing-no-image');
+    });
+    expect(screen.getByText(/Library Ladder/)).toBeInTheDocument();
+    expect(screen.getByText(/William France/)).toBeInTheDocument();
   });
 });
