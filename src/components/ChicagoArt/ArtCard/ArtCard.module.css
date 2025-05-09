@@ -17,11 +17,11 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
 }
 
-.art-overlay {
+.artOverlay {
     display: none;
 }
 
-.art:hover .art-overlay {
+.art:hover .artOverlay {
     display: block;
     position: absolute;
     width: 100.5%;
@@ -32,7 +32,7 @@
     border-radius: 4%;
 }
 
-.art-title {
+.artTitle {
     font-size: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -53,10 +53,22 @@
     cursor: pointer;
 }
 
-.artist-unknown {
+.artistUnknown {
     font-size: .8rem;
     color: white;
     margin: 1rem;
     text-decoration: none;
     cursor: default;
+}
+
+.noImageContainer {
+    height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+    color: #666;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
