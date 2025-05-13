@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ErrorResults from './ErrorResults';
 
-// Mock window.location.reload
 const mockReload = jest.fn();
 Object.defineProperty(window, 'location', {
   value: { reload: mockReload },

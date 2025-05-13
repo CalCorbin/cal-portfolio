@@ -2,13 +2,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { SearchBarProps } from '../types/SearchBarProps';
 import styles from './SearchBar.module.css';
 
 export const SEARCH_RESULTS_PATH = '/chicago-art/search';
-
-type SearchBarProps = {
-  searchPath?: string;
-};
 
 const SearchBar = ({ searchPath = SEARCH_RESULTS_PATH }: SearchBarProps) => {
   const searchParams = useSearchParams();

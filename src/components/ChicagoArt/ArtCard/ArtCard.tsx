@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import NoImage from './NoImage';
+import NoImage from './NoImage/NoImage';
 import { ArtProps } from '../types/ArtProps';
 import styles from './ArtCard.module.css';
 
