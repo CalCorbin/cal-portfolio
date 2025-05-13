@@ -1,4 +1,4 @@
-export interface ArtProps {
+export type ArtProps = {
   id: number;
   title: string;
   artist_title?: string | null;
@@ -10,4 +10,4 @@ export interface ArtProps {
     height?: number;
     alt_text?: string;
   } | null;
-}
+};

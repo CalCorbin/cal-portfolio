@@ -1,10 +1,5 @@
-import styles from './ArtCard.module.css';
-
-type NoImageProps = {
-  id: number;
-  title?: string;
-  artistTitle?: string | null;
-};
+import { NoImageProps } from '../../types/NoImageProps';
+import styles from '../ArtCard.module.css';
 
 const NoImage = ({ id, title, artistTitle }: NoImageProps) => {
   return (

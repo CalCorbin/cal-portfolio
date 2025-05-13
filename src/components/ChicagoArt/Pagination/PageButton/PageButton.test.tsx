@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PageButton from './PageButton';
 
-describe('PageButton', () => {
+describe('<PageButton />', () => {
   it('should render children correctly', () => {
     render(<PageButton>it</PageButton>);
     expect(screen.getByText('it')).toBeInTheDocument();

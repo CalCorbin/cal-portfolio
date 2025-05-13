@@ -8,7 +8,7 @@ jest.mock('next/navigation', () => ({
   useSearchParams: jest.fn(),
 }));
 
-describe('Pagination Component', () => {
+describe('<Pagination />', () => {
   const initialProps = (overrides = {}) => {
     return {
       page: 5,

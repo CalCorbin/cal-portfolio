@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchResults from './SearchResults';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
-import { ArtProps } from '../types/ChicagoArtInterface';
+import { QueryResults } from '../types/QueryResults';
 
 const mockedUseArtworkSearch = useArtworkSearch as jest.Mock;
 jest.mock('../../../hooks/useArtworkSearch');
@@ -22,19 +22,6 @@ jest.mock('next/navigation', () => {
     useSearchParams: () => new URLSearchParams(),
   };
 });
-
-interface MockedQueryResults {
-  isLoading: boolean;
-  isFetching: boolean;
-  isError: boolean;
-  data: {
-    data?: Array<ArtProps>;
-    pagination?: {
-      total_pages: number;
-      total: number;
-    };
-  };
-}
 
 const mockedArt = [
   {
@@ -67,7 +54,7 @@ const mockedArt = [
 
 describe('<SearchResults />', () => {
   const queryClient = new QueryClient();
-  const setup = (mockedQueryResults: MockedQueryResults) => {
+  const setup = (mockedQueryResults: QueryResults) => {
     mockedUseArtworkSearch.mockReturnValue(mockedQueryResults);
     render(
       <QueryClientProvider client={queryClient}>
