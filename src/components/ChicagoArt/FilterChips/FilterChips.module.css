@@ -1,0 +1,8 @@
+.chipContainer {
+  margin: 1rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+}

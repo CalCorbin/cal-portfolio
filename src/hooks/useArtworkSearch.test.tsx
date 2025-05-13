@@ -100,7 +100,7 @@ describe('useArtworkSearch hook', () => {
     // Assert second call to retrieve metadata about artworks
     const secondCallArgs = (fetch as jest.Mock).mock.calls[1];
     expect(secondCallArgs[0]).toBe(
-      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=1,2,3,4,5,6,7,8,9,10,11,12&fields=id,title,image_id,artist_title,thumbnail,artist_id`
+      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=1,2,3,4,5,6,7,8,9,10,11,12&fields=id,title,image_id,artist_title,thumbnail,artist_id,artwork_type`
     );
   });
 
