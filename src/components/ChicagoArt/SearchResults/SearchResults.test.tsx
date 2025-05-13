@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchResults from './SearchResults';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
-import { ArtProps } from '../types/ChicagoArtInterface';
+import { ArtProps } from '../types/ArtProps';
 
 const mockedUseArtworkSearch = useArtworkSearch as jest.Mock;
 jest.mock('../../../hooks/useArtworkSearch');

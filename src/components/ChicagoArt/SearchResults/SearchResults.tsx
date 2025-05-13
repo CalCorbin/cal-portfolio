@@ -6,7 +6,7 @@ import NoResults from './NoResults/NoResults';
 import Pagination from '../Pagination/Pagination';
 import ErrorResults from './ErrorResults/ErrorResults';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
-import { ArtProps } from '../types/ChicagoArtInterface';
+import { ArtProps } from '../types/ArtProps';
 import styles from './SearchResults.module.css';
 
 const SearchResults = () => {
