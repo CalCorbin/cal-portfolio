@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ArtCard from './ArtCard';
-import { ArtProps } from '../types/ArtProps';
+import { ArtProps } from '../types/ArticApi';
 
 describe('<ArtCard/>', () => {
   const mockedArt: ArtProps = {
@@ -16,6 +16,7 @@ describe('<ArtCard/>', () => {
       height: 400,
       alt_text: 'The ladder inside Full Circle',
     },
+    artwork_type_title: 'Painting',
   };
 
   const setup = (props: ArtProps) => {

@@ -31,6 +31,10 @@ const createWrapper = () => {
 
 describe('useArtworkSearch hook', () => {
   const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
+  const ids =
+    '?ids=122232%2C2344%2C20392%2C154136%2C86421%2C8585%2C74065%2C182567%2C12380%2C23468%2C186425%2C9512';
+  const fields =
+    '&fields=id%2Ctitle%2Cimage_id%2Cartist_title%2Cthumbnail%2Cartist_id%2Cartwork_type_title';
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -48,10 +52,8 @@ describe('useArtworkSearch hook', () => {
         });
       } else {
         // Check that the IDs are correctly included in the URL
-        expect(url).toContain('ids=1,2,3,4,5,6,7,8,9,10,11,12');
-        expect(url).toContain(
-          'fields=id,title,image_id,artist_title,thumbnail,artist_id'
-        );
+        expect(url).toContain(ids);
+        expect(url).toContain(fields);
 
         return Promise.resolve({
           json: () => Promise.resolve(mockArtworkResponse),
@@ -71,7 +73,7 @@ describe('useArtworkSearch hook', () => {
 
     // Verify artwork and pagination results
     const mockResultData = {
-      ...mockArtworkResponse,
+      data: mockArtworkResponse.data,
       pagination: mockCollectionsResponse.pagination,
     };
     expect(result.current.data).toEqual(mockResultData);
@@ -100,7 +102,7 @@ describe('useArtworkSearch hook', () => {
     // Assert second call to retrieve metadata about artworks
     const secondCallArgs = (fetch as jest.Mock).mock.calls[1];
     expect(secondCallArgs[0]).toBe(
-      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}?ids=1,2,3,4,5,6,7,8,9,10,11,12&fields=id,title,image_id,artist_title,thumbnail,artist_id,artwork_type`
+      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}${ids}${fields}`
     );
   });
 

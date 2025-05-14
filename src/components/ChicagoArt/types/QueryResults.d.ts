@@ -1,4 +1,4 @@
-import { ArtProps } from './ArtProps';
+import { ArtProps } from './ArticApi';
 
 export type QueryResults = {
   isLoading: boolean;
