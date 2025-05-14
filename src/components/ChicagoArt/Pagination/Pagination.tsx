@@ -5,7 +5,7 @@ import styles from './Pagination.module.css';
 
 type PaginationProps = {
   page: number;
-  pagination: {
+  pagination?: {
     total_pages: number;
     total: number;
   };

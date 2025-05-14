@@ -7,7 +7,7 @@ import Pagination from '../Pagination/Pagination';
 import ErrorResults from './ErrorResults/ErrorResults';
 // import FilterChips from '../FilterChips/FilterChips';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
-import { ArtProps } from '../types/ArtProps';
+import { ArtProps } from '../types/ArticApi';
 import styles from './SearchResults.module.css';
 
 const SearchResults = () => {
@@ -41,6 +41,7 @@ const SearchResults = () => {
               artist_id={item.artist_id}
               image_id={item?.image_id}
               thumbnail={item?.thumbnail}
+              artwork_type_title={item.artwork_type_title}
             />
           ))
         ) : (

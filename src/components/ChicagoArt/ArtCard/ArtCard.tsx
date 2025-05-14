@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import NoImage from './NoImage/NoImage';
-import { ArtProps } from '../types/ArtProps';
+import { ArtProps } from '../types/ArticApi';
 import styles from './ArtCard.module.css';
 
 const ARTWORK_BASE_URL = 'https://www.artic.edu/artworks';
