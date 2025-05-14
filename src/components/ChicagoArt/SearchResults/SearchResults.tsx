@@ -5,6 +5,7 @@ import CardSkeleton from '../CardSkeleton/CardSkeleton';
 import NoResults from './NoResults/NoResults';
 import Pagination from '../Pagination/Pagination';
 import ErrorResults from './ErrorResults/ErrorResults';
+// import FilterChips from '../FilterChips/FilterChips';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
 import { ArtProps } from '../types/ArtProps';
 import styles from './SearchResults.module.css';
@@ -26,6 +27,7 @@ const SearchResults = () => {
   return (
     <div data-testid="chicago-art">
       <NavBar />
+      {/*<FilterChips />*/}
       <div className={styles.resultContainer}>
         {isLoading || isFetching ? (
           <CardSkeleton />
