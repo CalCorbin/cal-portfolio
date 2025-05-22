@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 import 'firebase/auth';
 import 'firebase/database';
 
@@ -33,5 +34,19 @@ class Firebase {
     initializeApp(config);
   }
 }
+
+export const initializeAnalytics = async () => {
+  if (typeof window !== 'undefined') {
+    try {
+      const analyticsSupported = await isSupported();
+      if (analyticsSupported) {
+        return getAnalytics(Firebase);
+      }
+    } catch (error) {
+      console.error('Firebase Analytics error:', error);
+    }
+  }
+  return null;
+};
 
 export default Firebase;
