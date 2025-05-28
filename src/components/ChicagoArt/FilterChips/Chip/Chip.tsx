@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styles from './Chip.module.css';
 import { ChipProps } from '../../types/ChipProps';
 
-const Chip = ({ label, setSelectedFilters }: ChipProps) => {
-  const [active, setActive] = useState(false);
+const Chip = ({ label, selectedFilters, setSelectedFilters }: ChipProps) => {
+  const [active, setActive] = useState(selectedFilters.includes(label));
 
   const handleClick = () => {
     setActive(!active);

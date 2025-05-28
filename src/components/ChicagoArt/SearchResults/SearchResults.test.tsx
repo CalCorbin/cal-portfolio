@@ -36,6 +36,7 @@ const mockedArt = [
       height: 400,
       alt_text: 'A library ladder',
     },
+    artwork_type_title: 'Painting',
   },
   {
     id: 32490433,
@@ -49,6 +50,7 @@ const mockedArt = [
       width: 400,
       height: 400,
     },
+    artwork_type_title: 'Painting',
   },
 ];
 

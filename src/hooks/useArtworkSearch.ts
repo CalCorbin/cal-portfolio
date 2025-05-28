@@ -4,28 +4,46 @@ import {
   ArtworkResponse,
   CollectionResponse,
 } from '../components/ChicagoArt/types/ArticApi';
+import { SearchParamQuery } from '../components/ChicagoArt/types/SearchParamQuery';
 
-const useArtworkSearch = (query: string, page: number = 1) => {
+const useArtworkSearch = (
+  query: string,
+  page: number = 1,
+  selectedFilters: string[] = []
+) => {
   const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
   const pageSize = 12;
 
   return useQuery({
-    queryKey: ['artworks', query, page],
+    queryKey: ['artworks', query, page, selectedFilters],
     queryFn: async () => {
       // Do initial search in art collections
       const searchUrl = new URL(`${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`);
-      const collections = await fetch(searchUrl.toString(), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          q: query,
-          fields: 'id',
-          limit: pageSize,
-          page: page,
-        }),
-      });
+      let params: SearchParamQuery = {
+        q: query,
+        fields: ['id'],
+        limit: pageSize,
+        page: page,
+      };
+      if (selectedFilters.length > 0) {
+        params = {
+          ...params,
+          query: {
+            bool: {
+              should: selectedFilters.map((filter) => ({
+                match: {
+                  artwork_type_title: filter,
+                },
+              })),
+              minimum_should_match: 1,
+            },
+          },
+        };
+      }
+
+      searchUrl.searchParams.set('params', JSON.stringify(params));
+
+      const collections = await fetch(searchUrl.toString());
 
       const { data: collectionData, pagination } =
         (await collections.json()) as CollectionResponse;
@@ -47,12 +65,8 @@ const useArtworkSearch = (query: string, page: number = 1) => {
       const artworks = await fetch(artworkUrl.toString());
       const { data } = (await artworks.json()) as ArtworkResponse;
 
-      const filterOptions = [
-        ...new Set(data?.map((item) => item.artwork_type_title)),
-      ];
-
       // Finally return results
-      return { data, pagination, filterOptions };
+      return { data, pagination };
     },
     enabled: !!query,
   });

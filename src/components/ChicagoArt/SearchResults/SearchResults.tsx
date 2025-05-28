@@ -19,11 +19,11 @@ const SearchResults = () => {
 
   const { data, isLoading, isFetching, isError } = useArtworkSearch(
     query,
-    page
+    page,
+    selectedFilters
   );
   const art = data?.data ? data.data : [];
   const pagination = data?.pagination;
-  const filterOptions = data?.filterOptions;
 
   if (isError) return <ErrorResults />;
 
@@ -31,7 +31,7 @@ const SearchResults = () => {
     <div data-testid="chicago-art">
       <NavBar />
       <FilterChips
-        filterOptions={filterOptions}
+        selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
       />
       <div className={styles.resultContainer}>
