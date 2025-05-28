@@ -21,13 +21,14 @@ const SearchResults = () => {
   );
   const art = data?.data ? data.data : [];
   const pagination = data?.pagination;
+  // const filterOptions = data?.filterOptions;
 
   if (isError) return <ErrorResults />;
 
   return (
     <div data-testid="chicago-art">
       <NavBar />
-      {/*<FilterChips />*/}
+      {/*<FilterChips filterOptions={filterOptions} />*/}
       <div className={styles.resultContainer}>
         {isLoading || isFetching ? (
           <CardSkeleton />

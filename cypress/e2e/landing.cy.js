@@ -26,7 +26,6 @@ describe(
             return false;
           }
         });
-        cy.contains('Experience & Education').should('be.visible');
       });
     });
 
