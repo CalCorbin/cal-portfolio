@@ -75,6 +75,14 @@ describe('useArtworkSearch hook', () => {
     const mockResultData = {
       data: mockArtworkResponse.data,
       pagination: mockCollectionsResponse.pagination,
+      filterOptions: [
+        'Metalwork',
+        'Painting',
+        'Decorative Arts',
+        'Textile',
+        'Ceramics',
+        'Vessel',
+      ],
     };
     expect(result.current.data).toEqual(mockResultData);
 

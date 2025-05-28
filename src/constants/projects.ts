@@ -13,7 +13,7 @@ const PROJECTS: Array<Project> = [
     id: 8,
     title: 'Chicago Art Institute Explorer',
     link: ROUTES.CHICAGOART,
-    img: 'https://images.unsplash.com/flagged/photo-1572392640988-ba48d1a74457?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    img: 'https://images.pexels.com/photos/27991637/pexels-photo-27991637/free-photo-of-a-lion-statue-is-standing-in-the-middle-of-a-city-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     description:
       'Search the Art Institute of Chicago collection for your favorite art pieces!',
   },

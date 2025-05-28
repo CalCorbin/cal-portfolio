@@ -47,8 +47,12 @@ const useArtworkSearch = (query: string, page: number = 1) => {
       const artworks = await fetch(artworkUrl.toString());
       const { data } = (await artworks.json()) as ArtworkResponse;
 
+      const filterOptions = [
+        ...new Set(data?.map((item) => item.artwork_type_title)),
+      ];
+
       // Finally return results
-      return { data, pagination };
+      return { data, pagination, filterOptions };
     },
     enabled: !!query,
   });
