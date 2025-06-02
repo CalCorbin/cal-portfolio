@@ -1,6 +1,7 @@
 import {
   CollectionResponse,
   ArtworkResponse,
+  ArtworkTypesResponse,
 } from '../components/ChicagoArt/types/ArticApi';
 
 export const mockCollectionsResponse: CollectionResponse = {
@@ -257,6 +258,68 @@ export const mockArtworkResponse: ArtworkResponse = {
   info: {
     license_text:
       'The `description` field in this response is licensed under a Creative Commons Attribution 4.0 Generic License (CC-By) and the Terms and Conditions of artic.edu. All other data in this response is licensed under a Creative Commons Zero (CC0) 1.0 designation and the Terms and Conditions of artic.edu.',
+    license_links: [
+      'https://creativecommons.org/publicdomain/zero/1.0/',
+      'https://www.artic.edu/terms',
+    ],
+    version: '1.13',
+  },
+  config: {
+    iiif_url: 'https://www.artic.edu/iiif/2',
+    website_url: 'http://www.artic.edu',
+  },
+};
+
+export const mockArtworkTypesResponse: ArtworkTypesResponse = {
+  pagination: {
+    total: 44,
+    limit: 12,
+    offset: 0,
+    total_pages: 4,
+    current_page: 1,
+    next_url: 'https://api.artic.edu/api/v1/artwork-types?page=2&fields=title',
+  },
+  data: [
+    {
+      title: 'Painting',
+    },
+    {
+      title: 'Vessel',
+    },
+    {
+      title: 'Basketry',
+    },
+    {
+      title: 'Miniature room',
+    },
+    {
+      title: 'Model',
+    },
+    {
+      title: 'Architectural fragment',
+    },
+    {
+      title: 'Print',
+    },
+    {
+      title: 'Performance Arts',
+    },
+    {
+      title: 'Installation',
+    },
+    {
+      title: 'Mixed Media',
+    },
+    {
+      title: 'Drawing and Watercolor',
+    },
+    {
+      title: 'Costume and Accessories',
+    },
+  ],
+  info: {
+    license_text:
+      'The data in this response is licensed under a Creative Commons Zero (CC0) 1.0 designation and the Terms and Conditions of artic.edu.',
     license_links: [
       'https://creativecommons.org/publicdomain/zero/1.0/',
       'https://www.artic.edu/terms',

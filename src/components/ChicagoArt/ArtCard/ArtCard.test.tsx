@@ -19,70 +19,50 @@ describe('<ArtCard/>', () => {
     artwork_type_title: 'Painting',
   };
 
-  const setup = (props: ArtProps) => {
-    const {
-      id,
-      title,
-      artist_title: artistTitle,
-      artist_id: artistId,
-      image_id: imageId,
-      thumbnail,
-    } = props;
-    render(
-      <ArtCard
-        id={id}
-        title={title}
-        artist_title={artistTitle}
-        artist_id={artistId}
-        image_id={imageId}
-        thumbnail={thumbnail}
-      />
-    );
+  const setup = (props: ArtProps = mockedArt) => {
+    render(<ArtCard {...props} />);
   };
 
-  it('should render', async () => {
-    setup(mockedArt);
-    expect(screen.getByTestId('art-listing-1234')).toBeInTheDocument();
-  });
+  it('should render link, alt text, title, artwork type, and artist name', async () => {
+    setup();
 
-  it('should render link', async () => {
-    setup(mockedArt);
-
-    const linkElement = screen.getByRole('link');
-    expect(linkElement).toHaveAttribute(
+    // Assert link and alt text
+    expect(screen.getByRole('link')).toHaveAttribute(
       'href',
       'https://www.artic.edu/artworks/21/'
     );
-  });
+    expect(
+      screen.getByAltText(/The ladder inside Full Circle/)
+    ).toBeInTheDocument();
 
-  it('should render title', async () => {
-    setup(mockedArt);
+    // Assert title, artwork type, and artist name
     fireEvent.mouseOver(screen.getByTestId('art-listing-1234'));
     await waitFor(() => {
       screen.getByTestId('art-listing-title-1234');
     });
     expect(screen.getByText(/Library Ladder/)).toBeInTheDocument();
+    expect(screen.getByText('Painting | William France')).toBeInTheDocument();
   });
 
-  it('should render artist', async () => {
-    setup(mockedArt);
+  it('should render alt text', async () => {
+    setup();
+  });
+
+  it('should not render artwork type if no artwork type is provided', async () => {
+    setup({ ...mockedArt, artwork_type_title: '' });
+
     fireEvent.mouseOver(screen.getByTestId('art-listing-1234'));
     await waitFor(() => {
       screen.getByTestId('art-listing-artist-1234');
     });
-    expect(screen.getByText(/William France/)).toBeInTheDocument();
-  });
-
-  it('should render alt text', async () => {
-    setup(mockedArt);
-    expect(
-      screen.getByAltText(/The ladder inside Full Circle/)
-    ).toBeInTheDocument();
+    expect(screen.queryByText('Painting')).not.toBeInTheDocument();
   });
 
   it('should fallback to art title for fallback text if alt_text is not available', async () => {
-    delete mockedArt?.thumbnail?.alt_text;
-    setup(mockedArt);
+    setup({
+      ...mockedArt,
+      thumbnail: { lqip: 'blingblong', width: 400, height: 400 },
+    });
     expect(screen.getByAltText(/Library Ladder/)).toBeInTheDocument();
   });
 

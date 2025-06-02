@@ -1,3 +1,6 @@
+import React from 'react';
+
 export type FilterChipsProps = {
-  filterOptions: string[] | undefined;
+  selectedFilters: string[];
+  setSelectedFilters: React.Dispatch<React.SetStateAction<string[]>>;
 };

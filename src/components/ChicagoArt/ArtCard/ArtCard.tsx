@@ -12,6 +12,7 @@ const ArtCard = ({
   artist_title: artistTitle,
   image_id: imageId,
   thumbnail,
+  artwork_type_title: artworkTypeTitle,
 }: ArtProps) => {
   if (!imageId)
     return <NoImage id={id} artistTitle={artistTitle} title={title} />;
@@ -35,6 +36,7 @@ const ArtCard = ({
             className={styles.artist}
             data-testid={`art-listing-artist-${imageId}`}
           >
+            {artworkTypeTitle ? `${artworkTypeTitle} | ` : ''}
             {artistTitle ? artistTitle : 'Artist Unknown'}
           </div>
         </div>
