@@ -2,13 +2,10 @@ import React from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import useArtworkSearch from './useArtworkSearch';
-import API_URLS from '../constants/apiUrls';
 import { mockArtworkResponse, mockCollectionsResponse } from './testData';
 
-// Mock the global fetch function
 global.fetch = jest.fn();
 
-// Create a wrapper for the query client
 const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -30,7 +27,6 @@ const createWrapper = () => {
 };
 
 describe('useArtworkSearch hook', () => {
-  const { ARTIC_BASE_PATH, ARTIC_ARTWORKS } = API_URLS;
   const ids =
     '?ids=122232%2C2344%2C20392%2C154136%2C86421%2C8585%2C74065%2C182567%2C12380%2C23468%2C186425%2C9512';
   const fields =
@@ -41,17 +37,14 @@ describe('useArtworkSearch hook', () => {
   });
 
   it('fetches artwork data with the provided search term', async () => {
-    (fetch as jest.Mock).mockImplementation((url, options) => {
+    (fetch as jest.Mock).mockImplementation((url) => {
       if (url.includes('/search')) {
-        // Check that the search term is correctly passed in the request body
-        const requestBody = JSON.parse(options.body);
-        expect(requestBody.q).toBe('monet');
-
+        expect(url.includes('monet')).toBe(true);
         return Promise.resolve({
           json: () => Promise.resolve(mockCollectionsResponse),
         });
       } else {
-        // Check that the IDs are correctly included in the URL
+        // Check that the IDs and fields are correctly included in the URL
         expect(url).toContain(ids);
         expect(url).toContain(fields);
 
@@ -61,7 +54,6 @@ describe('useArtworkSearch hook', () => {
       }
     });
 
-    // Render the hook with a search term
     const { result } = renderHook(() => useArtworkSearch('monet'), {
       wrapper: createWrapper(),
     });
@@ -75,14 +67,6 @@ describe('useArtworkSearch hook', () => {
     const mockResultData = {
       data: mockArtworkResponse.data,
       pagination: mockCollectionsResponse.pagination,
-      filterOptions: [
-        'Metalwork',
-        'Painting',
-        'Decorative Arts',
-        'Textile',
-        'Ceramics',
-        'Vessel',
-      ],
     };
     expect(result.current.data).toEqual(mockResultData);
 
@@ -92,25 +76,58 @@ describe('useArtworkSearch hook', () => {
     // Assert first call is to search for artwork
     expect(fetch).toHaveBeenNthCalledWith(
       1,
-      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}/search`,
-      expect.objectContaining({
-        method: 'POST',
-        headers: expect.objectContaining({
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          q: 'monet',
-          fields: 'id',
-          limit: 12,
-          page: 1,
-        }),
-      })
+      'https://api.artic.edu/api/v1/artworks/search?params=%7B%22q%22%3A%22monet%22%2C%22fields%22%3A%5B%22id%22%5D%2C%22limit%22%3A12%2C%22page%22%3A1%7D'
     );
 
     // Assert second call to retrieve metadata about artworks
-    const secondCallArgs = (fetch as jest.Mock).mock.calls[1];
-    expect(secondCallArgs[0]).toBe(
-      `${ARTIC_BASE_PATH}${ARTIC_ARTWORKS}${ids}${fields}`
+    expect(fetch).toHaveBeenNthCalledWith(
+      2,
+      'https://api.artic.edu/api/v1/artworks?ids=122232%2C2344%2C20392%2C154136%2C86421%2C8585%2C74065%2C182567%2C12380%2C23468%2C186425%2C9512&fields=id%2Ctitle%2Cimage_id%2Cartist_title%2Cthumbnail%2Cartist_id%2Cartwork_type_title'
+    );
+  });
+
+  it('should fetch artwork data with search term and selected filters', async () => {
+    (fetch as jest.Mock).mockImplementation((url) => {
+      if (url.includes('/search')) {
+        expect(url.includes('thunder')).toBe(true);
+        expect(url.includes('Print')).toBe(true);
+        return Promise.resolve({
+          json: () => Promise.resolve(mockCollectionsResponse),
+        });
+      } else {
+        // Check that the IDs and fields are correctly included in the URL
+        expect(url).toContain(ids);
+        expect(url).toContain(fields);
+
+        return Promise.resolve({
+          json: () => Promise.resolve(mockArtworkResponse),
+        });
+      }
+    });
+
+    const { result } = renderHook(
+      () =>
+        useArtworkSearch('thunder', 1, ['Print', 'Costume and Accessories']),
+      {
+        wrapper: createWrapper(),
+      }
+    );
+
+    // Wait for query to resolve
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+
+    // Assert first call is to search for artwork
+    expect(fetch).toHaveBeenNthCalledWith(
+      1,
+      'https://api.artic.edu/api/v1/artworks/search?params=%7B%22q%22%3A%22thunder%22%2C%22fields%22%3A%5B%22id%22%5D%2C%22limit%22%3A12%2C%22page%22%3A1%2C%22query%22%3A%7B%22bool%22%3A%7B%22should%22%3A%5B%7B%22match%22%3A%7B%22artwork_type_title%22%3A%22Print%22%7D%7D%2C%7B%22match%22%3A%7B%22artwork_type_title%22%3A%22Costume+and+Accessories%22%7D%7D%5D%2C%22minimum_should_match%22%3A1%7D%7D%7D'
+    );
+
+    // Assert second call to retrieve metadata about artworks
+    expect(fetch).toHaveBeenNthCalledWith(
+      2,
+      'https://api.artic.edu/api/v1/artworks?ids=122232%2C2344%2C20392%2C154136%2C86421%2C8585%2C74065%2C182567%2C12380%2C23468%2C186425%2C9512&fields=id%2Ctitle%2Cimage_id%2Cartist_title%2Cthumbnail%2Cartist_id%2Cartwork_type_title'
     );
   });
 

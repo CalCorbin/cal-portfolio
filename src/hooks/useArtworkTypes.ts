@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import API_URLS from '../constants/apiUrls';
+import { ArtworkTypesResponse } from '../components/ChicagoArt/types/ArticApi';
 
 const useArtworkTypes = () => {
   const { ARTIC_BASE_PATH } = API_URLS;
@@ -10,9 +11,8 @@ const useArtworkTypes = () => {
       const url = new URL(`${ARTIC_BASE_PATH}/api/v1/artwork-types`);
       url.searchParams.set('fields', 'title');
       const response = await fetch(url.toString());
-      const data = await response.json();
-      const titles = data.data.map((item: { title: string }) => item.title);
-      return titles || [];
+      const artworkTypes = (await response.json()) as ArtworkTypesResponse;
+      return artworkTypes.data.map((item: { title: string }) => item.title);
     },
   });
 };
