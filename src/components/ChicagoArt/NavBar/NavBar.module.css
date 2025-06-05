@@ -17,3 +17,22 @@
         padding: 1rem;
     }
 }
+
+.homeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.homeIcon {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.homeIcon:hover {
+    color: rgba(255, 117, 140, 0.9);
+    transform: scale(1.1);
+}
