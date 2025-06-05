@@ -2,11 +2,11 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import NavBar from './NavBar';
 
+const mockPush = jest.fn();
 jest.mock('next/navigation', () => {
-  const push = jest.fn();
   return {
     useRouter: () => ({
-      push,
+      mockPush,
       replace: jest.fn(),
       prefetch: jest.fn(),
       back: jest.fn(),
@@ -21,5 +21,13 @@ describe('<NavBar/>', () => {
     render(<NavBar />);
 
     expect(screen.getByTestId('search-form')).toBeInTheDocument();
+  });
+
+  it('should have home link pointing to homepage', () => {
+    render(<NavBar />);
+
+    // Assert that the link has the correct href
+    const homeLink = screen.getByTestId('home-icon').closest('a');
+    expect(homeLink).toHaveAttribute('href', '/');
   });
 });
