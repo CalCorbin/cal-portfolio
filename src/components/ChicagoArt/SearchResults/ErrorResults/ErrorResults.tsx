@@ -27,9 +27,11 @@ const ErrorResults = () => {
       </p>
       <button
         className={styles.errorButton}
-        onClick={() => window.location.reload()}
+        onClick={() =>
+          (window.location.href = '/chicago-art/search?q=charcoal')
+        }
       >
-        Refresh Page
+        Go to Search Page
       </button>
     </div>
   );

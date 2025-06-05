@@ -2,17 +2,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ErrorResults from './ErrorResults';
 
-const mockReload = jest.fn();
+const mockHref = '/chicago-art/search?q=frodo';
 Object.defineProperty(window, 'location', {
-  value: { reload: mockReload },
+  value: { href: mockHref },
   writable: true,
 });
 
 describe('<ErrorResults />', () => {
-  beforeEach(() => {
-    mockReload.mockClear();
-  });
-
   it('should render the error container', () => {
     render(<ErrorResults />);
     const errorContainer = screen
@@ -50,20 +46,19 @@ describe('<ErrorResults />', () => {
     expect(messageElement).toHaveClass('errorMessage');
   });
 
-  it('should display a refresh button', () => {
+  it('should take user to search page when search page button is clicked', () => {
     render(<ErrorResults />);
-    const buttonElement = screen.getByRole('button', { name: /refresh page/i });
 
-    expect(buttonElement).toBeInTheDocument();
-    expect(buttonElement).toHaveClass('errorButton');
-  });
+    // Assert original href
+    expect(window.location.href).toContain(mockHref);
 
-  it('should call window.location.reload when refresh button is clicked', () => {
-    render(<ErrorResults />);
-    const buttonElement = screen.getByRole('button', { name: /refresh page/i });
-
+    // Click refresh button
+    const buttonElement = screen.getByRole('button', {
+      name: /Go to Search Page/i,
+    });
     fireEvent.click(buttonElement);
 
-    expect(mockReload).toHaveBeenCalledTimes(1);
+    // Assert that href has been updated
+    expect(window.location.href).toContain('/chicago-art/search?q=charcoal');
   });
 });

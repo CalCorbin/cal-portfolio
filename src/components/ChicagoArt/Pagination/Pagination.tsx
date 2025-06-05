@@ -18,19 +18,22 @@ const Pagination = ({ page, pagination }: PaginationProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  // Set a hard limit on pages due to the art API limits
+  const totalPages = pagination.total_pages > 83 ? 83 : pagination.total_pages;
+
   const createPageHandler = useCallback(
     (targetPage: number) => () => {
       const params = new URLSearchParams(searchParams.toString());
       params.set('page', targetPage.toString());
       router.push(`?${params.toString()}`);
     },
-    [page, pagination.total_pages, searchParams, router]
+    [page, totalPages, searchParams, router]
   );
 
   const handlePrevPage = createPageHandler(page - 1);
   const handleNextPage = createPageHandler(page + 1);
   const handleFirstPage = createPageHandler(1);
-  const handleLastPage = createPageHandler(pagination.total_pages);
+  const handleLastPage = createPageHandler(totalPages);
 
   return (
     <nav aria-label="pagination">
@@ -63,25 +66,23 @@ const Pagination = ({ page, pagination }: PaginationProps) => {
           {page}
         </PageButton>
 
-        {page < pagination.total_pages && (
+        {page < totalPages && (
           <PageButton onClick={handleNextPage} key="next-page">
             {page + 1}
           </PageButton>
         )}
 
-        {page < pagination.total_pages - 2 && (
-          <span className={styles.ellipsis}>...</span>
-        )}
+        {page < totalPages - 2 && <span className={styles.ellipsis}>...</span>}
 
-        {page < pagination.total_pages - 1 && (
+        {page < totalPages - 1 && (
           <PageButton onClick={handleLastPage} key="last-page">
-            {pagination.total_pages}
+            {totalPages}
           </PageButton>
         )}
 
         <PageButton
           onClick={handleNextPage}
-          disabled={page === pagination.total_pages}
+          disabled={page === totalPages}
           ariaLabel="Next page"
           isArrow
           key="next-arrow"
@@ -90,8 +91,7 @@ const Pagination = ({ page, pagination }: PaginationProps) => {
         </PageButton>
       </div>
       <div className={styles.paginationInfo}>
-        Showing {page} of {pagination.total_pages} pages ({pagination.total}{' '}
-        results)
+        Showing {page} of {totalPages} pages ({pagination.total} results)
       </div>
     </nav>
   );
