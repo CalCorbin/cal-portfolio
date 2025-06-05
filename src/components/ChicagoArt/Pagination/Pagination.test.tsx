@@ -67,6 +67,38 @@ describe('<Pagination />', () => {
       const { container } = render(<Pagination {...props} />);
       expect(container).toBeEmptyDOMElement();
     });
+
+    it('should render 83 pages when total_pages is 83', () => {
+      const props = initialProps({
+        pagination: {
+          total_pages: 83,
+          total: 4592,
+        },
+        page: 1,
+      });
+
+      render(<Pagination {...props} />);
+      expect(screen.getByText('1')).toHaveAttribute('aria-current', 'page');
+      expect(
+        screen.getByText('Showing 1 of 83 pages (4592 results)')
+      ).toBeInTheDocument();
+    });
+
+    it('should render 83 pages when total_pages is 356', () => {
+      const props = initialProps({
+        pagination: {
+          total_pages: 356,
+          total: 4592,
+        },
+        page: 1,
+      });
+
+      render(<Pagination {...props} />);
+      expect(screen.getByText('1')).toHaveAttribute('aria-current', 'page');
+      expect(
+        screen.getByText('Showing 1 of 83 pages (4592 results)')
+      ).toBeInTheDocument();
+    });
   });
 
   describe('navigation', () => {
