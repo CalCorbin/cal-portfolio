@@ -1,13 +1,16 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SearchResults from './SearchResults';
 import useArtworkSearch from '../../../hooks/useArtworkSearch';
+import useArtworkTypes from '../../../hooks/useArtworkTypes';
 import { QueryResults } from '../types/QueryResults';
 
 const mockedUseArtworkSearch = useArtworkSearch as jest.Mock;
+const mockedUseArtworkTypes = useArtworkTypes as jest.Mock;
 jest.mock('../../../hooks/useArtworkSearch');
+jest.mock('../../../hooks/useArtworkTypes');
 
 jest.mock('next/navigation', () => {
   const push = jest.fn();
@@ -53,11 +56,13 @@ const mockedArt = [
     artwork_type_title: 'Painting',
   },
 ];
+const mockArtworkTypes = { data: ['Painting', 'Vessel', 'Basketry'] };
 
 describe('<SearchResults />', () => {
   const queryClient = new QueryClient();
   const setup = (mockedQueryResults: QueryResults) => {
     mockedUseArtworkSearch.mockReturnValue(mockedQueryResults);
+    mockedUseArtworkTypes.mockReturnValue(mockArtworkTypes);
     render(
       <QueryClientProvider client={queryClient}>
         <SearchResults />
@@ -105,7 +110,7 @@ describe('<SearchResults />', () => {
         "We couldn't load the artwork results. Please try refreshing the page or try again later."
       )
     ).toBeInTheDocument();
-    expect(screen.getByText('Refresh Page')).toBeInTheDocument();
+    expect(screen.getByText('Go to Search Page')).toBeInTheDocument();
   });
 
   it('should render art cards', async () => {
@@ -145,6 +150,43 @@ describe('<SearchResults />', () => {
     });
 
     expect(screen.getByLabelText('pagination')).toBeInTheDocument();
+  });
+
+  it('should return user to page 1 when filters are changed', async () => {
+    setup({
+      data: {
+        data: mockedArt,
+        pagination: {
+          total_pages: 10,
+          total: 100,
+        },
+      },
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    // Assert page 1 is current page
+    expect(screen.getByRole('button', { name: '1' })).toHaveAttribute(
+      'aria-current',
+      'page'
+    );
+
+    // Click page 2 and select a filter
+    await fireEvent.click(screen.getByRole('button', { name: '2' }));
+    await fireEvent.click(screen.getByRole('button', { name: 'Painting' }));
+
+    // Assert page 1 is active and page 2 is not active
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '1' })).toHaveAttribute(
+        'aria-current',
+        'page'
+      );
+      expect(screen.getByRole('button', { name: '2' })).not.toHaveAttribute(
+        'aria-current',
+        'page'
+      );
+    });
   });
 
   it('should not render pagination when there is not enough results', async () => {

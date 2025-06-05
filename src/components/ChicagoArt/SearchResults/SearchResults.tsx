@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import ArtCard from '../ArtCard/ArtCard';
 import NavBar from '../NavBar/NavBar';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
@@ -16,6 +16,7 @@ const SearchResults = () => {
   const query = searchParams.get('q') || '';
   const page = Number(searchParams.get('page')) || 1;
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const router = useRouter();
 
   const { data, isLoading, isFetching, isError } = useArtworkSearch(
     query,
@@ -24,6 +25,16 @@ const SearchResults = () => {
   );
   const art = data?.data ? data.data : [];
   const pagination = data?.pagination;
+
+  useEffect(() => {
+    if (page !== 1) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('page', '1');
+
+      // Navigate to page 1 of the new results
+      router.push(`?${params.toString()}`);
+    }
+  }, [selectedFilters]);
 
   if (isError) return <ErrorResults />;
 
