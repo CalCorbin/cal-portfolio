@@ -24,6 +24,22 @@ const MetaDataTags = ({
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
+      <meta httpEquiv="content-language" content="en" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: title,
+            description: description,
+            image: image,
+            url: url,
+          }),
+        }}
+      />
+      <link rel="icon" href="/favicon.ico" />
+      <meta name="robots" content="index, follow" />
     </Head>
   );
 };
