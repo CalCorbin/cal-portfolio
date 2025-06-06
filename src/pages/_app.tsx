@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { logEvent } from 'firebase/analytics';
