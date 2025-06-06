@@ -35,6 +35,14 @@ const Landing = () => (
         </a>
       </div>
     </header>
+    <section data-testid="bio-section" className={styles.bioSection}>
+      <p className={styles.bioText}>
+        Full-stack software engineer with 6+ years of experience building web
+        applications with React, TypeScript, and Python. I specialize in
+        modernizing legacy systems, implementing comprehensive testing
+        strategies, and creating reliable user experiences that scale.
+      </p>
+    </section>
     <h2>projects</h2>
     <div data-testid="projects-section" className={styles.projectsContainer}>
       {PROJECTS.map((project) => (

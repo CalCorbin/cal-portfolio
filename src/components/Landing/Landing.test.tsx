@@ -36,4 +36,8 @@ describe('<Landing />', () => {
   it('should render a card', () => {
     expect(screen.getByText(/SpaceX GraphQL/)).toBeInTheDocument();
   });
+
+  it('should render bio', () => {
+    expect(screen.getByTestId('bio-section')).toBeInTheDocument();
+  });
 });
