@@ -13,8 +13,8 @@
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        padding: 1rem;
+        gap: 1rem;
+        padding: 0.75rem;
     }
 }
 
