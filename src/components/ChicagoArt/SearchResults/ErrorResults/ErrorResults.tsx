@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './ErrorResults.module.css';
 
 const ErrorResults = () => {
@@ -25,14 +26,12 @@ const ErrorResults = () => {
         We couldn&apos;t load the artwork results. Please try refreshing the
         page or try again later.
       </p>
-      <button
-        className={styles.errorButton}
-        onClick={() =>
-          (window.location.href = '/chicago-art/search?q=charcoal')
-        }
+      <Link
+        href="/chicago-art/search?q=charcoal"
+        className={styles.redirectLink}
       >
         Go to Search Page
-      </button>
+      </Link>
     </div>
   );
 };

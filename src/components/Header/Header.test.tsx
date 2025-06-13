@@ -43,11 +43,15 @@ describe('<Header />', () => {
 
   it('should default to black text', async () => {
     prepareComponent();
-    expect(screen.getByText(initialProps.title)).toHaveStyle('color: black');
+    expect(screen.getByText(initialProps.title)).toHaveStyle(
+      'color: rgb(0, 0, 0)'
+    );
   });
 
   it('should render white text when useDarkMode is true', async () => {
     prepareComponent({ ...initialProps, useDarkMode: true });
-    expect(screen.getByText(initialProps.title)).toHaveStyle('color: white');
+    expect(screen.getByText(initialProps.title)).toHaveStyle(
+      'color: rgb(255, 255, 255)'
+    );
   });
 });

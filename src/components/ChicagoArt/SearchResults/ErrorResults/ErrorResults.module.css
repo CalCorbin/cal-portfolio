@@ -40,7 +40,7 @@
   margin-bottom: 1.5rem;
 }
 
-.errorButton {
+.redirectLink {
   padding: 0.75rem 1.5rem;
   background-color: #dc3545;
   color: white;
@@ -49,12 +49,13 @@
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
+  text-decoration: none;
 }
 
-.errorButton:hover {
+.redirectLink:hover {
   background-color: #c82333;
 }
 
-.errorButton:active {
+.redirectLink:active {
   transform: translateY(1px);
 }
