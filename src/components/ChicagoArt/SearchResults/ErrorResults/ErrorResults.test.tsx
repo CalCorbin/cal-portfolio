@@ -1,12 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ErrorResults from './ErrorResults';
-
-const mockHref = '/chicago-art/search?q=frodo';
-Object.defineProperty(window, 'location', {
-  value: { href: mockHref },
-  writable: true,
-});
 
 describe('<ErrorResults />', () => {
   it('should render the error container', () => {
@@ -46,19 +40,16 @@ describe('<ErrorResults />', () => {
     expect(messageElement).toHaveClass('errorMessage');
   });
 
-  it('should take user to search page when search page button is clicked', () => {
+  it('should render a link to the search page with correct attributes', () => {
     render(<ErrorResults />);
 
-    // Assert original href
-    expect(window.location.href).toContain(mockHref);
-
-    // Click refresh button
-    const buttonElement = screen.getByRole('button', {
-      name: /Go to Search Page/i,
+    const linkElement = screen.getByRole('link', {
+      name: /go to search page/i,
     });
-    fireEvent.click(buttonElement);
 
-    // Assert that href has been updated
-    expect(window.location.href).toContain('/chicago-art/search?q=charcoal');
+    expect(linkElement).toHaveAttribute(
+      'href',
+      '/chicago-art/search?q=charcoal'
+    );
   });
 });
