@@ -75,7 +75,7 @@
 
 .social {
   display: grid;
-  grid-template-columns: repeat(3, 2fr);
+  grid-template-columns: repeat(4, 2fr);
   align-items: center;
   justify-content: center;
 }
