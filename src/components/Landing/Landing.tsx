@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../components/Card/Card';
 import Talks from '../../components/Landing/Talks/Talks';
@@ -13,7 +13,7 @@ const Landing = () => {
       <header data-testid="header-title" className={styles.header}>
         <h1>cal corbin</h1>
         <div data-testid="about-me" className={styles.jobTitle}>
-          software engineer
+          senior software engineer
         </div>
         <div className={styles.social}>
           <a data-testid="cal-email" href="mailto:calcorbin@gmail.com">
@@ -21,7 +21,7 @@ const Landing = () => {
           </a>
           <a
             data-testid="cal-linkedin"
-            target="_self"
+            target="_blank"
             rel="noopener noreferrer"
             href="https://www.linkedin.com/in/calcorbin/"
           >
@@ -29,20 +29,28 @@ const Landing = () => {
           </a>
           <a
             data-testid="cal-github"
-            target="_self"
+            target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/CalCorbin"
           >
             <FontAwesomeIcon size="2x" icon={faGithub} />
           </a>
+          <a
+            data-testid="cal-discord"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://discord.com/users/102269541530218496"
+          >
+            <FontAwesomeIcon size="2x" icon={faDiscord} />
+          </a>
         </div>
       </header>
       <section data-testid="bio-section" className={styles.bioSection}>
         <p className={styles.bioText}>
-          Full-stack software engineer with 6+ years of experience building web
-          applications with React, TypeScript, and Python. I specialize in
+          Full-stack senior software engineer with 7+ years of experience building web
+          applications with React, JavaScript, Go, and Python. I specialize in
           modernizing legacy systems, implementing comprehensive testing
-          strategies, and creating reliable user experiences that scale.
+          strategies, and creating enjoyable developer experiences that scale.
         </p>
       </section>
       <Talks />

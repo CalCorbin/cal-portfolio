@@ -8,40 +8,23 @@ describe('<Landing />', () => {
   });
 
   afterEach(cleanup);
-
-  it('should render my name', () => {
+  it('should render all landing page elements', () => {
+    // Personal information
     expect(screen.getByText('cal corbin')).toBeInTheDocument();
-  });
+    expect(screen.getByText('senior software engineer')).toBeInTheDocument();
 
-  it('should render job title', () => {
-    expect(screen.getByText('software engineer')).toBeInTheDocument();
-  });
-
-  it('should render header', () => {
+    // Header and sections
     expect(screen.getByTestId('header-title')).toBeInTheDocument();
-  });
-
-  it('should render email link', () => {
-    expect(screen.getByTestId('cal-email')).toBeInTheDocument();
-  });
-
-  it('should render github link', () => {
-    expect(screen.getByTestId('cal-github')).toBeInTheDocument();
-  });
-
-  it('should render linkedin link', () => {
-    expect(screen.getByTestId('cal-linkedin')).toBeInTheDocument();
-  });
-
-  it('should render a card', () => {
-    expect(screen.getByText(/SpaceX GraphQL/)).toBeInTheDocument();
-  });
-
-  it('should render bio', () => {
     expect(screen.getByTestId('bio-section')).toBeInTheDocument();
-  });
-
-  it('should render talks section', () => {
     expect(screen.getByTestId('talks-section')).toBeInTheDocument();
+
+    // Social links
+    expect(screen.getByTestId('cal-email')).toBeInTheDocument();
+    expect(screen.getByTestId('cal-github')).toBeInTheDocument();
+    expect(screen.getByTestId('cal-linkedin')).toBeInTheDocument();
+    expect(screen.getByTestId('cal-discord')).toBeInTheDocument();
+
+    // Project content
+    expect(screen.getByText(/SpaceX GraphQL/)).toBeInTheDocument();
   });
 });
