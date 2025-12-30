@@ -1,17 +1,24 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import { logEvent } from 'firebase/analytics';
 import { FirebaseContext, firebase } from '../components/Firebase';
 import '../globals.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [analytics, setAnalytics] = useState(firebase.analytics);
-  const apolloClient = new ApolloClient({
+
+  const httpLink = new HttpLink({
     uri: 'https://main--spacex-l4uc6p.apollographos.net/graphql',
+  });
+
+  const apolloClient = new ApolloClient({
+    link: httpLink,
     cache: new InMemoryCache(),
   });
+
   const queryClient = new QueryClient();
 
   useEffect(() => {
