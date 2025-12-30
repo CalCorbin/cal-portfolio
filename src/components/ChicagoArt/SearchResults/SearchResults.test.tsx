@@ -12,19 +12,19 @@ const mockedUseArtworkTypes = useArtworkTypes as jest.Mock;
 jest.mock('../../../hooks/useArtworkSearch');
 jest.mock('../../../hooks/useArtworkTypes');
 
-jest.mock('next/navigation', () => {
-  const push = jest.fn();
-  return {
-    useRouter: () => ({
-      push,
-      replace: jest.fn(),
-      prefetch: jest.fn(),
-      back: jest.fn(),
-    }),
-    usePathname: () => '/',
-    useSearchParams: () => new URLSearchParams(),
-  };
-});
+const mockPush = jest.fn();
+const mockSearchParams = new URLSearchParams();
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: mockPush,
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    back: jest.fn(),
+  }),
+  usePathname: () => '/',
+  useSearchParams: () => mockSearchParams,
+}));
 
 const mockedArt = [
   {
@@ -152,43 +152,6 @@ describe('<SearchResults />', () => {
     expect(screen.getByLabelText('pagination')).toBeInTheDocument();
   });
 
-  it('should return user to page 1 when filters are changed', async () => {
-    setup({
-      data: {
-        data: mockedArt,
-        pagination: {
-          total_pages: 10,
-          total: 100,
-        },
-      },
-      isLoading: false,
-      isFetching: false,
-      isError: false,
-    });
-
-    // Assert page 1 is current page
-    expect(screen.getByRole('button', { name: '1' })).toHaveAttribute(
-      'aria-current',
-      'page'
-    );
-
-    // Click page 2 and select a filter
-    await fireEvent.click(screen.getByRole('button', { name: '2' }));
-    await fireEvent.click(screen.getByRole('button', { name: 'Painting' }));
-
-    // Assert page 1 is active and page 2 is not active
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: '1' })).toHaveAttribute(
-        'aria-current',
-        'page'
-      );
-      expect(screen.getByRole('button', { name: '2' })).not.toHaveAttribute(
-        'aria-current',
-        'page'
-      );
-    });
-  });
-
   it('should not render pagination when there is not enough results', async () => {
     setup({
       data: {
@@ -227,6 +190,27 @@ describe('<SearchResults />', () => {
     // Wait for data to render
     await waitFor(() => {
       expect(screen.getByText('No results found')).toBeInTheDocument();
+    });
+  });
+
+  it('should navigate to page 1 when selectedFilters changes and current page is not 1', async () => {
+    // [Step 1] Set up search params to simulate being on page 2
+    mockSearchParams.set('page', '2');
+    mockSearchParams.set('q', 'test query');
+    setup({
+      data: { data: mockedArt },
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+    });
+
+    // [Step 2] Change filters (this would trigger the useEffect)
+    const filterButton = screen.getByText('Painting'); // Adjust based on your FilterChips implementation
+    fireEvent.click(filterButton);
+
+    // [Step 3] Push is called to navigate user back to page 1
+    await waitFor(() => {
+      expect(mockPush).toHaveBeenNthCalledWith(2, '?page=1&q=test+query'); // We assert this is called twice because of how mocking works.
     });
   });
 });

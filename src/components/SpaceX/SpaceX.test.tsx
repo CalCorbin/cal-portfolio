@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { MockedProvider } from '@apollo/client/testing';
+import { MockedProvider } from '@apollo/client/testing/react';
 import SpaceX, { GET_SHIPS } from './SpaceX';
 
 const mocks = [

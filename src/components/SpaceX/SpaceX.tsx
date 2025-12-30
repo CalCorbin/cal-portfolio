@@ -1,4 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import Ship from '../../components/Ship/Ship';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
@@ -23,8 +24,12 @@ export const GET_SHIPS = gql`
   }
 `;
 
+type ShipsData = {
+  ships: IShip['ship'][];
+};
+
 const SpaceX = () => {
-  const { loading, error, data } = useQuery(GET_SHIPS);
+  const { loading, error, data } = useQuery<ShipsData>(GET_SHIPS);
 
   if (loading) return <Loading />;
   if (error) return <p data-testid="error-state">Error...</p>;
@@ -37,7 +42,7 @@ const SpaceX = () => {
       />
       <hr />
       <div className={styles['ship-container']}>
-        {data.ships.map((ship: IShip['ship']) => (
+        {data?.ships.map((ship: IShip['ship']) => (
           <Ship key={ship.id} ship={ship} />
         ))}
       </div>
