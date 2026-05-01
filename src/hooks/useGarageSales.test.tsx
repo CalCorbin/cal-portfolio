@@ -46,13 +46,14 @@ describe('useGarageSales hook', () => {
 
     expect(result.current.data).toEqual(mockGarageSalesResponse);
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith(
-      'https://data.okc.gov/services/portal/api/data/records/Garage%20Sales',
-      undefined
-    );
+    expect(fetch).toHaveBeenCalledWith('/api/garage-sales', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
   });
 
-  it('appends recordID as a query param when provided', async () => {
+  it('sends recordID in the request body', async () => {
     (fetch as jest.Mock).mockResolvedValueOnce({
       json: () => Promise.resolve(mockGarageSalesResponse),
     });
@@ -65,13 +66,14 @@ describe('useGarageSales hook', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(fetch).toHaveBeenCalledWith(
-      'https://data.okc.gov/services/portal/api/data/records/Garage%20Sales?recordID=3',
-      undefined
-    );
+    expect(fetch).toHaveBeenCalledWith('/api/garage-sales', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ recordID: 3 }),
+    });
   });
 
-  it('sends a POST request with body when filter params are provided', async () => {
+  it('sends filter params in the request body', async () => {
     (fetch as jest.Mock).mockResolvedValueOnce({
       json: () => Promise.resolve(mockGarageSalesResponse),
     });
@@ -90,18 +92,15 @@ describe('useGarageSales hook', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(fetch).toHaveBeenCalledWith(
-      'https://data.okc.gov/services/portal/api/data/records/Garage%20Sales',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          filterField: 'Zipcode',
-          filterType: 'equal',
-          filterValue: '73102',
-        }),
-      }
-    );
+    expect(fetch).toHaveBeenCalledWith('/api/garage-sales', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        filterField: 'Zipcode',
+        filterType: 'equal',
+        filterValue: '73102',
+      }),
+    });
   });
 
   it('returns error state when the API request fails', async () => {

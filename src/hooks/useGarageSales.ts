@@ -12,22 +12,16 @@ interface GarageSalesParams {
 }
 
 const useGarageSales = (params: GarageSalesParams = {}) => {
-  const { GARAGE_SALES_BASE_PATH, GARAGE_SALES } = API_URLS;
-  const { recordID, ...bodyParams } = params;
+  const { GARAGE_SALES_PROXY } = API_URLS;
 
   return useQuery({
     queryKey: ['garageSales', params],
     queryFn: async () => {
-      const url = new URL(`${GARAGE_SALES_BASE_PATH}${GARAGE_SALES}`);
-      if (recordID !== undefined) url.searchParams.set('recordID', String(recordID));
-
-      const hasBodyParams = Object.keys(bodyParams).length > 0;
-      const response = await fetch(url.toString(), hasBodyParams ? {
+      const response = await fetch(GARAGE_SALES_PROXY, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bodyParams),
-      } : undefined);
-
+        body: JSON.stringify(params),
+      });
       return response.json() as Promise<GarageSalesResponse>;
     },
   });

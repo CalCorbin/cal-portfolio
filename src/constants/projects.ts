@@ -10,6 +10,14 @@ interface Project {
 
 const PROJECTS: Array<Project> = [
   {
+    id: 9,
+    title: 'Oklahoma City Garage Sales',
+    link: ROUTES.GARAGESALES,
+    img: 'https://images.pexels.com/photos/17322232/pexels-photo-17322232.jpeg',
+    description:
+      'Explore garage sales in Oklahoma City and find your next hidden gem!',
+  },
+  {
     id: 8,
     title: 'Chicago Art Institute Explorer',
     link: ROUTES.CHICAGOART,
