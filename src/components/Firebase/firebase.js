@@ -35,9 +35,6 @@ const config = {
   appId: '1:200093543015:web:4b0b756e5b3b60467002c2',
   measurementId: 'G-TWNDCZ16ZP',
 };
-const ENV = process.env.NODE_ENV;
-
-console.log(`Firebase initializing in ${ENV} environment`);
 
 // Only initialize Firebase if the config is valid
 let app = null;

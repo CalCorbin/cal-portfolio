@@ -30,7 +30,6 @@ const SearchResults = () => {
     if (page !== 1) {
       const params = new URLSearchParams(searchParams.toString());
       params.set('page', '1');
-      console.log('test');
 
       // Navigate to page 1 of the new results
       router.push(`?${params.toString()}`);

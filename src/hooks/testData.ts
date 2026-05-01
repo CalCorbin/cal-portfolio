@@ -3,6 +3,7 @@ import {
   ArtworkResponse,
   ArtworkTypesResponse,
 } from '../components/ChicagoArt/types/ArticApi';
+import { GarageSalesResponse } from '../components/GarageSales/types/GarageSalesApi';
 
 export const mockCollectionsResponse: CollectionResponse = {
   preference: null,
@@ -330,4 +331,36 @@ export const mockArtworkTypesResponse: ArtworkTypesResponse = {
     iiif_url: 'https://www.artic.edu/iiif/2',
     website_url: 'http://www.artic.edu',
   },
+};
+
+export const mockGarageSalesResponse: GarageSalesResponse = {
+  DatasetName: 'Garage Sales',
+  RecordID: -1,
+  Fields: [
+    { FieldID: 0, FieldName: 'Object_ID', FieldType: 'System.Int32' },
+    { FieldID: 1, FieldName: 'Address', FieldType: 'System.String' },
+    { FieldID: 2, FieldName: 'Zipcode', FieldType: 'System.String' },
+  ],
+  Records: [
+    {
+      Object_ID: 1,
+      Address: '123 Main St',
+      Zipcode: '73102',
+      Permit_Date: '2024-06-01',
+      Applicances: 'Yes',
+      Baby_Kid_Items: 'No',
+      Clothing: 'Yes',
+      Electronics: 'No',
+      Entertainment: 'Yes',
+      Fitness_Equipment: 'No',
+      Furniture: 'Yes',
+      Hobbies: 'No',
+      Kitchen_Items: 'Yes',
+      Lawn_Tools: 'No',
+      Household_Items: 'Yes',
+      Sporting_Goods: 'No',
+      All_Categories: 'No',
+      Shape: 'POINT (-97.5164 35.4676)',
+    },
+  ],
 };
