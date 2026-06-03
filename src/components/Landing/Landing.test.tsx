@@ -23,8 +23,5 @@ describe('<Landing />', () => {
     expect(screen.getByTestId('cal-github')).toBeInTheDocument();
     expect(screen.getByTestId('cal-linkedin')).toBeInTheDocument();
     expect(screen.getByTestId('cal-discord')).toBeInTheDocument();
-
-    // Project content
-    expect(screen.getByText(/SpaceX GraphQL/)).toBeInTheDocument();
   });
 });

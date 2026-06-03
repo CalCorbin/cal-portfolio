@@ -10,6 +10,13 @@ interface Project {
 
 const PROJECTS: Array<Project> = [
   {
+    id: 11,
+    title: 'Dohyō Chat',
+    link: 'https://dohyo-chat.fly.dev/',
+    img: 'https://images.pexels.com/photos/35827169/pexels-photo-35827169.jpeg',
+    description: 'Join Dohyō Chat, a chat room for sumo enthusiasts!',
+  },
+  {
     id: 8,
     title: 'Chicago Art Institute Explorer',
     link: ROUTES.CHICAGOART,
@@ -53,13 +60,6 @@ const PROJECTS: Array<Project> = [
     link: ROUTES.TICTACTOE,
     img: 'https://images.pexels.com/photos/3400795/pexels-photo-3400795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     description: 'A simple game of Tic Tac Toe. Click the squares to play!',
-  },
-  {
-    id: 3,
-    title: 'SpaceX GraphQL',
-    link: ROUTES.SPACEX,
-    img: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441',
-    description: 'A simple GraphQL client for the SpaceX API.',
   },
   {
     id: 1,
