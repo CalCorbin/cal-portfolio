@@ -4,6 +4,7 @@ import { faGithub, faLinkedin, faDiscord } from '@fortawesome/free-brands-svg-ic
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../components/Card/Card';
 import Talks from '../../components/Landing/Talks/Talks';
+import ContactModal from '../../components/ContactModal/ContactModal';
 import PROJECTS from '../../constants/projects';
 import styles from './Landing.module.css';
 
@@ -60,6 +61,7 @@ const Landing = () => {
           <Card key={project.id} data={project} />
         ))}
       </div>
+      <ContactModal />
     </div>
   );
 };
