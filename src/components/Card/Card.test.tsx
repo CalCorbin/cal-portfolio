@@ -37,11 +37,12 @@ describe('Card', () => {
     );
   });
 
-  it('should not render description if user is not hovering over card', () => {
+  it('should not render description if user is not hovering over card', async () => {
     prepareComponent();
-    expect(
-      screen.queryByText(initialProps.data.description)
-    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('card-overlay')).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
   });
 
   it('should render description if user is hovering over card', async () => {
@@ -50,6 +51,9 @@ describe('Card', () => {
 
     const card = screen.getByTestId('card-image-1');
     await user.hover(card);
-    expect(screen.getByText(initialProps.data.description)).toBeInTheDocument();
+    expect(screen.getByTestId('card-overlay')).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
   });
 });
