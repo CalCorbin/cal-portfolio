@@ -17,11 +17,45 @@
 .simpleCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /*transition: ease-in .25s;*/
 }
 
-.simpleCard img {
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.imageWrapper img {
   height: 15rem;
   width: 18rem;
   margin: .75rem;
   object-fit: cover;
+}
+
+.overlay {
+/*dimensions*/
+  position: absolute;
+  inset: 0;
+  height: 15rem;
+  width: 18rem;
+  margin: .75rem;
+
+/*text*/
+  background-color: #1a2a3a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+
+/*effects*/
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+}
+
+.imageWrapper:hover .overlay {
+  opacity: 80%;
+  visibility: visible;
+  transform: translateX(0);
+  transition: ease 100ms;
 }

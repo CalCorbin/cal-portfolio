@@ -18,11 +18,14 @@ const Card = ({ data }: CardProps) => (
     target={'_self'}
     rel="noreferrer"
   >
-    <img
-      alt={data.title}
-      src={data.img}
-      data-testid={`card-image-${data.id}`}
-    />
+    <div className={styles.imageWrapper}>
+      <img
+        alt={data.title}
+        src={data.img}
+        data-testid={`card-image-${data.id}`}
+      />
+      <span className={styles.overlay}>{data.description}</span>
+    </div>
     {data.title}
   </a>
 );
