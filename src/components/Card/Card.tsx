@@ -19,7 +19,6 @@ const Card = ({ data }: CardProps) => (
     rel="noreferrer"
   >
     <img
-      style={{ width: '90%', margin: '10px' }}
       alt={data.title}
       src={data.img}
       data-testid={`card-image-${data.id}`}

@@ -21,6 +21,7 @@
 
 .simpleCard img {
   height: 15rem;
-  width: 90%;
+  width: 18rem;
+  margin: .75rem;
   object-fit: cover;
 }
