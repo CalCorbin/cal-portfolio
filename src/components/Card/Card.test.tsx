@@ -1,15 +1,17 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Card from './Card';
+import userEvent from '@testing-library/user-event';
+import Card, { CardProps } from './Card';
 
 describe('Card', () => {
-  const initialProps = {
+  const initialProps: CardProps = {
     data: {
       id: 1,
       title: 'Star Trek Next Generation Elevator Game',
       link: 'https://github.com/CalCorbin/elevatorGame',
       img: 'https://images.unsplash.com/photo-1550479023-2a811e19dfd3',
+      description: 'Ride an elevator in the Enterprise as much as you want',
     },
   };
 
@@ -33,5 +35,21 @@ describe('Card', () => {
       'href',
       initialProps.data.link
     );
+  });
+
+  it('should not render description if user is not hovering over card', () => {
+    prepareComponent();
+    expect(
+      screen.queryByText(initialProps.data.description)
+    ).not.toBeInTheDocument();
+  });
+
+  it('should render description if user is hovering over card', async () => {
+    const user = userEvent;
+    prepareComponent();
+
+    const card = screen.getByTestId('card-image-1');
+    await user.hover(card);
+    expect(screen.getByText(initialProps.data.description)).toBeInTheDocument();
   });
 });
